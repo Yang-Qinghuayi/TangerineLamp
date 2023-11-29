@@ -1,0 +1,58 @@
+/* pages/index1/advice/adviceList/adviceList.wxss */
+
+.top {
+  display: flex;
+  align-items: center;
+  height: 120rpx;
+}
+
+.top .targetImg{
+  height: 80rpx;
+  width: 80rpx;
+  padding-left: 20rpx;
+  padding-top: 10rpx;
+}
+
+.top .des{
+  margin-left: 20rpx;
+  color: var(--orange1);
+}
+
+.none{
+  text-align: center;
+  padding-top: 20rpx;
+  background-color:#f7f7f7;
+}
+
+.noneAppointment {
+  text-align: center;
+  padding-top: 400rpx;
+  color:#b3b3b3;
+}
+
+.adviceList {
+  color:#ffffff;
+  background-color: #ffcc33;
+  margin:20rpx;
+  padding: 30rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+}
+
+.left{
+  flex:3.5
+}
+
+.right{
+  flex:1
+}
+
+.right_button {
+  text-align: center;
+  font-size: 30rpx;
+  padding:12rpx;
+  background-color: white;
+  color: rgb(52, 177, 52);
+  border-radius: 10rpx;
+}

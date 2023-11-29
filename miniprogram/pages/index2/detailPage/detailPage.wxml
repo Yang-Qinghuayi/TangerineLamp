@@ -1,0 +1,86 @@
+<!--这部分内容渲染的是用户点进了具体的树洞界面-->
+<!-- 日期转字符串的wxs函数 -->
+<wxs module="filter" src="/utils/dateToStr_treehole.wxs" />
+<scroll-view class="allPage">
+	<!-- 正文部分 -->
+	<view class="hostArticleContainer">
+		<view class="treeholeInfoContainer">
+			<view class="hostHead">
+				<image wx:if="{{!isAnonymous}}" class="hostHeadImg" mode="aspectFill" src="{{headImg}}"></image>
+				<image wx:if="{{isAnonymous}}" class="hostHeadImg" mode="aspectFill"
+					src="cloud://tangerine-cloud-9grdz5e80159e7b3.7461-tangerine-cloud-9grdz5e80159e7b3-1304921980/index2/anonymous/normalAnonymous.svg">
+				</image>
+			</view>
+			<view class="hostInfo">
+				<view wx:if="{{!isAnonymous}}" class="hostNickname">{{hostNickname}}</view>
+				<view wx:if="{{isAnonymous}}" class="hostNickname">一个匿名的小橘子</view>
+				<view class="postTime" space="ensp">{{filter.dateToStr(time)}}</view>
+			</view>
+		</view>
+		<!-- 分割线 -->
+		<view style="display:flex;justify-content:center;">
+			<view class="line1"></view>
+		</view>
+		<!-- 显示点赞的人 -->
+		<view class="likeCount" space="ensp">有{{likeCount}}人觉得很赞 </view>
+		<!-- 主体部分 -->
+		<view style="padding-left: 2%; padding-right: 2%;">
+			<!-- <text class="article" space="ensp">{{aritleDetail}}</text> -->
+			<rich-text class="article" space="ensp" nodes="{{aritleDetail}}"></rich-text>
+		</view>
+	</view>
+	<!-- 中间的分隔条部分 -->
+	<view class="likeButtonContainer">
+		<button class="likeButton" bindtap="click">
+			<image class="like" src="{{likeIcon}}" mode="aspectFill"></image>
+			<view class="theLikeCount {{color}}">{{likeCount}}</view>
+			<!-- <view wx:if="{{!isLike}}" class="theLikeCount">{{likeCount}}</view> -->
+		</button>
+	</view>
+	<view class="devContainer">
+		<view class="dev1"></view>
+		<view class="dev2">观点</view>
+	</view>
+	<!-- 分割线 -->
+	<view style="display:flex;justify-content:center;">
+		<view class="line2"></view>
+	</view>
+	<!-- 评论区部分 -->
+	<scroll-view class="commentContainer" wx:if="{{isLogin}}" scroll-y="true" enable-back-to-top="true">
+		<block wx:for="{{comments}}">
+			<view class="singleComment">
+				<view class="commentHead">
+					<image class="commentHeadImg" src="{{item.commenterAvatar}}" mode="aspectFill"></image>
+					<image wx:if="{{item.isCertification}}" class="host_vip" mode='aspectFill' src="/icons/vip.svg">
+					</image>
+				</view>
+				<view class="commentInfoContainer">
+					<view class="commentNickname">{{item.commenterNickname}}</view>
+					<text class="commentDetail" space="ensp">{{item.comment}}</text>
+					<view class="commentPostTime">回复时间：{{filter.dateToStr(item.time)}}</view>
+				</view>
+				<!--删除图片-->
+				<view wx:if="{{item._openid==visiterOpenid || isDeveloper}}" class="deleteImg_container" data-thistreeholeid="{{item._id}}"
+					catchtap="deleteMe">
+					<image src="/pages/index2/logo/delete.svg" class="deleteImg" mode="aspectFill"></image>
+				</view>
+			</view>
+			<!-- 评论与评论之间的分割线 -->
+			<view style="display:flex;justify-content:center;">
+				<view class="line3"></view>
+			</view>
+		</block>
+		<view style="display:flex;justify-content:center;">
+			<view class="line3"></view>
+		</view>
+		<!-- 见底的通知 -->
+		<view class="bottomPrompt">已经到底啦</view>
+	</scroll-view>
+	<view wx:if="{{!isLogin}}" class="bottomPrompt">登录后可见评论</view>
+	<button wx:if="{{!isLogin}}" bindtap="toLogin" class="toLogin">点我前往登录地点</button>
+</scroll-view>
+<view class="iCommentContainer">
+	<textarea class="iComment" maxlength="-1" auto-height placeholder="评论只有树洞主人和自己看得见哟~~"
+		bindinput="bindTextAreaInput" value="{{commentDetails}}"></textarea>
+	<view class="send" bindtap="send">发 送</view>
+</view>

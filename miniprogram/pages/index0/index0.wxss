@@ -1,0 +1,255 @@
+/* pages/index0/index0.wxss */
+page{
+  background: white;
+}
+
+.slide{
+  height: 425rpx;
+  margin: 20rpx 20rpx 0rpx 20rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  transform: translateY(0);
+}
+
+.slide-image{
+  width: 100%;
+}
+
+.dailyMain{
+  margin-top: -20rpx;
+  margin-bottom: 50rpx;
+}
+
+.daily{
+  height: 240rpx;
+  display: flex;
+  justify-content: center;
+  /* background: #f9f9f9; */
+}
+
+
+/* 每日分享三大导航栏组件样式 */
+/* 每日文章、治愈歌单、心理漫画 */
+
+.daily-item1{
+  width: 150rpx;
+  height: 150rpx;
+  margin-top: 50rpx; 
+  margin-left: 25rpx;
+  margin-right: 60rpx;
+  background: #f7f6f6;
+  border-radius: 100rpx;
+}
+
+.daily-item2{
+  width: 150rpx;
+  height: 150rpx;
+  margin-top: 50rpx; 
+  margin-left: 25rpx;
+  margin-right: 60rpx;
+  background: #f7f6f6;
+  border-radius: 100rpx;
+}
+
+.daily-item3{
+  width: 150rpx;
+  height: 150rpx;
+  margin-top: 50rpx; 
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+  background: #f7f6f6;
+  border-radius: 100rpx;
+}
+
+/* 心理电台功能已去除 */
+/* .daily-item4{
+  display: flex;
+  float: right;
+  position: relative;
+  width: 342rpx;
+  height: 175rpx;
+  margin-top: 5rpx; 
+  margin-right: 25rpx;
+  background: #f7f6f6;
+  border-radius: 15rpx;
+} */
+
+/* 每日文章、治愈歌单、心理漫画 图标设置 */
+.daily-icon-passage image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 27rpx;
+  margin-bottom: 20rpx;
+  margin-left: 30rpx;
+}
+
+.daily-icon-music image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 27rpx;
+  margin-bottom: 20rpx;
+  margin-left: 30rpx;
+}
+
+.daily-icon-comic image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  margin-left: 25rpx;
+}
+
+.daily-info{
+  font-size: 28rpx;
+  position: relative;
+  color: #666666;
+  font-family: '微软雅黑';
+  bottom: 10rpx;
+  left: -10rpx;
+  margin-left: 32rpx;
+  margin-top: 20rpx;
+}
+
+/* .daily-des{
+  color: #797676;
+  font-size: 22rpx;
+  margin-top: 15rpx;
+  margin-left: 15rpx;
+}
+
+
+/* 热门内容展示 */
+
+.contentShow{
+  background: #f7f6f6;
+  padding: 25rpx 0 20rpx;
+  margin-bottom: 25rpx;
+}
+
+/* 标题部分 */
+.title{
+  display: flex;
+  justify-content: space-between;
+  height: 60rpx;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.title .titleTxt{
+  font-size: 40rpx;
+  font-weight: bold;
+  height: 100%;
+  position: relative;
+  padding-left: 28rpx;
+}
+
+.title .titleTxt::before{
+  display: block;
+  width: 18rpx;
+  height: 36rpx;
+  background: #ff9933;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -20rpx;
+}
+
+.title .more{
+  font-size: 34rpx;
+  color: #666;
+  margin-right: 20rpx;
+}
+
+/* 文章内容展示模块 */
+.contentContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 22rpx;
+  margin-right: 22rpx;
+}
+
+.contentContainer .contentBody{
+  width: 344rpx;
+  height: 214rpx;
+  margin-bottom: 15rpx;
+  position: relative;
+}
+
+.contentContainer .introPic{
+  width: 100%;
+  height: 100%;
+  border-radius: 15rpx;
+}
+
+.contentContainer .text{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15rpx;
+}
+
+.contentContainer .text .contentTitle{
+  font-size: 34rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  text-align: center;
+  display: -webkit-box;
+  overflow: hidden;
+  text-emphasis: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* 漫画内容展示模块 */
+.comicBody{
+  width: 300rpx;
+  height: 400rpx;
+  margin-bottom: 40rpx;
+  margin-left: 27rpx;
+  margin-right: 27rpx;
+  position: relative;
+}
+
+.comicPic{
+  width: 100%;
+  height: 100%;
+  border-radius: 15rpx;
+}
+
+.comicBackground{
+  width: 100%;
+  height: 8%;
+  background: rgba(0,0,0,0.55);
+  position: absolute;
+  /* top: 0; */
+  left: 0;
+  bottom: 0;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15rpx;
+}
+
+.comicTitle{
+  font-size: 24rpx;
+  text-align: center;
+  display: -webkit-box;
+  overflow: hidden;
+  text-emphasis: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

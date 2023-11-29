@@ -1,0 +1,35 @@
+/* pages/index3/editor/editor.wxss */
+.background{
+    
+}
+
+.background view{
+    margin-top: 30rpx;
+    background-color: #fff;
+    padding: 20rpx ;
+    margin-top: 30rpx;
+    background-color: #fff;
+    padding: 20rpx ;
+    border-bottom: 1rpx solid #ccc;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nick{
+    color:#ff6633;
+    font-family: 'FZShuTi';
+    font-style: normal;
+    transform: translateX(-100%);
+    font-weight: bold;
+    font-size: 40rpx;
+}
+
+.sentence{
+    color:#ff6633;
+    font-family:'STKaiti';
+    font-style: normal;
+    transform: translateX(-5%);
+    font-weight: bold;
+    font-size: 33rpx;
+
+}

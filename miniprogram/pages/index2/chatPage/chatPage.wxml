@@ -1,0 +1,208 @@
+<!-- 聊天页 -->
+<view>
+  <!-- 头部 -->
+  <view class="header">
+    <text>{{hisUserInfo.nickName}}</text>
+  </view>
+  <!-- 滚动聊天信息 -->
+  <scroll-view class="cu-chat" scroll-y="true" scroll-into-view="{{scrollId}}" style="height:{{systemInfo.windowHeight - 90}}px;padding:10px 0;" enable-flex="true">
+    <block wx:for="{{msgList}}" wx:key="index" wx:if="{{msgList!=[]}}">
+      <view class="cu-chat">
+
+        <!-- 我发送的消息渲染 -->
+
+        <!-- 文字 -->
+        <block wx:if="{{item.creator == myOpenid && item.type == 'text'}}">
+          <view class="cu-item self">
+            <!-- 我的发送消息 -->
+            <view class="main">
+              <view class="content bg-mygreen shadow" id="msg-{{index}}">
+                <text class="mytext">{{item.content}}</text>
+              </view>
+            </view>
+            <!--我的头像  -->
+            <!-- <view class="cu-avatar radius" style="background-image:url({{myUserInfo.avatarUrl}});"></view> -->
+            <image class="cu-avatar radius" src="{{myUserInfo.avatarUrl}}"></image>
+          </view>
+        </block>
+        <!-- 图片 -->
+        <block wx:if="{{item.creator == myOpenid && item.type == 'image'}}">
+          <view class="cu-item self" id="msg-{{index}}">
+            <view class="main" bindtap="viewImage" data-url="{{item.content}}">
+              <image src="{{item.content}}" class="radius" mode="widthFix"></image>
+            </view>
+            <image class="cu-avatar radius" src="{{myUserInfo.avatarUrl}}"></image>
+          </view>
+        </block>
+        <!-- 视频 -->
+        <block wx:if="{{item.creator == myOpenid && item.type == 'video'}}">
+          <view class="cu-item self" id="msg-{{index}}">
+            <view class="main" bindtap="viewvideo" data-url="{{item.content}}">
+              <video src="{{item.content}}" class="radius" mode="widthFix"></video>
+            </view>
+            <image class="cu-avatar radius" src="{{myUserInfo.avatarUrl}}"></image>
+          </view>
+        </block>
+        <!-- 文件 -->
+        <block wx:if="{{item.creator == myOpenid && item.type == 'file'}}">
+          <view class="cu-item self" id="msg-{{index}}">
+            <view class="main" bindtap="viewFile" data-fileid="{{item.content}}">
+              <view class="content" style="width: 400rpx;height: 200rpx;display: flex;flex-direction: column; justify-content: space-around;padding-left:30rpx;padding-right:40rpx;padding-top:0rpx">
+                <!-- 文件图标 -->
+                <view class="image">
+                  <image class="cu-avatar radius" style="background-image:url({{fileImg}});width:50px;height: 80rpx;"></image>
+                </view>
+                <!-- 文件名 -->
+                <view class="fileName" style="text-align: center;">
+                  <text class="view" style="font-size: 30rpx; font-weight: 20rpx;">{{item.fileName}}</text>
+                </view>
+              </view>
+            </view>
+            <image class="cu-avatar radius" src="{{myUserInfo.avatarUrl}}"></image>
+          </view>
+        </block>
+        <!-- 语音 -->
+        <block wx:if="{{item.creator == myOpenid && item.type == 'voice'}}">
+          <view class="cu-item self" id="msg-{{index}}">
+            <view class="main" bindtap="voicePlay" data-voiceid="{{item.content}}">
+              <view class="action text-bold text-grey">{{item.duration}}"</view>
+              <view class="content bg-mygreen shadow" style="width:{{systemInfo.windowWidth / 8 + item.duration * systemInfo.windowWidth / 50}}px;min-width:{{systemInfo.windowWidth / 8}}px;max-width:{{systemInfo.windowWidth / 2}}px;justify-content: flex-end;">
+                <text class="cuIcon-sound" style="transform: rotate(180deg);"> </text>
+              </view>
+            </view>
+            <!-- 头像 -->
+            <image class="cu-avatar radius" src="{{myUserInfo.avatarUrl}}"></image>
+          </view>
+        </block>
+
+        <!-- 他的消息部分 -->
+
+        <!-- 文字 -->
+        <block wx:if="{{item.creator !== myOpenid && item.type == 'text'}}">
+          <view class="cu-item">
+            <!-- 他的头像 -->
+            <image class="cu-avatar radius" src="{{hisUserInfo.avatarUrl}}"></image>
+            <!-- 他的消息 -->
+            <view class="main">
+              <view class="content shadow" id="msg-{{index}}">
+                <text class="mytext">{{item.content}}</text>
+              </view>
+            </view>
+          </view>
+        </block>
+        <!-- 图片 -->
+        <block wx:if="{{item.creator !== myOpenid && item.type == 'image'}}">
+          <view class="cu-item" id="msg-{{index}}">
+            <!-- 他的头像 -->
+            <image class="cu-avatar radius" src="{{hisUserInfo.avatarUrl}}"></image>
+            <!-- 他的图片 -->
+            <view class="main" bindtap="viewImage" data-url="{{item.content}}">
+              <image src="{{item.content}}" class="radius" mode="widthFix"></image>
+            </view>
+          </view>
+        </block>
+        <!-- 视频 -->
+        <block wx:if="{{item.creator !== myOpenid && item.type == 'video'}}">
+          <view class="cu-item " id="msg-{{index}}">
+            <!-- 他的头像 -->
+            <image class="cu-avatar radius" src="{{hisUserInfo.avatarUrl}}"></image>
+            <view class="main" bindtap="viewvideo" data-url="{{item.content}}">
+              <video src="{{item.content}}" class="radius" mode="widthFix"></video>
+            </view>
+
+          </view>
+        </block>
+        <!-- 文件 -->
+        <block wx:if="{{item.creator !== myOpenid && item.type == 'file'}}">
+          <view class="cu-item " id="msg-{{index}}">
+            <!-- 他的头像 -->
+            <image class="cu-avatar radius" src="{{hisUserInfo.avatarUrl}}"></image>
+            <!-- 他的文件 -->
+            <view class="main" bindtap="viewFile" data-fileid="{{item.content}}">
+              <view class="content" style="width: 400rpx;height: 200rpx;display: flex;flex-direction: column; justify-content: space-around;padding-left:30rpx;padding-right:40rpx;padding-top:0rpx">
+                <!-- 文件图标 -->
+                <view class="image">
+                  <image class="cu-avatar radius" style="background-image:url({{fileImg}});width:50px;height: 80rpx;"></image>
+                </view>
+                <!-- 文件名 -->
+                <view class="fileName" style="text-align: center;">
+                  <view class="view" style="font-size: 30rpx; font-weight: 20rpx;">{{item.fileName}}</view>
+                </view> 
+              </view>
+            </view>
+          </view>
+        </block>
+        <!-- 语音 -->
+        <block wx:if="{{item.creator !== myOpenid && item.type == 'voice'}}">
+          <view class="cu-item" id="msg-{{index}}">
+            <!-- 他的头像 -->
+            <image class="cu-avatar radius" src="{{hisUserInfo.avatarUrl}}"></image>
+            <!-- 他的消息 -->
+            <view class="main" bindtap="voicePlay" data-voiceid="{{item.content}}">
+              <view class="content shadow"  style="width:{{systemInfo.windowWidth / 8 + item.duration * systemInfo.windowWidth / 50}}px;min-width:{{systemInfo.windowWidth / 8}}px;max-width:{{systemInfo.windowWidth / 2}}px;"> 
+                <text class="cuIcon-sound self"></text>
+              </view>
+              <view class="action text-bold text-grey">{{item.duration}}"</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 发送部分 -->
+  <view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px">
+    <!-- +更多 -->
+    <view class="action" bindtap="showModal">
+      <text class="cuIcon-roundadd lg text-gray"></text>
+    </view>
+    <!-- text&voice -->
+    <view class="action" wx:if="{{inputMode == 'voice'}}" bindtap="switchInputMode">
+      <text class="cuIcon-keyboard lg text-grey"></text>
+    </view>
+    <view class="action" wx:if="{{inputMode=='text'}}" bindtap="switchInputMode">
+      <text class="cuIcon-sound text-grey"></text>
+    </view>
+    <!-- 文字输入框 -->
+    <input hidden="{{inputMode=='voice'}}" class="solid-bottom" style="padding-left: 20px;border-radius: 20px;" bindfocus="InputFocus" bindblur="InputBlur" adjust-position="{{false}}" focus="{{false}}" maxlength="300" cursor-spacing="10" value="{{inputContent}}" bindinput="onInputContent"></input>
+    <!-- 语音按住区 -->
+    <view hidden="{{inputMode=='text'}}" class="middle-view" bindtouchstart="RecordStart" catch:touchmove="RecordMove" bindtouchend="RecordEnd">{{voiceTip}}</view>
+    <!-- 发送按钮 -->
+    <button hidden="{{inputMode=='voice'}}" class="cu-btn bg-green shadow" style="width: 20%;border-radius: 20px;" bindtap="sendContent">发送</button>
+  </view>
+  <!-- 底部多选功能窗口 -->
+  <view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white">
+        <view class="action text-blue" bindtap="hideModal">取消</view>
+      </view>
+      <view class="padding-xl">
+        <view class="cu-list grid col-3">
+
+          <view class="cu-item" bindtap="sendPic">
+            <text class="cuIcon-pic lg text-gray"></text>
+            <text>图片</text>
+          </view>
+
+          <view class="cu-item" bindtap="sendVideo">
+            <text class="cuIcon-video lg text-gray"></text>
+            <text>视频</text>
+          </view>
+
+          <view class="cu-item" bindtap="sendFile">
+            <text class="cuIcon-send lg text-gray"></text>
+            <text>文件</text>
+          </view>
+
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 录音中的图样 -->
+  <view class="voice-tip" hidden="{{!recording}}">
+    <view>
+      <image src="{{recordimg}}"></image>
+    </view>
+    <view>{{showtip}}</view>
+  </view>
+</view>

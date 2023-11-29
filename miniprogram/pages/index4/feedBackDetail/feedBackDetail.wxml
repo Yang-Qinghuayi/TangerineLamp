@@ -1,0 +1,42 @@
+<!--pages/index4/feedBackDetail/feedBackDetail.wxml-->
+<!-- 日期转字符串的wxs函数 -->
+<wxs module="filter" src="/utils/dateToStr_treehole.wxs" />
+<!-- 顶层 -->
+<view class="topcontainer">
+  <view class='case_title'>
+    意见反馈详情
+  </view>
+</view>
+<!-- 正文部分 -->
+<view class="hostArticleContainer">
+  <view class="treeholeInfoContainer">
+    <view class="hostHead">
+      <image class="hostHeadImg" mode="aspectFill" src="{{avatarUrl}}"></image>
+    </view>
+    <view class="hostInfo">
+      <view class="hostNickname">{{nickName}}</view>
+      <view class="postTime" space="ensp">{{filter.dateToStr(submitTime)}}</view>
+    </view>
+  </view>
+  <!-- 分割线 -->
+  <view style="display:flex;justify-content:center;">
+    <view class="line1"></view>
+  </view>
+  <!-- 主体部分 -->
+  <view style="padding:20px 0;">
+    <rich-text style="padding: 0 20px;display: flex;justify-content: center;" space="ensp" nodes="{{content}}"></rich-text>
+  </view>
+</view>
+<!-- 分割线 -->
+<view style="display:flex;justify-content:center;">
+  <view class="line2"></view>
+</view>
+
+<view style="padding: 0 20px;display: flex;justify-content: center;margin-top: 20px;">
+  <view wx:if="{{contact!==''}}">
+    反馈者联系方式：{{contact}}
+  </view>
+  <view wx:else>
+    反馈者联系方式：无
+  </view>
+</view>

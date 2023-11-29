@@ -1,0 +1,135 @@
+/* pages/index2/editPage/personalEditor.wxss */
+page{
+	background-color: #efefef;
+}
+/* 子元素居中通用样式设置 */
+.in_mid{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*************************************标题部分*************************************/
+/* 顶部装载标题的空白容器 */
+.topcontainer{
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+  background-color: #fff;
+	border-bottom: 10rpx solid #efefef;
+
+}
+/*标题*/
+.case_title{
+  color: #ff7733;
+  font-size: 45rpx;
+	font-weight: bold;
+	font-family: 'Microsoft YaHei';
+}
+/* 发表按钮的容器 */
+.publish_container {
+	position: absolute;
+	width: 20%;
+	height: 100rpx;
+	align-items: center;
+	right: 10rpx;
+}
+/* 发表的按钮 */
+.go_publish {
+	width: 50%;
+	height: 80%;
+	padding: 0;
+	background-color: #ff7733;
+	color: #ffffff;
+	position: relative;
+}
+/*************************************正文编辑部分*************************************/
+/* 编辑正文的容器 */
+.midcontainer {
+	background-color: #efefef;
+	width: 100%;
+	height: 600rpx;
+	display: flex;
+	display: block;
+}
+/* 编辑正文部分 */
+.per_body {
+	width: 100%;
+	height: 450rpx;
+	background-color: #fff;
+	border-bottom: 5rpx solid #efefef;
+}
+/*************************************选择条编辑*************************************/
+/*选择条picker的样式*/
+.thePicker{
+	display: flex;
+	align-items: center;
+	font-size: 40rpx;
+	font-weight: bold;
+	padding-right: 1%;
+	padding-left: 1%;
+}
+.viewInPicker{
+	width: 100%;
+	height: 100rpx;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	font-size: 40rpx;
+	font-weight: bold;
+	padding-right: 1%;
+	padding-left: 1%;
+}
+.viewInPickerBackground{
+	background-color: #ff7733;
+}
+.theWork{
+	background-color: #5C92F1;
+}
+.theLife{
+	background-color: #AAB20E;
+}
+.theExam{
+	background-color: #E95BB8;
+}
+.theEmotion{
+	background-color: #F41010;
+}
+.theGame{
+	background-color: #C26BE7;
+}
+.theStudy{
+	background-color: #17AD17;
+}
+/*************************************页面底部*************************************/
+/* 底部容器 */
+.bottomcontainer {
+	width: 100%;
+	height: 11%;
+	background-color: #fff;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+}
+/* 装图片的容器 */
+.piccontainer {
+	display: flex;
+	width: 10%;
+}
+/*首页通用标准图片大小样式*/
+.stdimg{
+  width: 40rpx;
+  height: 40rpx;
+}
+/*调整radio-group的样式*/
+.theRGroup{
+	color: #ff7733;
+	display: flex;
+	align-items: center;
+	margin-right: 1%;
+}
+/*调整radio的样式*/
+.theRadio{
+	font-size: 40rpx;
+	color: #473a31;
+	font-weight: bold;
+}

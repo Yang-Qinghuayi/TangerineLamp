@@ -1,0 +1,41 @@
+<!-- 日期转字符串的wxs函数 -->
+<wxs module="filter" src="/utils/dateToStr_treehole.wxs" />
+
+<view class="bottom" hover-class="none" hover-stop-propagation="false">
+    <view class="" hover-class="none" hover-stop-propagation="false">
+        <view class="title" hover-class="none" hover-stop-propagation="false">
+            <!-- <image class="pic" src="/icons/树洞.png"></image> -->
+            树洞列表
+        </view>
+    </view>
+</view>
+
+<block wx:if="{{isLogin}}">
+    <scroll-view scroll-y="true" enable-back-to-top="true">
+        <block wx:for="{{treeHoleData}}" wx:for-index="index" wx:for-item="item">
+            <view class='singleBlock' bindtap="toDetail" data-thistreeholeid="{{item._id}}">
+                <view class="single_top_container in_mid">
+                    <image src="{{item.avatar}}" mode='aspectFill' class="host_head_img" lazy-load="true"></image>
+                    <view class="host_info_container">
+                        <view type="userNickName" class="nick_name color" space="ensp">{{item.nickName}}</view>
+                        <view class="time_info" space="ensp">
+                            {{filter.dateToStr(item.time)}}
+                        </view>
+                        <view class="time_info" space="ensp">所在分区：{{item.tag}}</view>
+                    </view>
+                    <!--删除图片-->
+                    <view class="deleteImg_container" data-thistreeholeid="{{item._id}}" catchtap="deleteMe">
+                        <image src="/pages/index2/logo/delete.svg" class="deleteImg" mode="aspectFill" lazy-load="true"></image>
+                    </view>
+                </view>
+                <view class="single_body_container">
+                    <text class="single_body">
+                        {{item.mainBody}}
+                    </text>
+                    <view class="single_agree" space="ensp" style="position:relative; bottom:0">{{item.goodCount}} 人点赞
+                    </view>
+                </view>
+            </view>
+        </block>
+    </scroll-view>
+</block>

@@ -1,0 +1,11 @@
+<view class="title">{{wordsDetail.title}}</view>
+<view class="blank"></view>
+<view class="content"
+wx:for="{{wordsDetail.content}}"
+wx:key="wordsDetailContent">
+<view class="topic">{{item.topic}}</view>
+<view class="paragraph"><text user-select="true" space="ensp">{{item.paragraph}}</text></view>
+</view>
+<view class="flexbox">
+  <view class="origin">[ 内容来源：{{wordsDetail.origin}} ]</view>
+</view>

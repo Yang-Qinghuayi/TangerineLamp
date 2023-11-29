@@ -1,0 +1,9 @@
+/* miniprogram/pages/index0/comic/comicContent/comicIntro.wxss */
+
+.comic-image{
+  width: 100%;
+}
+
+.body{
+  margin-bottom: 100rpx;
+}

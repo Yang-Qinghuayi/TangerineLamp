@@ -1,0 +1,82 @@
+/* pages/index0/passage/passage.wxss */
+
+page{
+  background: white;
+}
+
+.header{
+  padding: 41rpx;
+  position: relative;
+}
+
+.title{
+  font-size: 50rpx;
+  font-weight: bold;
+  color: #ff8833;
+}
+
+.des{
+  font-size: 30rpx;
+  color: #aaa;
+  line-height: 67rpx;
+}
+
+.passage{
+  display: flex;
+  margin-bottom: 100rpx;
+}
+
+.passage-item{
+  display: flex;
+  height: 205rpx;
+  background-color: #eeeeee;
+  border-top: 7rpx solid white;
+  border-bottom: 10rpx solid white;
+  border-left: 5rpx solid white;
+  border-right: 5rpx solid white;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  align-items: center;
+  border-radius: 15rpx;
+}
+
+.passage-info{
+  flex:2;
+  margin-top: 0rpx;
+  margin-left: 30rpx;
+  height: 90%;
+}
+
+.passage-introImage{
+  position: relative;
+  flex: 1.2;
+  height: 75%;
+  margin-left: 25rpx;
+}
+
+.passage-introImage image{
+  width: 200rpx;
+  height: 150rpx;
+  border-radius: 10rpx;
+}
+
+.passage-title{
+  margin-top: 25rpx;
+  margin-left: 5rpx;
+  font-family: '微软雅黑';
+  font-size: 36rpx;
+  display: -webkit-box;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.passage-des{
+  color: #797676;
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  margin-left: 5rpx;
+}

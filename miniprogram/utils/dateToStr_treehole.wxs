@@ -1,0 +1,27 @@
+// 这个是用于树洞界面将时间戳对象转换成字符串对象的处理函数
+var dateToStr = function (n) {
+  // var d = getDate(n)
+  // var year = d.getFullYear()
+  // var month = d.getMonth() + 1
+  // var day = d.getDate()
+  // var hour = d.getHours()
+  // var minu = d.getMinutes()
+  // var second = d.getSeconds()
+  // var formatDate = year+'-'+month+'-'+day+" "+hour+":"+minu+":"+second
+  // return formatDate
+
+  //将时间戳格式转换成年月日时分秒
+  var date = getDate(n);
+  var Y = date.getFullYear() + '-';
+  var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+  var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+
+  var h = (date.getHours() < 10 ? '0' + (date.getHours()) : date.getHours()) + ':';
+  var m = (date.getMinutes() < 10 ? '0' + (date.getMinutes()) : date.getMinutes()) + ':';
+  var s = (date.getSeconds() < 10 ? '0' + (date.getSeconds()) : date.getSeconds());
+  var strDate = Y + M + D + h + m + s;
+  console.log('输出内容:', strDate)
+  return strDate
+
+}
+module.exports.dateToStr = dateToStr

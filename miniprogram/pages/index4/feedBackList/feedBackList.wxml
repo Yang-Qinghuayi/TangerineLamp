@@ -1,0 +1,38 @@
+<!--pages/index4/feedBackList/feedBackList.wxml-->
+<!-- 日期转字符串的wxs函数 -->
+<wxs module="filter" src="../../../utils/dateToStr_treehole.wxs" />
+<view>
+  <!-- 顶层 -->
+  <view class="topcontainer">
+    <view class='case_title'>
+      意见反馈列表
+    </view>
+  </view>
+  <view class="bottom">
+    <view class="freeTime_item" wx:for="{{feedBackList}}" wx:for-item="item" wx:key="index" bindtap="goToDetail" data-item="{{item}}">
+      <view class="picBlock">
+        <image src="{{item.avatarUrl}}" mode="aspectFill"></image>
+      </view>
+
+      <view class="leftBlock">
+        <view class="detail_header">
+          <text class="name">
+            {{item.nickName}}
+          </text>
+          <text class="time">
+            {{filter.dateToStr(item.submitTime)}}
+          </text>
+        </view>
+        <view class="level">
+          反馈内容：{{item.content}}
+        </view>
+        <view class="speciality" wx:if="{{item.contact!==''}}">
+          联系方式：{{item.contact}}
+        </view>
+        <view class="speciality" wx:else>
+          联系方式：无
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

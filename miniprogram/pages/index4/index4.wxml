@@ -1,0 +1,25 @@
+
+<view>
+<!-- 顶层 -->
+  <view class="topcontainer">
+    <view class='case_title'>
+      咨询意见反馈
+    </view>
+  </view>
+  <form bindsubmit="formSubmit">
+      <view class="content_wrap">
+          <view class="content">
+              <textarea name="opinion"  maxlength="100" value="{{content}}" auto-height placeholder-class="placeholder" placeholder="期待您的反馈，我们将会不断改进（100字以内）" />
+          </view>
+      </view>  
+      <view class="phone">
+          <input name="contact" value="{{contact}}" placeholder-class="placeholder" placeholder="请留下您的手机号或邮箱，方便我们及时回复" />
+      </view>
+      <button formType="submit" hover-class="button_active" loading="{{loading}}">提交</button>
+  </form>
+  <!-- 意见反馈查看按钮 -->
+  <view class="look" bindtap="goToFeedBackList" wx:if="{{isDeveloper}}">
+    <image class="lookicon" src="../../icons/eye.png" mode="aspectFit"></image>
+    <text class="looktext">查看反馈</text>
+  </view>
+</view>

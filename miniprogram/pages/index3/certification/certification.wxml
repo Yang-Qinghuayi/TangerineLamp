@@ -1,0 +1,22 @@
+
+<view class="top" wx:if="{{isLogin}}">
+  <view class="singlecontainer" wx:if="{{isDeveloper}}" data-certitype="authenStudent" bindtap="toCerti">
+    <view class="certiButton">学生验证通道</view>
+  </view> 
+
+  <view class="singlecontainer" data-certitype="poorStudent" bindtap="toCerti">
+    <view class="certiButton">贫困生认证</view>
+  </view>
+
+  <view class="singlecontainer" data-certitype="certiDoctor" bindtap="toCerti">
+    <view class="certiButton">医师认证</view>
+  </view>
+
+  <view class="singlecontainer" wx:if="{{isDeveloper}}" data-certitype="doctorUpdata" bindtap="toCerti">
+    <view class="certiButton">医师更新</view>
+  </view>
+
+  <view class="singlecontainer" wx:if="{{isDeveloper}}" data-certitype="authenDoctor" bindtap="toCerti">
+    <view class="certiButton">医师验证通道</view>
+  </view>
+</view>

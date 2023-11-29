@@ -1,0 +1,26 @@
+<!--miniprogram/pages/index1/words/wordsEdit/wordsEdit.wxml-->
+<view class="whole" id="j_page">
+  <view class="bigTitle">词条标题</view>
+  <view><textarea class="titleInput" value="{{bigTitle}}" bindinput="handleBigTitle" placeholder="请输入该词条的标题" maxlength="-1"></textarea></view>
+  <view class="bigTitle">内容来源</view>
+  <view><textarea class="titleInput" value="{{origin}}" bindinput="handleOrigin" placeholder="请输入内容来源 【选填】" maxlength="-1"></textarea></view>
+  <view class="bigTitle">详细内容</view>
+  
+
+  <view class="blank">
+    <view class="content"
+    wx:for="{{content}}"
+    wx:key="smallTitleKey"
+    wx:for-index="titleIndex"
+    wx:for-item="item">
+      <textarea class="titleInput" value="{{item.topic}}" bindinput="handleSmallTitle" data-index="{{titleIndex}}" placeholder="请输入小标题" maxlength="-1"></textarea>
+      <textarea class="detailContent" value="{{item.paragraph}}" bindinput="handleContent" data-index="{{titleIndex}}" placeholder="请输入对应内容" maxlength="-1"></textarea>
+    </view>
+  </view>
+
+  <view class="bottom">
+    <view class="addTitle" catchtap="addTitle"><image class="add" src="/icons/index1_add.png"></image>小标题</view>
+    <view class="side"></view>
+    <view class="test" bindtap="showPopup"><text>提交</text></view>
+  </view>
+</view>

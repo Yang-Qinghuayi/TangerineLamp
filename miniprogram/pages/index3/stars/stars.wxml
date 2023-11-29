@@ -1,0 +1,33 @@
+<view class='wrap'>
+    <view>
+        <view class='date-show'>
+            <view class='lt-arrow' bindtap='lastMonth'>
+                <image src='{{picList[0]}}' mode='aspectFill'></image>
+            </view>
+            {{year}}年{{month}}月
+            <view class='rt-arrow' bindtap='nextMonth'>
+                <image src='{{picList[1]}}' mode='aspectFill'></image>
+            </view>
+        </view>
+    </view>
+    <view class='header'>
+        <view wx:for='{{date}}' class='{{(index == todayIndex) && isTodayWeek ? "weekMark" : ""}}'>
+            {{item}}
+            <view></view>
+        </view>
+    </view>
+    <view class='date-box'>
+        <!-- 渲染的时候用数据库里的数据，同一月份的数据，有数据样式就改变 -->
+        <!-- <view wx:for='{{dateArr}}' wx:for-item="item1" class='{{isToday == item1.isToday ? nowdaycolor : ""}}' data-date='{{item1.isToday}}'> -->
+        <view wx:for='{{dateArr}}' wx:for-item="item1" 
+    class='{{item1.isColor? "nowDay" : ""}}'>
+    <!-- ((isToday == item1.isToday) || -->
+            <!-- <view wx:for='{{alreadylist}}' wx:for-item="item2" 
+            class='{{item1.isToday == item2.isToday ? "nowDay" : ""}}'> -->
+            <view class='date-head'>
+                <view>{{item1.dateNum}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+<button class="submit" bindtap="sign_in">{{content}}</button>

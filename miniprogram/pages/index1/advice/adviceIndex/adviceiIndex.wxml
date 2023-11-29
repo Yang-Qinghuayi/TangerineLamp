@@ -1,0 +1,25 @@
+<!--pages/adviceIndex/adviceiIndex.wxml-->
+<view class="advice" bindtap="outerAppointment">
+  <view class="aImg">
+    <image src="/icons/index1_outerAppointment.png" alt=""></image>
+  </view>
+  <view class="des">
+    线下咨询预约
+  </view>
+</view>
+<view class="advice" bindtap="navToAppointment">
+  <view class="aImg">
+    <image src="/icons/index1_appointment.png" alt=""></image>
+  </view>
+  <view class="des">
+    在线咨询预约
+  </view>
+</view>
+<view class="advice" bindtap="navToAdvice">
+  <view class="aImg">
+    <image src="/icons/index1_enterAdvice.png"></image>
+  </view>
+  <view class="des">
+    在线咨询入口 >>>
+  </view>
+</view>
