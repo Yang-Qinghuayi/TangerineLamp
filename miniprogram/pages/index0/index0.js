@@ -51,8 +51,14 @@ Page({
   getPicList() {
     var picList = []
     db.collection("index0_swiper").get().then(res=>{
+      console.log(res.data)
+      console.log('kissme')
       this.setData({
         picList:res.data
+        // picList:[{
+        //   "src" : "https://avatars.githubusercontent.com/u/87259286?v=4",
+        //   "id" : "1"
+        // }]
       })
     })
   },
