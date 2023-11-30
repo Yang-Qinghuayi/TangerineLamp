@@ -31,7 +31,6 @@
     <view class="daily-info">漫画</view>
   </navigator>
 </view>
-
 <!-- 最新文章 -->
 <view class="contentShow">
   <!-- 标题 -->
@@ -43,13 +42,10 @@
   <view class="contentContainer">
     <!-- 内容 -->
     <navigator class="contentBody" wx:for="{{passageList}}" wx:key="id" wx:if="{{index0<6}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
-      <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
-      <view class="text">
+      <!-- 这里面每一个都是文章卡片 -->
+        <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
         <view class="contentTitle">{{item0.title}}</view>
-        <view class="contentDes">
-            {{item0.author}}
-          </view>
-      </view>
+
     </navigator>
   </view>
 </view>

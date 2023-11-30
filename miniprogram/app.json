@@ -80,7 +80,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#c4b33f",
     "navigationBarTitleText": "小橘灯",
-    
+    "enablePullDownRefresh": true,
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
