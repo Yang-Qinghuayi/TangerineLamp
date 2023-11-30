@@ -78,6 +78,34 @@ page {
   color: #ff9933;
 }
 
+/* 标题部分 */
+.title {
+  background: #f7f6f6;
+  padding: 25rpx 0 0;
+  height: 70rpx;
+  margin-bottom: 25rpx;
+  border-radius: 15rpx;
+  margin: 20rpx;
+  /* 阴影,参数的含义分别为: */
+  box-shadow: 0 0 1rpx #999;
+}
+
+.title .titleTxt {
+  font-size: 35rpx;
+  font-weight: bold;
+  height: 100%;
+  position: relative;
+  padding-left: 28rpx;
+}
+
+.title .more {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #666;
+  margin-right: 20rpx;
+}
+
+
 /* 底部播放器 */
 
 .player {

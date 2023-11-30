@@ -97,6 +97,12 @@
         "selectedIconPath": "icons/planet_active.png"
       },
       {
+        "pagePath": "pages/index0/music/music",
+        "text": "播放音乐",
+        "iconPath": "icons/disc-3.png",
+        "selectedIconPath": "icons/disc-3.png"
+      },
+      {
         "pagePath": "pages/index1/index1/index1",
         "text": "心理专攻",
         "iconPath": "icons/heart.png",
@@ -108,12 +114,7 @@
         "iconPath": "icons/comminity.png",
         "selectedIconPath": "icons/comminity_active.png"
       },
-      {
-        "pagePath": "pages/index4/index4",
-        "text": "意见反馈",
-        "iconPath": "icons/feedback.png",
-        "selectedIconPath": "icons/feedback_active.png"
-      },
+
       {
         "pagePath": "pages/index3/index3",
         "text": "个人中心",
