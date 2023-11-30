@@ -16,7 +16,7 @@
     </view>
     <view class="daily-info">文章</view>
   </navigator>
-  <!-- 治愈歌单 -->
+  <!-- 歌单 -->
   <navigator url="/pages/index0/music/music" hover-class="navigator-hover" class="daily-item1">
     <view class="daily-icon-passage">
       <image src="{{musicIconSrc}}"></image>
@@ -43,9 +43,8 @@
     <!-- 内容 -->
     <navigator class="contentBody" wx:for="{{passageList}}" wx:key="id" wx:if="{{index0<6}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
       <!-- 这里面每一个都是文章卡片 -->
-        <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
-        <view class="contentTitle">{{item0.title}}</view>
-
+      <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
+      <view class="contentTitle">{{item0.title}}</view>
     </navigator>
   </view>
 </view>

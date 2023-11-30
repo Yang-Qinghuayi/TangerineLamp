@@ -1,56 +1,32 @@
-<!--pages/index0/passage/passageContent/passageContent.wxml-->
+<!-- 文章只能上传一张长图的模式 -->
+<view class="body" wx:key="{{passage}}">
+  <image src="{{passage.introImage}}" class="passage-longPicture" mode="widthFix"></image>
+</view>
 
-<!-- 以下为文章按长图模式展示 -->
-<!-- <view class="body"
-wx:for="{{passage.body}}"
-wx:key="{{passage}}">
-  <image src="{{item}}" class="passage-longPicture" mode="widthFix"></image>
+<!-- 这是收藏按钮 -->
+<!-- 
+<view class="collect">
+  <view class="collect-image" bindtap="collectClick">
+    <image src="{{collect_img_src}}"></image>
+  </view>
+  <view class="collect-text">{{collect_text}}</view>
 </view> -->
 
-<!-- 文章只能上传一张长图 -->
-<view class="body"
-wx:key="{{passage}}">
-  <image src="{{passage.body}}" class="passage-longPicture" mode="widthFix"></image>
-</view>
-
-<view class="collect">
-  <view class="collect-image" bindtap="collectClick"><image src="{{collect_img_src}}" ></image></view>
-  <view class="collect-text">{{collect_text}}</view>
-</view>
-
-
-
-
 <!-- 以下为文章按数据库模式展示 -->
-
 <!-- <view class="passage-container">
-
   <view class="header">
-    <view class="title">
-      {{passage.title}}
-    </view>
-    <view class="author">
-      {{passage.author}}
-    </view>
-    <view class="des">
-      {{passage.des}}
-    </view>
+    <view class="title">{{passage.title}}</view>
+    <view class="author">{{passage.author}}</view>
+    <view class="des">{{passage.des}}</view>
   </view>
-
   <view class="blank"></view>
-
-  <view class="body"
-  wx:for="{{passage.body}}"
-  wx:key="{{passage}}">
-    <view class="subtitle">
-      {{item.subtitle}}
-    </view>
+  <view class="body" wx:for="{{passage.body}}" wx:key="{{passage}}">
+    <view class="subtitle">{{item.subtitle}}</view>
     <view class="para">
       <text user-select="true">{{item.para}}</text>
     </view>
   </view>
-
   <view class="passage-image">
-    <image src="{{passage.image}}"  mode="aspectFit" wx:if="{{passage.src.length != 0}}"></image>
+    <image src="{{passage.image}}" mode="aspectFit" wx:if="{{passage.src.length != 0}}"></image>
   </view>
 </view> -->

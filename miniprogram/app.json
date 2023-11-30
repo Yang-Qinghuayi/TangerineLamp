@@ -6,6 +6,9 @@
     "pages/index0/passage/passage",
     "pages/index0/music/music",
     "pages/index0/comic/comic",
+    "pages/index0/passage/passageContent/passageContent",
+    "pages/index0/comic/comicIntro/comicIntro",
+
     "pages/index2/editPage/personalEditor",
     "pages/index2/detailPage/detailPage",
     "pages/index2/addButton/addButton",
@@ -34,8 +37,7 @@
     "pages/index3/diary/diary",
     "pages/index3/editor/editor",
     "pages/index3/diary/diary_detail/diary_detail",
-    "pages/index0/passage/passageContent/passageContent",
-    "pages/index0/comic/comicIntro/comicIntro",
+
     "pages/index1/advice/appointment/appointment",
     "pages/index1/advice/appointmentDetail/appointmentDetail",
     "pages/index1/advice/adviceList/adviceList",
