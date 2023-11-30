@@ -9,6 +9,7 @@ page{
   border-radius: 20rpx;
   overflow: hidden;
   transform: translateY(0);
+  box-shadow: 0 2rpx 5rpx #999;
 }
 
 .slide-image{
@@ -17,75 +18,46 @@ page{
 
 .dailyMain{
   margin-top: -20rpx;
-  margin-bottom: 50rpx;
+  margin-bottom: 10rpx;
 }
 
 .daily{
-  height: 240rpx;
+  height: 180rpx;
   display: flex;
   justify-content: center;
   /* background: #f9f9f9; */
 }
 
-
 /* 每日分享三大导航栏组件样式 */
 /* 每日文章、治愈歌单、心理漫画 */
 
 .daily-item1{
-  width: 150rpx;
-  height: 150rpx;
-  margin-top: 50rpx; 
-  margin-left: 25rpx;
-  margin-right: 60rpx;
-  background: #f7f6f6;
-  border-radius: 100rpx;
-}
-
-.daily-item2{
-  width: 150rpx;
-  height: 150rpx;
-  margin-top: 50rpx; 
-  margin-left: 25rpx;
-  margin-right: 60rpx;
-  background: #f7f6f6;
-  border-radius: 100rpx;
-}
-
-.daily-item3{
-  width: 150rpx;
-  height: 150rpx;
-  margin-top: 50rpx; 
-  margin-left: 25rpx;
-  margin-right: 25rpx;
-  background: #f7f6f6;
-  border-radius: 100rpx;
-}
-
-/* 心理电台功能已去除 */
-/* .daily-item4{
   display: flex;
-  float: right;
-  position: relative;
-  width: 342rpx;
-  height: 175rpx;
-  margin-top: 5rpx; 
-  margin-right: 25rpx;
+  justify-content: space-between; /* 这会将子元素分散对齐，一个靠左，一个靠右 */
+  align-items: center;
+  padding: 0 15rpx 0 0;
+  width: 2000rpx;
+  height: 100rpx;
+  margin-top: 50rpx; 
+  margin-left: 25rpx;
+  margin-right: 20rpx;
   background: #f7f6f6;
-  border-radius: 15rpx;
-} */
+  border-radius: 20rpx;
+  box-shadow: 0 0 1rpx #999;
+}
 
 /* 每日文章、治愈歌单、心理漫画 图标设置 */
 .daily-icon-passage image{
-  width: 100rpx;
-  height: 100rpx;
+  width: 50rpx;
+  height: 50rpx;
   margin-top: 27rpx;
   margin-bottom: 20rpx;
   margin-left: 30rpx;
 }
 
 .daily-icon-music image{
-  width: 100rpx;
-  height: 100rpx;
+  width: 50rpx;
+  height: 50rpx;
   margin-top: 27rpx;
   margin-bottom: 20rpx;
   margin-left: 30rpx;
@@ -101,6 +73,8 @@ page{
 
 .daily-info{
   font-size: 28rpx;
+  /* bold */
+  font-weight: 600;
   position: relative;
   color: #666666;
   font-family: '微软雅黑';
@@ -110,53 +84,52 @@ page{
   margin-top: 20rpx;
 }
 
-/* .daily-des{
-  color: #797676;
-  font-size: 22rpx;
-  margin-top: 15rpx;
-  margin-left: 15rpx;
-}
-
-
 /* 热门内容展示 */
 
 .contentShow{
   background: #f7f6f6;
-  padding: 25rpx 0 20rpx;
+  padding: 25rpx 0 0;
+  height: 75rpx;
   margin-bottom: 25rpx;
+  border-radius: 20rpx;
+  margin: 20rpx;
+  /* 阴影,参数的含义分别为: */
+  box-shadow: 0 0 2rpx #999;
 }
 
 /* 标题部分 */
 .title{
   display: flex;
   justify-content: space-between;
-  height: 60rpx;
+  height: 50rpx;
   align-items: center;
-  margin-bottom: 30rpx;
+  /* margin-bottom: 20rpx; */
+  margin-left: 22rpx;
 }
 
 .title .titleTxt{
-  font-size: 40rpx;
+  font-size: 35rpx;
   font-weight: bold;
   height: 100%;
   position: relative;
   padding-left: 28rpx;
 }
 
-.title .titleTxt::before{
+/* .title .titleTxt::before{
   display: block;
   width: 18rpx;
   height: 36rpx;
-  background: #ff9933;
+  background: #422a12;
   content: "";
   position: absolute;
   left: 0;
   top: 50%;
   margin-top: -20rpx;
-}
+} */
 
 .title .more{
-  font-size: 34rpx;
+  font-size: 30rpx;
+  font-weight: bold;
   color: #666;
   margin-right: 20rpx;
 }

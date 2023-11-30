@@ -4,9 +4,9 @@ const db = wx.cloud.database();
 
 Page({
   data: {
-    passageIconSrc: '/icons/passage-icon.jpg',
-    musicIconSrc: '/icons/music-icon.jpg',
-    comicIconSrc: '/icons/comic-icon.jpg',
+    passageIconSrc: '/icons/book-open.svg',
+    musicIconSrc: '/icons/disc-3.svg',
+    comicIconSrc: '/icons/brush.svg',
     radioIconSrc: '/icons/radio-icon.jpg',
     contactIconSrc: '/icons/contact-icon.jpg',
     passageList: [], // 热门文章列表

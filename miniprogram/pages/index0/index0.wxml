@@ -1,145 +1,55 @@
-<!--pages/index0/index0.wxml-->
-
-
+<!-- pages/index0/index0.wxml -->
 <!-- 轮播图 -->
 <swiper class="slide" indicator-dots="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff" autoplay="true" interval="5000" duration="1000" circular>
   <block wx:for="{{picList}}" wx:key="index">
     <swiper-item>
-      <image src="{{item.src}}" class="slide-image" mode="aspectFill" bindtap='previewImg' data-previewurl='{{picList}}'
-      data-currenturl='{{item.src}}'/>
+      <image src="{{item.src}}" class="slide-image" mode="aspectFill" bindtap='previewImg' data-previewurl='{{picList}}' data-currenturl='{{item.src}}' />
     </swiper-item>
-  </block>  
+  </block>
 </swiper>
-
-<view class="dailyMain">
-  <!-- 每日分享：小文章，治愈歌单/书目，心理漫画，心理电台 -->
-  <view class="daily">
-    <!-- 文章 -->
-    <navigator url="/pages/index0/passage/passage" hover-class="navigator-hover" class="daily-item1">
-      <view class="daily-icon-passage">
-        <image src="{{passageIconSrc}}"></image>
-      </view>
-      <view>
-        <view class="daily-info">
-          每日文章
-        </view>
-        <!-- <view class="daily-des">
-          <text>Daily Passage</text>
-        </view> -->
-      </view> 
-    </navigator>
-
-    <!-- 治愈歌单 -->
-    <navigator url="/pages/index0/music/music" hover-class="navigator-hover" class="daily-item2">
-      <view class="daily-icon-music">
-        <image src="{{musicIconSrc}}"></image>
-      </view>
-      <view>
-        <view class="daily-info">
-          治愈歌单
-        </view>
-        <!-- <view class="daily-des">
-          <text>Healing Music</text>
-        </view> -->
-      </view>
-    </navigator>
-  
-    <!-- 心理漫画 -->
-    <navigator url="/pages/index0/comic/comic" hover-class="navigator-hover" class="daily-item3">
-      <view class="daily-icon-comic">
-        <image src="{{comicIconSrc}}"></image>
-      </view>
-      <view>
-        <view class="daily-info">
-          心理漫画
-        </view>
-        <!-- <view class="daily-des">
-          <text>Psyco Comic</text>
-        </view> -->
-      </view>
-    </navigator>
-    
-    <!-- 删去心理电塔功能 -->
-    <!-- 心理电台 -->
-    <!-- <navigator url="/pages/index0/radio/radio" hover-class="navigator-hover" class="daily-item4">
-      <view class="daily-icon">
-        <image src="{{radioIconSrc}}"></image>
-      </view>
-      <view>
-        <view class="daily-info">
-          心理电台
-        </view>
-        <view class="daily-des">
-          <text>Psyco Radio</text>
-        </view>
-      </view>
-    </navigator> -->
-
-  </view>
+<!-- 每日分享：小文章，治愈歌单/书目，心理漫画，心理电台 -->
+<view class="daily">
+  <!-- 文章 -->
+  <navigator url="/pages/index0/passage/passage" hover-class="navigator-hover" class="daily-item1">
+    <view class="daily-icon-passage">
+      <image src="{{passageIconSrc}}"></image>
+    </view>
+    <view class="daily-info">文章</view>
+  </navigator>
+  <!-- 治愈歌单 -->
+  <navigator url="/pages/index0/music/music" hover-class="navigator-hover" class="daily-item1">
+    <view class="daily-icon-passage">
+      <image src="{{musicIconSrc}}"></image>
+    </view>
+    <view class="daily-info">歌单</view>
+  </navigator>
+  <!-- 心理漫画 -->
+  <navigator url="/pages/index0/comic/comic" hover-class="navigator-hover" class="daily-item1">
+    <view class="daily-icon-passage">
+      <image src="{{comicIconSrc}}"></image>
+    </view>
+    <view class="daily-info">漫画</view>
+  </navigator>
 </view>
-
-
-
-<!-- 最新内容展示 -->
 
 <!-- 最新文章 -->
 <view class="contentShow">
-  <!-- <view class="container"> -->
-    <!-- 标题 -->
-    <view class="title">
-      <view class="titleTxt">最新文章</view>
-      <navigator class="more" url="/pages/index0/passage/passage">更多文章 > </navigator>
-    </view>
-    <!-- 展示内容主体 -->
-    <view class="contentContainer">
-      <navigator class="contentBody" 
-      wx:for="{{passageList}}"
-      wx:key="id"
-      wx:if="{{index0<6}}"
-      wx:for-index="index0"
-      wx:for-item="item0"
-      url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
-        <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
-        <view class="text">
-          <view class="contentTitle">
-            {{item0.title}}
-          </view>
-          <!-- <view class="contentDes">
+  <!-- 标题 -->
+  <view class="title">
+    <view class="titleTxt">最新文章</view>
+    <navigator class="more" url="/pages/index0/passage/passage">更多文章 ></navigator>
+  </view>
+  <!-- 展示内容主体 -->
+  <view class="contentContainer">
+    <!-- 内容 -->
+    <navigator class="contentBody" wx:for="{{passageList}}" wx:key="id" wx:if="{{index0<6}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
+      <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
+      <view class="text">
+        <view class="contentTitle">{{item0.title}}</view>
+        <view class="contentDes">
             {{item0.author}}
-          </view> -->
-        </view>
-      </navigator>
-    </view>
-  <!-- </view> -->
-</view>
-
-<!-- 最新漫画 -->
-<view class="contentShow">
-  <!-- <view class="container"> -->
-    <!-- 标题 -->
-    <view class="title">
-      <view class="titleTxt">最新漫画</view>
-      <navigator class="more" url="/pages/index0/comic/comic">更多漫画 > </navigator>
-    </view>
-    <!-- 展示内容主体 -->
-    <view class="contentContainer">
-      <navigator class="comicBody" 
-      wx:for="{{comicList}}"
-      wx:key="id"
-      wx:if="{{index0<4}}"
-      wx:for-index="index0"
-      wx:for-item="item0"
-      url="{{'/pages/index0/comic/comicIntro/comicIntro?_id='+item0._id}}">
-        <image class="comicPic" src="{{item0.image}}" mode="aspectFill"></image>
-        <view class="comicBackground">
-          <view class="comicTitle">
-            《{{item0.title}}》
           </view>
-          <!-- <view class="comicAuthor">
-            {{item0.author}}
-          </view> -->
-        </view>
-      </navigator>
-    </view>
-  <!-- </view> -->
+      </view>
+    </navigator>
+  </view>
 </view>

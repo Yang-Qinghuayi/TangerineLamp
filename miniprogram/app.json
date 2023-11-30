@@ -3,6 +3,9 @@
     "pages/index0/index0",
     "pages/index1/index1/index1",
     "pages/index2/index2",
+    "pages/index0/passage/passage",
+    "pages/index0/music/music",
+    "pages/index0/comic/comic",
     "pages/index2/editPage/personalEditor",
     "pages/index2/detailPage/detailPage",
     "pages/index2/addButton/addButton",
@@ -75,8 +78,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ff9933",
+    "navigationBarBackgroundColor": "#c4b33f",
     "navigationBarTitleText": "小橘灯",
+    
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
