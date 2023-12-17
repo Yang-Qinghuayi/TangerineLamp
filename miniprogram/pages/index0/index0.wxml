@@ -69,6 +69,8 @@
     <view class="contentTitle">{{item0.title}}</view>
   </navigator>
 </view>
+
+
 <!-- 影院上新 -->
 <view class="title">
   <view class="titleTxt">影院上新</view>

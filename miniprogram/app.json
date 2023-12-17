@@ -102,17 +102,18 @@
         "iconPath": "icons/disc-3.png",
         "selectedIconPath": "icons/disc-3.png"
       },
+      
+      {
+        "pagePath": "pages/index2/index2",
+        "text": "心灵空间",
+        "iconPath": "icons/comminity.png",
+        "selectedIconPath": "icons/comminity_active.png"
+      },
       {
         "pagePath": "pages/index1/index1/index1",
         "text": "心理专攻",
         "iconPath": "icons/heart.png",
         "selectedIconPath": "icons/heart_active.png"
-      },
-      {
-        "pagePath": "pages/index2/index2",
-        "text": "树洞广场",
-        "iconPath": "icons/comminity.png",
-        "selectedIconPath": "icons/comminity_active.png"
       },
 
       {
