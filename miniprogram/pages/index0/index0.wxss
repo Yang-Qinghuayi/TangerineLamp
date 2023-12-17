@@ -35,8 +35,8 @@ page {
   display: flex;
   justify-content: space-between; /* 这会将子元素分散对齐，一个靠左，一个靠右 */
   align-items: center;
+  width: 100%;
   padding: 0 15rpx 0 0;
-  width: 2000rpx;
   height: 100rpx;
   margin-top: 50rpx;
   margin-left: 25rpx;
@@ -44,6 +44,38 @@ page {
   background: #f7f6f6;
   border-radius: 20rpx;
   box-shadow: 0 0 1rpx #999;
+}
+
+/* 每日签到 */
+.daily-check {
+  display: flex;
+  justify-content: space-between; /* 这会将子元素分散对齐，一个靠左，一个靠右 */
+  align-items: center;
+  width: 95vw;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+  height: 124rpx;
+  margin: 10rpx 20rpx;
+  margin-bottom: 40rpx;
+  background: #f7f6f6;
+  border-radius: 20rpx;
+  box-shadow: 0 0 1rpx #999;
+}
+
+.sign-in-word{
+  /* 居中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100rpx;
+  height: 100rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 24rpx;
+  writing-mode: vertical-lr;
+  border-radius: 50%;
+  background: #c4b33f;
 }
 
 /* 每日文章、治愈歌单、心理漫画 图标设置 */
