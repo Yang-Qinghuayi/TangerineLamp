@@ -8,12 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    //轮播图
-    slides: [
-      { url: 'cloud://tangerine-cloud-9grdz5e80159e7b3.7461-tangerine-cloud-9grdz5e80159e7b3-1304921980/index0/swiper/1.jpg' },
-      { url: 'cloud://tangerine-cloud-9grdz5e80159e7b3.7461-tangerine-cloud-9grdz5e80159e7b3-1304921980/index0/swiper/2.jpg' },
-      { url: 'cloud://tangerine-cloud-9grdz5e80159e7b3.7461-tangerine-cloud-9grdz5e80159e7b3-1304921980/index0/swiper/3.jpg' }
-    ],
     item: 0,
     tab: 0,
     // 播放列表数据

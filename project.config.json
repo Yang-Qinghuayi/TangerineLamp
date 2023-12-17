@@ -82,10 +82,10 @@
       ]
     }
   },
+  "appid": "wx72920a312942dcc0",
   "libVersion": "2.30.3",
   "packOptions": {
     "ignore": [],
     "include": []
-  },
-  "appid": "wx72920a312942dcc0"
+  }
 }

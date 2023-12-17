@@ -28,23 +28,52 @@
     <view class="daily-icon-passage">
       <image src="{{comicIconSrc}}"></image>
     </view>
-    <view class="daily-info">漫画</view>
+    <view class="daily-info">影院</view>
   </navigator>
 </view>
 <!-- 最新文章 -->
-<view class="contentShow">
-  <!-- 标题 -->
-  <view class="title">
-    <view class="titleTxt">最新文章</view>
-    <navigator class="more" url="/pages/index0/passage/passage">更多文章 ></navigator>
-  </view>
-  <!-- 展示内容主体 -->
-  <view class="contentContainer">
-    <!-- 内容 -->
-    <navigator class="contentBody" wx:for="{{passageList}}" wx:key="id" wx:if="{{index0<6}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
-      <!-- 这里面每一个都是文章卡片 -->
-      <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
-      <view class="contentTitle">{{item0.title}}</view>
-    </navigator>
-  </view>
+<view class="title">
+  <view class="titleTxt">最新文章</view>
+  <navigator class="more" url="/pages/index0/passage/passage">更多文章 ></navigator>
+</view>
+<!-- 展示内容主体 -->
+<view class="contentContainer">
+  <!-- 内容 -->
+  <navigator class="contentBody" wx:for="{{passageList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
+    <!-- 这里面每一个都是文章卡片 -->
+    <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
+    <view class="contentTitle">{{item0.title}}</view>
+  </navigator>
+</view>
+
+
+
+<!-- 最新单曲 -->
+<view class="title">
+  <view class="titleTxt">最新单曲</view>
+  <navigator class="more" url="/pages/index0/passage/passage">更多文章 ></navigator>
+</view>
+<!-- 展示内容主体 -->
+<view class="contentContainer">
+  <!-- 内容 -->
+  <navigator class="contentBody" wx:for="{{passageList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
+    <!-- 这里面每一个都是文章卡片 -->
+    <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
+    <view class="contentTitle">{{item0.title}}</view>
+  </navigator>
+</view>
+
+<!-- 影院上新 -->
+<view class="title">
+  <view class="titleTxt">影院上新</view>
+  <navigator class="more" url="/pages/index0/passage/passage">更多文章 ></navigator>
+</view>
+<!-- 展示内容主体 -->
+<view class="contentContainer">
+  <!-- 内容 -->
+  <navigator class="contentBody" wx:for="{{passageList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
+    <!-- 这里面每一个都是文章卡片 -->
+    <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
+    <view class="contentTitle">{{item0.title}}</view>
+  </navigator>
 </view>
