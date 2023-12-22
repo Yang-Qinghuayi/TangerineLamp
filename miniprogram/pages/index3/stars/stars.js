@@ -17,8 +17,8 @@ Page({
   },
   onLoad: function () {
     var picList=[]
-    picList.push("cloud://tangerine-cloud-9grdz5e80159e7b3.7461-tangerine-cloud-9grdz5e80159e7b3-1304921980/logo/左.png")
-    picList.push("cloud://tangerine-cloud-9grdz5e80159e7b3.7461-tangerine-cloud-9grdz5e80159e7b3-1304921980/logo/右.png")
+    picList.push("cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/LOGO/arrow-left.png")
+    picList.push("cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/LOGO/arrow-right.png")
     let now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth() + 1;
