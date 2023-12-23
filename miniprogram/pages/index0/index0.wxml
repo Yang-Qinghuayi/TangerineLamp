@@ -32,16 +32,12 @@
   </navigator>
 </view>
 <!-- 每日签到 -->
-<navigator url="/pages/index0/comic/comic" hover-class="navigator-hover" class="daily-check">
+<view bindtap="kiss" class="daily-check">
   <view class="sign-in-word">签到</view>
-  
   <view class="daily-info">领取今日份幸福</view>
-</navigator>
-
-
-<van-button  type="primary">kiss</van-button>
-
-
+</view>
+<!-- <van-button bindtap="kiss" type="primary">按钮</van-button> -->
+<van-dialog id="van-dialog"/>
 <!-- 最新文章 -->
 <view class="title">
   <view class="titleTxt">最新文章</view>
