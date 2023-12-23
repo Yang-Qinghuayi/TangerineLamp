@@ -49,15 +49,9 @@ Page({
     let isDeveloper=wx.getStorageSync('isDeveloper');
     let isDoctor=wx.getStorageSync('isDoctor')
     let isCertiStudent=wx.getStorageSync('isCertiStudent')
-    console.log('hasUserInfo',hasUserInfo)
-    console.log('userInfo+',userInfo)
-    console.log('我是医生',isDoctor)
-    console.log('我是开发者',isDeveloper)
-    console.log('我是认证学生',isCertiStudent)
     let now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth() + 1;
-    console.log(month)
     this.setData({
       year:year,
       month:month
@@ -99,21 +93,6 @@ Page({
     }
     
     this.initOpenID() //  获得openid
-    
-    // else {
-    //   // 在没有 open-type=getUserInfo 版本的兼容处理
-    //   wx.getUserProfile({
-    //     success: res => {
-    //       app.globalData.userInfo = res.userInfo  //  将用户信息变为全局变量
-    //       app.globalData.isLogin = true //  设置用户的登录状态
-    //       this.setData({
-    //         userInfo: res.userInfo,
-    //         hasUserInfo: app.globalData.isLogin,
-    //         isDeveloper: app.globalData.isDeveloper,
-    //       })
-    //     }
-    //   })
-    // }
   },
 
   /**
@@ -147,11 +126,11 @@ Page({
           isDoctor: app.globalData.isDoctor,
           isCertiStudent:app.globalData.isCertiStudent,
         })
-        wx.setStorageSync('userInfo', res.userInfo);
-        wx.setStorageSync('hasUserInfo',true);
-        wx.setStorageSync('isDeveloper', app.globalData.isDeveloper);
-        wx.setStorageSync('isDoctor',app.globalData.isDoctor);
-        wx.setStorageSync('isCertiStudent',app.globalData.isCertiStudent);
+        wx.setStorageSync('userInfo', res.userInfo)
+        wx.setStorageSync('hasUserInfo',true)
+        wx.setStorageSync('isDeveloper', app.globalData.isDeveloper)
+        wx.setStorageSync('isDoctor',app.globalData.isDoctor)
+        wx.setStorageSync('isCertiStudent',app.globalData.isCertiStudent)
       }
     })
   },
@@ -314,7 +293,7 @@ Page({
     const { result } = await wx.cloud.callFunction({
       name: 'login',
     })
-    return result.openid
+    return result.userInfo.openId
   },
 
   async try(fn, title) {
@@ -326,8 +305,11 @@ Page({
   },
 
   async initOpenID() {
+    console.log("In initOpenID")
     return this.try(async () => {
+      console.log("openid")
       const openId = await this.getOpenID()
+      console.log(openId)
       wx.setStorageSync('openid',openId)
       this.getAuthority(openId);
       this.getDoctorAuth(openId);

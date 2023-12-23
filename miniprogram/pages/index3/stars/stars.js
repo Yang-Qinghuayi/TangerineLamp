@@ -36,6 +36,8 @@ Page({
 
   },
   checkIsQianDao() {
+    console.log("In QianDao")
+    console.log(app.globalData.openid)
     //查询今天是否已经签到
     db.collection("index3_qiandao_daily")
       .where({
@@ -60,14 +62,8 @@ Page({
           }
         }
       })
-    // .get().then(res => {
-    //   this.setData({
-    //     isQianDao: true,
-    //     content: "今日已签到"
-    //   })
-    // })
-
   },
+
   checkDate(date) {
     let flag = false
     console.log(flag)
