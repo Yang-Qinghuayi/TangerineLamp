@@ -6,6 +6,20 @@ import Dialog from "@vant/weapp/dialog/dialog";
 
 Page({
   data: {
+    // 签到部分
+    isQianDao: false,
+    content: "每日签到",
+    nowdaycolor: "",
+    alreadylist: [],
+    year: 0,
+    month: 0,
+    date: ["日", "一", "二", "三", "四", "五", "六"],
+    dateArr: [],
+    isToday: 0,
+    isTodayWeek: false,
+    todayIndex: 0,
+
+    //几个图标
     passageIconSrc: "/icons/book-open.svg",
     musicIconSrc: "/icons/disc-3.svg",
     comicIconSrc: "/icons/brush.svg",
@@ -18,15 +32,69 @@ Page({
     hasUserInfo: false,
   },
 
-  kiss() {
-    Dialog.alert({
-      title: "标题",
-      message: "弹窗内容",
-    }).then(() => {
-      // on close
-    });
+  sign_in() {
+    if (this.data.isQianDao == true) {
+      Dialog.alert({
+        title: "签到",
+        message: "今日已签到",
+      }).then(() => {
+        // on close
+      });
+    } else {
+      wx.hideLoading();
+      db.collection("index3_qiandao_daily")
+        .add({
+          data: {
+            year: this.data.year,
+            month: this.data.month,
+            date: new Date().getDate(),
+            nowdaycolor: "nowDay",
+            isToday: this.data.isToday,
+            isColor: true,
+            isQianDao: true,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        });
+
+      Dialog.alert({
+        title: "签到成功",
+        message: "燕子,一定要幸福啊燕子!!!",
+      }).then(() => {
+        // on close
+      });
+      this.checkIsQianDao();
+    }
   },
 
+  signIn() {
+    this.sign_in();
+  },
+
+  checkIsQianDao() {
+    //查询今天是否已经签到
+    db.collection("index3_qiandao_daily")
+      .where({
+        _openid: app.globalData.openid,
+        isToday: this.data.isToday,
+      })
+      .get({
+        success: (res) => {
+          console.log("datay");
+          console.log(res.data);
+          if (res.data.length == 0) {
+            this.setData({
+              isQianDao: false,
+            });
+          } else {
+            this.setData({
+              isQianDao: true,
+            });
+          }
+        },
+      });
+  },
   // 首页缓存
   initCache() {
     let openid = wx.getStorageSync("openid");
@@ -37,10 +105,7 @@ Page({
     let isCertiStudent = wx.getStorageSync("isCertiStudent");
     console.log("hasUserInfo", hasUserInfo);
     console.log("openid", openid);
-    console.log("userInfo+", userInfo);
-    console.log("我是医生", isDoctor);
-    console.log("我是开发者", isDeveloper);
-    console.log("我是认证学生", isCertiStudent);
+
     if (hasUserInfo == true) {
       app.globalData.openid = openid;
       app.globalData.userInfo = userInfo;
@@ -56,12 +121,18 @@ Page({
     this.getPicList();
     this.getPassageList();
     this.getComicList();
-    Dialog.alert({
-      title: "标题",
-      message: "弹窗内容",
-    }).then(() => {
-      // on close
+
+    // 签到部分
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    this.setData({
+      year: year,
+      month: month,
+      isToday: "" + year + month + now.getDate(),
+      // picList: picList,
     });
+    this.checkIsQianDao();
   },
 
   //获取轮播图片列表

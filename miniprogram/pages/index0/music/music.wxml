@@ -17,7 +17,6 @@
 </view>
 
 
-
 <!-- 底部播放器 -->
 <view class="player">
   <image class="player-cover" src="{{play.coverImgUrl}}" />

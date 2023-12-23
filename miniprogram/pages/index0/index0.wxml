@@ -31,11 +31,18 @@
     <view class="daily-info">影院</view>
   </navigator>
 </view>
+<!-- 每日一句 -->
+
+<view wx:if="{{isQianDao}}" class="daily-check">
+  <view class="daily-info">再幸福一点</view>
+</view>
+
 <!-- 每日签到 -->
-<view bindtap="kiss" class="daily-check">
+<view wx:else bindtap="signIn" class="daily-check">
   <view class="sign-in-word">签到</view>
   <view class="daily-info">领取今日份幸福</view>
 </view>
+
 <!-- <van-button bindtap="kiss" type="primary">按钮</van-button> -->
 <van-dialog id="van-dialog"/>
 <!-- 最新文章 -->
