@@ -2,9 +2,9 @@ const db = wx.cloud.database()
 const app = getApp()
 Page({
   data: {
+    isResigning: false,
     isQianDao: false,
     content: "每日签到",
-    nowdaycolor: "",
     alreadylist: [],
     year: 0,
     month: 0,
@@ -55,14 +55,69 @@ Page({
     })
     this.getData();
     this.checkIsQianDao();
-    this.isColor();
+  },
+  dateInit: function (setYear, setMonth) {
+    //全部时间的月份都是按0~11基准，显示月份才+1
+    let dateArr = []; //需要遍历的日历数组数据
+    let arrLen = 0; //dateArr的数组长度
+    let now = setYear ? new Date(setYear, setMonth) : new Date();
+    let year = setYear || now.getFullYear();
+    let nextYear = 0;
+    let month = setMonth || now.getMonth(); //没有+1方便后面计算当月总天数
+    let nextMonth = (month + 1) > 11 ? 1 : (month + 1);
+    let startWeek = new Date(year + '/' + (month + 1) + '/' + 1).getDay();
+    //let startWeek = new Date(year, (month + 1), 1).getDay()  ;                        //目标月1号对应的星期
+    let dayNums = new Date(year, nextMonth, 0).getDate(); //获取目标月有多少天
+    let obj = {};
+    let num = 0;
+
+    if (month + 1 > 11) {
+      nextYear = year + 1;
+      dayNums = new Date(nextYear, nextMonth, 0).getDate();
+    }
+    arrLen = startWeek + dayNums;
+    for (let i = 0; i < arrLen; i++) {
+      if (i >= startWeek) {
+        num = i - startWeek + 1;
+        //设置date的参数
+        obj = {
+          isToday: '' + year + (month + 1) + num.toString().padStart(2,"0"),
+          dateNum: num,
+          isColor: false,
+        }
+      } else {
+        obj = {};
+      }
+      dateArr[i] = obj;
+    }
+    this.setData({
+      dateArr: dateArr
+    })
+
+    let nowDate = new Date();
+    let nowYear = nowDate.getFullYear();
+    let nowMonth = nowDate.getMonth() + 1;
+    let nowWeek = nowDate.getDay();
+    let getYear = setYear || nowYear;
+    let getMonth = setMonth >= 0 ? (setMonth + 1) : nowMonth;
+
+    if (nowYear == getYear && nowMonth == getMonth) {
+      this.setData({
+        isTodayWeek: true,
+        todayIndex: nowWeek
+      })
+    } else {
+      this.setData({
+        isTodayWeek: false,
+        todayIndex: -1
+      })
+    }
   },
   checkIsQianDao() {
     //查询今天是否已经签到
     db.collection("index3_qiandao_daily")
       .where({
         _openid: app.globalData.openid,
-        // _openid: app.globalData.openid,
         isToday: this.data.isToday
       })
       .get({
@@ -94,38 +149,25 @@ Page({
   },
 
   getData() {
+    let Arr = this.data.dateArr;
     db.collection("index3_qiandao_daily")
       .where({
-        _openid: app.globalData.openid
+        _openid: app.globalData.openid,
+        month: this.data.month
       })
       .get()
       .then(res => {
-        let alreadylist = res.data;
-        let dateArr = this.data.dateArr;
-        for (let i = 0; i < alreadylist.length; i++) {
-          for (let j = 0; j < dateArr.length; j++) {
-            if (alreadylist[i].isToday == dateArr[j].isToday) {
-              dateArr[j].isColor = true;
-            }
-          }
+        let resdata = res.data
+        let d = new Date(this.data.year,this.data.month-1,1)
+        let offset = d.getDay(); //此处获得该月份1号的星期数，0为星期日，6为星期六
+        for (let i = 0; i < resdata.length; i++) {
+          //[resdata[i].date + offset]代表该日期在表格中的位置
+          Arr[resdata[i].date + offset-1].isColor = true
         }
         this.setData({
-          dateArr
+          dateArr: Arr
         })
       })
-  },
-  isColor() {
-    let copy = []
-    copy = this.data.dateArr
-    for (let i = 0; i < this.data.alreadylist.arrLen; i++) {
-      for (let j = 0; j < this.data.dateArr.arrLen; j++) {
-        if (this.data.alreadylist[i].isToday == this.data.dateArr[j].isToday)
-          copy[j].isColor = true
-      }
-    }
-    this.setData({
-      dateArr: copy
-    })
   },
   sign_in() {
     if (this.data.isQianDao == true) {
@@ -155,7 +197,6 @@ Page({
       this.setData({
         isQianDao: true,
         content: "今日已签到",
-        nowdaycolor: "nowDay"
       })
       wx.hideLoading();
 
@@ -164,10 +205,10 @@ Page({
           year: this.data.year,
           month: this.data.month,
           date: new Date().getDate(),
-          nowdaycolor: "nowDay",
           isToday: this.data.isToday,
           isColor: true,
-          isQianDao: true
+          isQianDao: true,
+          isResigning: false
         }
       }).then(res => {
 
@@ -176,64 +217,60 @@ Page({
       this.getData();
     }
   },
-  dateInit: function (setYear, setMonth) {
-    //全部时间的月份都是按0~11基准，显示月份才+1
-    let dateArr = []; //需要遍历的日历数组数据
-    let arrLen = 0; //dateArr的数组长度
-    let now = setYear ? new Date(setYear, setMonth) : new Date();
-    let year = setYear || now.getFullYear();
-    let nextYear = 0;
-    let month = setMonth || now.getMonth(); //没有+1方便后面计算当月总天数
-    let nextMonth = (month + 1) > 11 ? 1 : (month + 1);
-    let startWeek = new Date(year + '/' + (month + 1) + '/' + 1).getDay();
-    //let startWeek = new Date(year, (month + 1), 1).getDay()  ;                        //目标月1号对应的星期
-    let dayNums = new Date(year, nextMonth, 0).getDate(); //获取目标月有多少天
-    let obj = {};
-    let num = 0;
+  resign() {
+    wx.showLoading({
+      title: "签到中",
+      mask: true,
+      success: (result) => {
 
-    if (month + 1 > 11) {
-      nextYear = year + 1;
-      dayNums = new Date(nextYear, nextMonth, 0).getDate();
-    }
-    arrLen = startWeek + dayNums;
-    for (let i = 0; i < arrLen; i++) {
-      if (i >= startWeek) {
-        num = i - startWeek + 1;
-        //设置date的参数
-        obj = {
-          isToday: '' + year + (month + 1) + num,
-          dateNum: num,
-          weight: 5,
-          isColor: false,
-        }
-      } else {
-        obj = {};
-      }
-      dateArr[i] = obj;
-    }
+      },
+      fail: () => {},
+      complete: () => {}
+    });
+    let Arr = this.data.dateArr;
+    Arr[this.data.dateClicked].isColor = true;
     this.setData({
-      dateArr: dateArr
+      content: "补签成功",
+      dateArr: Arr
+    })
+    wx.hideLoading();
+    db.collection("index3_qiandao_daily").add({
+      data: {
+        year: Number(this.data.dateArr[this.data.dateClicked].isToday.slice(0, 4)),
+        month: Number(this.data.dateArr[this.data.dateClicked].isToday.slice(4, 6)),
+        date: Number(this.data.dateArr[this.data.dateClicked].isToday.slice(6, 8)),
+        isToday: this.data.dateArr[this.data.dateClicked].isToday,
+        isColor: true,
+        isQianDao: true,
+        isResigning: true
+      }
+    }).then(res => {
+
     })
 
-    let nowDate = new Date();
-    let nowYear = nowDate.getFullYear();
-    let nowMonth = nowDate.getMonth() + 1;
-    let nowWeek = nowDate.getDay();
-    let getYear = setYear || nowYear;
-    let getMonth = setMonth >= 0 ? (setMonth + 1) : nowMonth;
-
-    if (nowYear == getYear && nowMonth == getMonth) {
-      this.setData({
-        isTodayWeek: true,
-        todayIndex: nowWeek
-      })
-    } else {
-      this.setData({
-        isTodayWeek: false,
-        todayIndex: -1
-      })
-    }
+    this.getData();
   },
+
+  haveSigned() {
+    let dateClicked = this.data.dateArr[this.data.dateClicked].isToday;
+    console.log(dateClicked);
+    console.log(this.data.isToday);
+    console.log(this.data.isToday > dateClicked);
+    if (this.data.isToday > dateClicked) return;
+    wx.showToast({
+      title: '您今日已经签到，请勿重复签到',
+      icon: 'none',
+      image: '',
+      duration: 1500,
+      mask: false,
+      success: (result) => {
+
+      },
+      fail: () => {},
+      complete: () => {}
+    });
+  },
+  
   lastMonth: function () {
     //全部时间的月份都是按0~11基准，显示月份才+1
     let year = this.data.month - 2 < 0 ? this.data.year - 1 : this.data.year;
@@ -261,7 +298,9 @@ Page({
     let index = Math.floor(Math.random() * this.data.sentence.length);
     this.setData({
       rand: this.data.sentence[index],
-      dateClicked: event.mark.dateArrID
+      dateClicked: event.mark.dateArrID,
+      content: "今日已签到",
+      isResigning: false
     })
   },
   //未签到提示补签
@@ -269,7 +308,18 @@ Page({
     let index = Math.floor(Math.random() * this.data.sentence.length);
     this.setData({
       rand: this.data.sentence[index],
-      dateClicked: event.mark.dateArrID
+      dateClicked: event.mark.dateArrID,
+      content: "补签",
+      isResigning: true
     })
-  }
+  },
+  onClickFutureDate: function (event) {
+    this.setData({
+      rand: "",
+      dateClicked: event.mark.dateArrID,
+      content: "✧*｡٩(ˊωˋ*)و✧*｡",
+      isResigning: false
+    })
+
+  },
 })
