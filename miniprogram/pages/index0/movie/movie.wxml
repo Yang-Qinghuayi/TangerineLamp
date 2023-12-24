@@ -1,0 +1,12 @@
+<view class="title">
+  <view class="titleTxt">影院</view>
+</view>
+<!-- 展示内容主体 -->
+<view class="contentContainer">
+  <!-- 内容 -->
+  <view class="contentBody" wx:for="{{movieList}}" wx:key="id" wx:for-index="index0" wx:for-item="item0">
+    <image class="introPic" src="{{item0.cover_url}}" mode="aspectFill"></image>
+    <view class="contentTitle">{{item0.name}}</view>
+    <view class="contentAbout">{{item0.about}}</view>
+  </view>
+</view>

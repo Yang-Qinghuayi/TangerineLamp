@@ -1,16 +1,20 @@
 <!-- 文章只能上传一张长图的模式 -->
 <view class="body" wx:key="{{passage}}">
-  <image src="{{passage.introImage}}" class="passage-longPicture" mode="widthFix"></image>
+  <image src="{{passage.body}}" class="passage-longPicture" mode="widthFix"></image>
 </view>
 
+
 <!-- 这是收藏按钮 -->
-<!-- 
-<view class="collect">
+<!-- <view class="collect">
   <view class="collect-image" bindtap="collectClick">
     <image src="{{collect_img_src}}"></image>
   </view>
   <view class="collect-text">{{collect_text}}</view>
+</view>
+<view class="passage-image">
+  <image src="{{passage.image}}" mode="aspectFit" wx:if="{{passage.src.length != 0}}"></image>
 </view> -->
+
 
 <!-- 以下为文章按数据库模式展示 -->
 <!-- <view class="passage-container">

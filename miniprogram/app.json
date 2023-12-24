@@ -8,7 +8,6 @@
     "pages/index0/comic/comic",
     "pages/index0/passage/passageContent/passageContent",
     "pages/index0/comic/comicIntro/comicIntro",
-
     "pages/index2/editPage/personalEditor",
     "pages/index2/detailPage/detailPage",
     "pages/index2/addButton/addButton",
@@ -37,7 +36,6 @@
     "pages/index3/diary/diary",
     "pages/index3/editor/editor",
     "pages/index3/diary/diary_detail/diary_detail",
-
     "pages/index1/advice/appointment/appointment",
     "pages/index1/advice/appointmentDetail/appointmentDetail",
     "pages/index1/advice/adviceList/adviceList",
@@ -76,7 +74,8 @@
     "pages/index4/index4",
     "pages/index2/chatPage/chatPage",
     "pages/index4/feedBackList/feedBackList",
-    "pages/index4/feedBackDetail/feedBackDetail"
+    "pages/index4/feedBackDetail/feedBackDetail",
+    "pages/index0/movie/movie"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -97,12 +96,11 @@
         "selectedIconPath": "icons/planet_active.png"
       },
       {
-        "pagePath": "pages/index0/music/music",
-        "text": "播放音乐",
+        "pagePath": "pages/index0/movie/movie",
+        "text": "电影",
         "iconPath": "icons/disc-3.png",
         "selectedIconPath": "icons/disc-3.png"
       },
-
       {
         "pagePath": "pages/index2/index2",
         "text": "心灵空间",
@@ -115,7 +113,6 @@
         "iconPath": "icons/heart.png",
         "selectedIconPath": "icons/heart_active.png"
       },
-
       {
         "pagePath": "pages/index3/index3",
         "text": "个人中心",

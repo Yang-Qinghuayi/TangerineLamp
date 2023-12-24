@@ -49,7 +49,7 @@ Page({
   // 获取音乐列表
   getPlayList() {
     // 降序，越新的音乐排在越前面
-    db.collection("recommended_music").orderBy('pushTime','desc').get().then(res=>{
+    db.collection("recommended_music").orderBy('push_time','desc').get().then(res=>{
       this.setData({
         playlist:res.data
       })
