@@ -1,21 +1,23 @@
 <view class="title">
   <view class="titleTxt">推荐歌单</view>
 </view>
-
-
-<!-- 推荐音乐 -->
-<view class="recommendMusic">
-  <!-- 音乐列表 -->
-  <view class="playlist-item" wx:for="{{playlist}}" wx:key="_id" data-index="{{index}}">
-    <image class="playlist-cover" src="{{item.cover_url}}"></image>
-    <view class="playlist-info">
-      <view class="playlist-info-title">{{item.name}}</view>
-      <view class="playlist-info-singer">{{item.singer}}</view>
-    </view>
+<view class="contentContainer">
+  <!-- 内容 -->
+  <view data-musicid="{{item0._id}}" bindlongpress="collectMusicDialog" class="contentBodyMusic" wx:for="{{playlist}}" wx:key="id" wx:for-index="index0" wx:for-item="item0">
+    <!-- 这里面每一个都是文章卡片 -->
+    <image class="introPic" src="{{item0.cover_url}}" mode="aspectFill"></image>
+    <view class="contentTitle">{{item0.name}}</view>
   </view>
 </view>
-
-
+<!-- 弹出 -->
+<van-popup round position="bottom" custom-style="height: 20%" bind:close="onClose" show="{{ show_music }}">
+  <view class="dialog" bindtap="collectMusic">
+    <view class="daily-icon-passage">
+      <image src="cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/icon/heart.svg"></image>
+    </view>
+    <view class="daily-info">收藏音乐</view>
+  </view>
+</van-popup>
 <!-- 底部播放器 -->
 <!-- <view class="player">
   <image class="player-cover" src="{{play.coverImgUrl}}" />

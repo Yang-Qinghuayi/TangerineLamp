@@ -96,8 +96,8 @@
         "selectedIconPath": "icons/planet_active.png"
       },
       {
-        "pagePath": "pages/index0/movie/movie",
-        "text": "电影",
+        "pagePath": "pages/index0/music/music",
+        "text": "音乐",
         "iconPath": "icons/disc-3.png",
         "selectedIconPath": "icons/disc-3.png"
       },

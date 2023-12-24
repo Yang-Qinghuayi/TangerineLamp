@@ -83,6 +83,8 @@
     <view class="contentAbout">{{item0.about}}</view>
   </view>
 </view>
+
+
 <van-popup round position="bottom" custom-style="height: 20%" bind:close="onClose" show="{{ show_article }}">
   <view class="dialog" bindtap="collectArticle">
     <view class="daily-icon-passage">
