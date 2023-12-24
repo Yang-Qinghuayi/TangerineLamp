@@ -33,43 +33,33 @@ Page({
   },
 
   sign_in() {
-    if (this.data.isQianDao == true) {
-      Dialog.alert({
-        title: "签到",
-        message: "今日已签到",
-      }).then(() => {
-        // on close
-      });
-    } else {
-      wx.hideLoading();
-      db.collection("index3_qiandao_daily")
-        .add({
-          data: {
-            year: this.data.year,
-            month: this.data.month,
-            date: new Date().getDate(),
-            nowdaycolor: "nowDay",
-            isToday: this.data.isToday,
-            isColor: true,
-            isQianDao: true,
-          },
-        })
-        .then((res) => {
-          console.log(res);
-        });
+    wx.showToast({
+      title: "签到成功",
+      icon: "none",
+      image: "",
+      duration: 1500,
+      mask: false,
+      success: (result) => {},
+      fail: () => {},
+      complete: () => {},
+    });
 
-      Dialog.alert({
-        title: "签到成功",
-        message: "燕子,一定要幸福啊燕子!!!",
-      }).then(() => {
-        // on close
+    db.collection("index3_qiandao_daily")
+      .add({
+        data: {
+          year: this.data.year,
+          month: this.data.month,
+          date: new Date().getDate(),
+          nowdaycolor: "nowDay",
+          isToday: this.data.isToday,
+          isColor: true,
+          isQianDao: true,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        this.checkIsQianDao();
       });
-      this.checkIsQianDao();
-    }
-  },
-
-  signIn() {
-    this.sign_in();
   },
 
   checkIsQianDao() {

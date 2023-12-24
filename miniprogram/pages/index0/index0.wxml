@@ -38,7 +38,7 @@
 </view>
 
 <!-- 每日签到 -->
-<view wx:else bindtap="signIn" class="daily-check">
+<view wx:else bindtap="sign_in" class="daily-check">
   <view class="sign-in-word">签到</view>
   <view class="daily-info">领取今日份幸福</view>
 </view>
