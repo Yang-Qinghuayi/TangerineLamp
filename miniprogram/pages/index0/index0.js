@@ -9,6 +9,7 @@ Page({
     // 签到部分
     isQianDao: false,
     content: "每日签到",
+    sentence: "天才就是99%的努力加上1%的甜菜",
     nowdaycolor: "",
     alreadylist: [],
     year: 0,
@@ -32,21 +33,15 @@ Page({
     hasUserInfo: false,
   },
 
-  sign_in() {
-    wx.showToast({
-      title: "签到成功",
-      icon: "none",
-      image: "",
-      duration: 1500,
-      mask: false,
-      success: (result) => {},
-      fail: () => {},
-      complete: () => {},
-    });
+  kiss() {
+    this.getOneWord();
+  },
 
+  sign_in() {
     db.collection("index3_qiandao_daily")
       .add({
         data: {
+          sentence: this.data.sentence,
           year: this.data.year,
           month: this.data.month,
           date: new Date().getDate(),
@@ -59,7 +54,29 @@ Page({
       .then((res) => {
         console.log(res);
         this.checkIsQianDao();
+        wx.showToast({
+          title: "签到成功",
+          icon: "none",
+          image: "",
+          duration: 1500,
+          mask: false,
+          success: (result) => {},
+          fail: () => {},
+          complete: () => {},
+        });
       });
+  },
+
+  //请求每日一句
+  getOneWord() {
+    wx.request({
+      url: "https://api.xygeng.cn/one",
+      success: (res) => {
+        this.setData({
+          sentence: res.data.data.content,
+        });
+      },
+    });
   },
 
   checkIsQianDao() {
@@ -123,6 +140,7 @@ Page({
       // picList: picList,
     });
     this.checkIsQianDao();
+    this.getOneWord();
   },
 
   //获取轮播图片列表
