@@ -1,4 +1,3 @@
-
 const app = getApp();
 const db = wx.cloud.database();
 
@@ -8,6 +7,43 @@ Page({
    */
   data: {
     movieList: [],
+    //用于收藏电影的弹窗
+    show_movie: false,
+    selected_movie_id: "",
+  },
+
+  //根据长按得到目前操作的电影
+  collectMovieDialog(e) {
+    let id = e.currentTarget.dataset.movieid;
+    this.setData({ selected_movie_id: id });
+    this.setData({ show_movie: true });
+  },
+
+  //收藏电影
+  collectMovie() {
+    db.collection("collected_movie")
+      .add({
+        data: {
+          movie_id: this.data.selected_movie_id,
+        },
+      })
+      .then((res) => {
+        wx.showToast({
+          title: "收藏成功",
+          icon: "none",
+          image: "",
+          duration: 1500,
+          mask: false,
+          success: (result) => {},
+          fail: () => {},
+          complete: () => {},
+        });
+        this.setData({ show_movie: false });
+      });
+  },
+
+  onClose() {
+    this.setData({ show_movie: false });
   },
 
   // 获取音乐列表
@@ -22,8 +58,6 @@ Page({
         });
       });
   },
-
-  
 
   /**
    * 生命周期函数--监听页面加载

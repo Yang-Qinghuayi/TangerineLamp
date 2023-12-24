@@ -4,9 +4,19 @@
 <!-- 展示内容主体 -->
 <view class="contentContainer">
   <!-- 内容 -->
-  <view class="contentBody" wx:for="{{movieList}}" wx:key="id" wx:for-index="index0" wx:for-item="item0">
+  <view data-movieid="{{item0._id}}" bindlongpress="collectMovieDialog" class="contentBody" wx:for="{{movieList}}" wx:key="id" wx:for-index="index0" wx:for-item="item0">
     <image class="introPic" src="{{item0.cover_url}}" mode="aspectFill"></image>
     <view class="contentTitle">{{item0.name}}</view>
     <view class="contentAbout">{{item0.about}}</view>
   </view>
 </view>
+
+
+<van-popup round position="bottom" custom-style="height: 20%" bind:close="onClose" show="{{ show_movie }}">
+  <view class="dialog" bindtap="collectMovie">
+    <view class="daily-icon-passage">
+      <image src="cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/icon/heart.svg"></image>
+    </view>
+    <view class="daily-info">收藏电影</view>
+  </view>
+</van-popup>

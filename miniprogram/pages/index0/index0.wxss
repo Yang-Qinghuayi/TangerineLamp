@@ -35,12 +35,28 @@ page {
   display: flex;
   justify-content: space-between; /* 这会将子元素分散对齐，一个靠左，一个靠右 */
   align-items: center;
-  width: 100%;
+  width: 50%;
   padding: 0 15rpx 0 0;
   height: 100rpx;
   margin-top: 50rpx;
   margin-left: 25rpx;
   margin-right: 20rpx;
+  background: #f7f6f6;
+  border-radius: 20rpx;
+  box-shadow: 0 0 1rpx #999;
+}
+
+.dialog {
+  display: flex;
+  justify-content: space-between; /* 这会将子元素分散对齐，一个靠左，一个靠右 */
+  align-items: center;
+  width: 300rpx;
+  padding: 0 15rpx 0 0;
+  height: 100rpx;
+  margin-top: 80rpx;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60rpx;
   background: #f7f6f6;
   border-radius: 20rpx;
   box-shadow: 0 0 1rpx #999;
@@ -161,8 +177,8 @@ page {
 }
 
 .contentContainer .contentBody {
-  width: 304rpx;
-  height: 340rpx;
+  width: 310rpx;
+  height: 408rpx;
   margin-bottom: 15rpx;
   position: relative;
   border-radius: 20rpx;
@@ -170,8 +186,8 @@ page {
 }
 
 .contentContainer .contentBodyMusic {
-  width: 304rpx;
-  height: 310rpx;
+  width: 310rpx;
+  height: 376rpx;
   margin-bottom: 15rpx;
   position: relative;
   border-radius: 20rpx;
@@ -180,7 +196,7 @@ page {
 
 .contentContainer .introPic {
   width: 304rpx;
-  height: 244rpx;
+  height: 304rpx;
   border-radius: 20rpx;
 }
 
@@ -190,7 +206,8 @@ page {
   color: #666;
   /* 水平方向margin */
   margin-left: 20rpx;
-  margin-bottom: 10rpx;
+  margin-bottom: 8rpx;
+  margin-top: 8rpx;
   display: -webkit-box;
   overflow: hidden;
   text-emphasis: ellipsis;

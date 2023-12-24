@@ -32,10 +32,113 @@ Page({
     picList: [], // 轮播图列表
     userInfo: {},
     hasUserInfo: false,
+
+    //用于收藏文章的弹窗
+    show_article: false,
+    selected_article_id: "",
+
+    //用于收藏音乐的弹窗
+    show_music: false,
+    selected_music_id: "",
+
+    //用于收藏电影的弹窗
+    show_movie: false,
+    selected_movie_id: "",
   },
 
-  kiss() {
-    this.getOneWord();
+  onClose() {
+    this.setData({ show_article: false, show_music: false, show_movie: false });
+  },
+
+  //根据长按得到目前操作的文章
+  collectArticleDialog(e) {
+    let id = e.currentTarget.dataset.articleid;
+    this.setData({ selected_article_id: id });
+    this.setData({ show_article: true });
+  },
+  //收藏文章
+  collectArticle() {
+    db.collection("collected_article")
+      .add({
+        data: {
+          article_id: this.data.selected_article_id,
+        },
+      })
+      .then((res) => {
+        wx.showToast({
+          title: "收藏成功",
+          icon: "none",
+          image: "",
+          duration: 1500,
+          mask: false,
+          success: (result) => {},
+          fail: () => {},
+          complete: () => {},
+        });
+      });
+
+    this.setData({ show: false });
+  },
+
+  //根据长按得到目前操作的音乐
+  collectMusicDialog(e) {
+    let id = e.currentTarget.dataset.musicid;
+    this.setData({ selected_music_id: id });
+    this.setData({ show_music: true });
+  },
+  //收藏音乐
+  collectMusic() {
+    db.collection("collected_music")
+      .add({
+        data: {
+          music_id: this.data.selected_music_id,
+        },
+      })
+      .then((res) => {
+        wx.showToast({
+          title: "收藏成功",
+          icon: "none",
+          image: "",
+          duration: 1500,
+          mask: false,
+          success: (result) => {},
+          fail: () => {},
+          complete: () => {},
+        });
+      });
+
+    this.setData({ show: false });
+  },
+
+  //根据长按得到目前操作的电影
+  collectMovieDialog(e) {
+    let id = e.currentTarget.dataset.movieid;
+    this.setData({ selected_movie_id: id });
+    this.setData({ show_movie: true });
+  },
+
+  //收藏电影
+  collectMovie() {
+    db.collection("collected_movie")
+      .add({
+        data: {
+          movie_id: this.data.selected_movie_id,
+        },
+      })
+      .then((res) => {
+        wx.showToast({
+          title: "收藏成功",
+          icon: "none",
+          image: "",
+          duration: 1500,
+          mask: false,
+          success: (result) => {},
+          fail: () => {},
+          complete: () => {},
+        });
+      });
+
+    this.setData({ show: false });
   },
 
   sign_in() {
