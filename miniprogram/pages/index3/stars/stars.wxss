@@ -139,3 +139,25 @@
   font-size: 40rpx;
   align-content: center;
 }
+
+.nowDayClicked .date-head{
+  width: 60rpx;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  /* background-color: orange; */
+  /* background-color: #22A7F6; */
+  background-color: #00dd09;
+  margin: 0 auto;
+}
+
+.notNowDayClicked .date-head{
+  width: 60rpx;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  /* background-color: orange; */
+  /* background-color: #22A7F6; */
+  background-color: #00ddee;
+  margin: 0 auto;
+}
