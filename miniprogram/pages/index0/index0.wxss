@@ -35,12 +35,28 @@ page {
   display: flex;
   justify-content: space-between; /* 这会将子元素分散对齐，一个靠左，一个靠右 */
   align-items: center;
-  width: 100%;
+  width: 50%;
   padding: 0 15rpx 0 0;
   height: 100rpx;
   margin-top: 50rpx;
   margin-left: 25rpx;
   margin-right: 20rpx;
+  background: #f7f6f6;
+  border-radius: 20rpx;
+  box-shadow: 0 0 1rpx #999;
+}
+
+.dialog {
+  display: flex;
+  justify-content: space-between; /* 这会将子元素分散对齐，一个靠左，一个靠右 */
+  align-items: center;
+  width: 300rpx;
+  padding: 0 15rpx 0 0;
+  height: 100rpx;
+  margin-top: 80rpx;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60rpx;
   background: #f7f6f6;
   border-radius: 20rpx;
   box-shadow: 0 0 1rpx #999;

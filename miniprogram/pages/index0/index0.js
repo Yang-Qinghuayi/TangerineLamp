@@ -32,12 +32,47 @@ Page({
     picList: [], // 轮播图列表
     userInfo: {},
     hasUserInfo: false,
+
+    //用于收藏文章的弹窗
+    show: false,
+    selected_article_id: "",
   },
 
-  kiss() {
-    this.getOneWord();
+  onClose() {
+    this.setData({ show: false });
   },
 
+  //根据长按得到目前操作的文章
+  collectArticleDialog(e) {
+    let id = e.currentTarget.dataset.articleid;
+    this.setData({ selected_article_id: id });
+    this.setData({ show: true });
+  },
+
+  collectArticle() {
+    db.collection("collected_article")
+      .add({
+        data: {
+          article_id: this.data.selected_article_id,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        this.checkIsQianDao();
+        wx.showToast({
+          title: "收藏成功",
+          icon: "none",
+          image: "",
+          duration: 1500,
+          mask: false,
+          success: (result) => {},
+          fail: () => {},
+          complete: () => {},
+        });
+      });
+
+    this.setData({ show: false });
+  },
   sign_in() {
     db.collection("index3_qiandao_daily")
       .add({

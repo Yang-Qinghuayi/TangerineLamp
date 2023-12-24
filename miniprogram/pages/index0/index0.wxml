@@ -24,7 +24,7 @@
     <view class="daily-info">歌单</view>
   </navigator>
   <!-- 心理漫画 -->
-  <navigator url="/pages/index0/comic/comic" hover-class="navigator-hover" class="daily-item1">
+  <navigator url="/pages/index0/movie/movie" hover-class="navigator-hover" class="daily-item1">
     <view class="daily-icon-passage">
       <image src="{{comicIconSrc}}"></image>
     </view>
@@ -41,7 +41,14 @@
   <view class="daily-info">领取今日份幸福</view>
 </view>
 <!-- <van-button bindtap="kiss" type="primary">按钮</van-button> -->
-<van-dialog id="van-dialog" />
+<van-popup round position="bottom" custom-style="height: 20%" bind:close="onClose" show="{{ show }}">
+  <view class="dialog" bindtap="collectArticle">
+    <view class="daily-icon-passage">
+      <image src="cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/icon/heart.svg"></image>
+    </view>
+    <view class="daily-info">收藏</view>
+  </view>
+</van-popup>
 <!-- 最新文章 -->
 <view class="title">
   <view class="titleTxt">最新文章</view>
@@ -52,7 +59,7 @@
   <!-- 内容 -->
   <navigator class="contentBody" wx:for="{{passageList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
     <!-- 这里面每一个都是文章卡片 -->
-    <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
+    <image data-articleid="{{item0._id}}" bindlongpress="collectArticleDialog"  class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
     <view class="contentTitle">{{item0.title}}</view>
   </navigator>
 </view>
@@ -73,7 +80,7 @@
 <!-- 影院上新 -->
 <view class="title">
   <view class="titleTxt">影院上新</view>
-  <navigator class="more" url="/pages/index0/passage/passage">更多 ></navigator>
+  <navigator class="more" url="/pages/index0/movie/movie">更多 ></navigator>
 </view>
 <!-- 展示内容主体 -->
 <view class="contentContainer">
