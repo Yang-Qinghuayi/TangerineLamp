@@ -56,8 +56,6 @@
     <view class="contentTitle">{{item0.title}}</view>
   </navigator>
 </view>
-
-
 <!-- 最新单曲 -->
 <view class="title">
   <view class="titleTxt">最新单曲</view>
@@ -66,14 +64,12 @@
 <!-- 展示内容主体 -->
 <view class="contentContainer">
   <!-- 内容 -->
-  <navigator class="contentBodyMusic" wx:for="{{musicList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
+  <view class="contentBodyMusic" wx:for="{{musicList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0">
     <!-- 这里面每一个都是文章卡片 -->
     <image class="introPic" src="{{item0.cover_url}}" mode="aspectFill"></image>
     <view class="contentTitle">{{item0.name}}</view>
-  </navigator>
+  </view>
 </view>
-
-
 <!-- 影院上新 -->
 <view class="title">
   <view class="titleTxt">影院上新</view>
@@ -82,10 +78,9 @@
 <!-- 展示内容主体 -->
 <view class="contentContainer">
   <!-- 内容 -->
-  <navigator class="contentBody" wx:for="{{movieList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
-    <!-- 这里面每一个都是文章卡片 -->
+  <view class="contentBody" wx:for="{{movieList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0">
     <image class="introPic" src="{{item0.cover_url}}" mode="aspectFill"></image>
     <view class="contentTitle">{{item0.name}}</view>
     <view class="contentAbout">{{item0.about}}</view>
-  </navigator>
+  </view>
 </view>
