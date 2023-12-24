@@ -88,7 +88,7 @@
     <view class="daily-icon-passage">
       <image src="cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/icon/heart.svg"></image>
     </view>
-    <view class="daily-info">收藏</view>
+    <view class="daily-info">收藏文章</view>
   </view>
 </van-popup>
 <van-popup round position="bottom" custom-style="height: 20%" bind:close="onClose" show="{{ show_music }}">
