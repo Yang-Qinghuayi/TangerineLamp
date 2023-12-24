@@ -9,7 +9,7 @@ Page({
     // 签到部分
     isQianDao: false,
     content: "每日签到",
-    sentence: "天才就是99%的努力加上1%的甜菜",
+    sentence: "甜菜就是99%的甜菜加上1%的甜菜",
     nowdaycolor: "",
     alreadylist: [],
     year: 0,
@@ -69,14 +69,29 @@ Page({
 
   //请求每日一句
   getOneWord() {
-    wx.request({
-      url: "https://api.xygeng.cn/one",
-      success: (res) => {
-        this.setData({
-          sentence: res.data.data.content,
-        });
-      },
-    });
+    // wx.request({
+    //   url: "https://api.xygeng.cn/one",
+    //   success: (res) => {
+    //     this.setData({
+    //       sentence: res.data.data.content,
+    //     });
+    //   },
+    // });
+    // 从数据库中获取每日一句
+    db.collection("recommendedSentences")
+      .where({
+        date: this.data.isToday,
+      })
+      .get({
+        success: (res) => {
+          console.log("datay");
+          console.log(res.data);
+          console.log(this.data.isToday);
+          this.setData({
+            sentence: res.data[0].sentence,
+          });
+        },
+      });
   },
 
   checkIsQianDao() {
@@ -88,8 +103,6 @@ Page({
       })
       .get({
         success: (res) => {
-          console.log("datay");
-          console.log(res.data);
           if (res.data.length == 0) {
             this.setData({
               isQianDao: false,
