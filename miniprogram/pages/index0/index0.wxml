@@ -32,7 +32,7 @@
   </navigator>
 </view>
 <!-- 每日一句 -->
-<view wx:if="{{isQianDao}}" class="daily-check" bindtap="getOneWord">
+<view wx:if="{{isQianDao}}" class="daily-check">
   <view class="daily-info">{{sentence}}</view>
 </view>
 <!-- 每日签到 -->
