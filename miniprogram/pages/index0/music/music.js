@@ -67,7 +67,7 @@ Page({
         });
       });
 
-    this.setData({ show: false });
+    this.setData({ show_music: false });
   },
   onClose() {
     this.setData({ show_music: false });
