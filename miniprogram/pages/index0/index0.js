@@ -27,7 +27,8 @@ Page({
     radioIconSrc: "/icons/radio-icon.jpg",
     contactIconSrc: "/icons/contact-icon.jpg",
     passageList: [], // 热门文章列表
-    comicList: [], // 热门漫画列表
+    musicList: [], // 音乐列表
+    movieList: [], // 电影列表
     picList: [], // 轮播图列表
     userInfo: {},
     hasUserInfo: false,
@@ -78,7 +79,7 @@ Page({
     //   },
     // });
     // 从数据库中获取每日一句
-    db.collection("recommendedSentences")
+    db.collection("recommended_sentences")
       .where({
         date: this.data.isToday,
       })
@@ -140,7 +141,8 @@ Page({
     this.initCache();
     this.getPicList();
     this.getPassageList();
-    this.getComicList();
+    this.getMovieList();
+    this.getMusicList();
 
     // 签到部分
     let now = new Date();
@@ -184,6 +186,30 @@ Page({
       .then((res) => {
         this.setData({
           passageList: res.data,
+        });
+      });
+  },
+
+  // 音乐列表
+  getMusicList() {
+    db.collection("recommended_music")
+      .orderBy("push_time", "desc")
+      .get()
+      .then((res) => {
+        this.setData({
+          musicList: res.data,
+        });
+      });
+  },
+
+  // 电影列表
+  getMovieList() {
+    db.collection("recommended_movie")
+      .orderBy("push_time", "desc")
+      .get()
+      .then((res) => {
+        this.setData({
+          movieList: res.data,
         });
       });
   },
