@@ -32,19 +32,16 @@
   </navigator>
 </view>
 <!-- 每日一句 -->
-
 <view wx:if="{{isQianDao}}" class="daily-check">
-  <view class="daily-info">再幸福一点</view>
+  <view class="daily-info">{{sentence}}</view>
 </view>
-
 <!-- 每日签到 -->
-<view wx:else bindtap="signIn" class="daily-check">
+<view wx:else bindtap="sign_in" class="daily-check">
   <view class="sign-in-word">签到</view>
   <view class="daily-info">领取今日份幸福</view>
 </view>
-
 <!-- <van-button bindtap="kiss" type="primary">按钮</van-button> -->
-<van-dialog id="van-dialog"/>
+<van-dialog id="van-dialog" />
 <!-- 最新文章 -->
 <view class="title">
   <view class="titleTxt">最新文章</view>
@@ -62,16 +59,16 @@
 <!-- 最新单曲 -->
 <view class="title">
   <view class="titleTxt">最新单曲</view>
-  <navigator class="more" url="/pages/index0/passage/passage">更多 ></navigator>
+  <navigator class="more" url="/pages/index0/music/music">更多 ></navigator>
 </view>
 <!-- 展示内容主体 -->
 <view class="contentContainer">
   <!-- 内容 -->
-  <navigator class="contentBody" wx:for="{{passageList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
+  <view class="contentBodyMusic" wx:for="{{musicList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0">
     <!-- 这里面每一个都是文章卡片 -->
-    <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
-    <view class="contentTitle">{{item0.title}}</view>
-  </navigator>
+    <image class="introPic" src="{{item0.cover_url}}" mode="aspectFill"></image>
+    <view class="contentTitle">{{item0.name}}</view>
+  </view>
 </view>
 <!-- 影院上新 -->
 <view class="title">
@@ -81,9 +78,9 @@
 <!-- 展示内容主体 -->
 <view class="contentContainer">
   <!-- 内容 -->
-  <navigator class="contentBody" wx:for="{{passageList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
-    <!-- 这里面每一个都是文章卡片 -->
-    <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
-    <view class="contentTitle">{{item0.title}}</view>
-  </navigator>
+  <view class="contentBody" wx:for="{{movieList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0">
+    <image class="introPic" src="{{item0.cover_url}}" mode="aspectFill"></image>
+    <view class="contentTitle">{{item0.name}}</view>
+    <view class="contentAbout">{{item0.about}}</view>
+  </view>
 </view>

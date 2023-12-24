@@ -9,6 +9,7 @@ Page({
     // 签到部分
     isQianDao: false,
     content: "每日签到",
+    sentence: "甜菜就是99%的甜菜加上1%的甜菜",
     nowdaycolor: "",
     alreadylist: [],
     year: 0,
@@ -26,50 +27,72 @@ Page({
     radioIconSrc: "/icons/radio-icon.jpg",
     contactIconSrc: "/icons/contact-icon.jpg",
     passageList: [], // 热门文章列表
-    comicList: [], // 热门漫画列表
+    musicList: [], // 音乐列表
+    movieList: [], // 电影列表
     picList: [], // 轮播图列表
     userInfo: {},
     hasUserInfo: false,
   },
 
-  sign_in() {
-    if (this.data.isQianDao == true) {
-      Dialog.alert({
-        title: "签到",
-        message: "今日已签到",
-      }).then(() => {
-        // on close
-      });
-    } else {
-      wx.hideLoading();
-      db.collection("index3_qiandao_daily")
-        .add({
-          data: {
-            year: this.data.year,
-            month: this.data.month,
-            date: new Date().getDate(),
-            nowdaycolor: "nowDay",
-            isToday: this.data.isToday,
-            isColor: true,
-            isQianDao: true,
-          },
-        })
-        .then((res) => {
-          console.log(res);
-        });
-
-      Dialog.alert({
-        title: "签到成功",
-        message: "燕子,一定要幸福啊燕子!!!",
-      }).then(() => {
-        // on close
-      });
-      this.checkIsQianDao();
-    }
+  kiss() {
+    this.getOneWord();
   },
 
-  signIn() {
-    this.sign_in();
+  sign_in() {
+    db.collection("index3_qiandao_daily")
+      .add({
+        data: {
+          sentence: this.data.sentence,
+          year: this.data.year,
+          month: this.data.month,
+          date: new Date().getDate(),
+          nowdaycolor: "nowDay",
+          isToday: this.data.isToday,
+          isColor: true,
+          isQianDao: true,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        this.checkIsQianDao();
+        wx.showToast({
+          title: "签到成功",
+          icon: "none",
+          image: "",
+          duration: 1500,
+          mask: false,
+          success: (result) => {},
+          fail: () => {},
+          complete: () => {},
+        });
+      });
+  },
+
+  //请求每日一句
+  getOneWord() {
+    // wx.request({
+    //   url: "https://api.xygeng.cn/one",
+    //   success: (res) => {
+    //     this.setData({
+    //       sentence: res.data.data.content,
+    //     });
+    //   },
+    // });
+    // 从数据库中获取每日一句
+    db.collection("recommended_sentences")
+      .where({
+        date: this.data.isToday,
+      })
+      .get({
+        success: (res) => {
+          console.log("datay");
+          console.log(res.data);
+          console.log(this.data.isToday);
+          this.setData({
+            sentence: res.data[0].sentence,
+          });
+        },
+      });
   },
 
   checkIsQianDao() {
@@ -81,8 +104,6 @@ Page({
       })
       .get({
         success: (res) => {
-          console.log("datay");
-          console.log(res.data);
           if (res.data.length == 0) {
             this.setData({
               isQianDao: false,
@@ -120,7 +141,8 @@ Page({
     this.initCache();
     this.getPicList();
     this.getPassageList();
-    this.getComicList();
+    this.getMovieList();
+    this.getMusicList();
 
     // 签到部分
     let now = new Date();
@@ -133,6 +155,7 @@ Page({
       // picList: picList,
     });
     this.checkIsQianDao();
+    this.getOneWord();
   },
 
   //获取轮播图片列表
@@ -163,6 +186,30 @@ Page({
       .then((res) => {
         this.setData({
           passageList: res.data,
+        });
+      });
+  },
+
+  // 音乐列表
+  getMusicList() {
+    db.collection("recommended_music")
+      .orderBy("push_time", "desc")
+      .get()
+      .then((res) => {
+        this.setData({
+          musicList: res.data,
+        });
+      });
+  },
+
+  // 电影列表
+  getMovieList() {
+    db.collection("recommended_movie")
+      .orderBy("push_time", "desc")
+      .get()
+      .then((res) => {
+        this.setData({
+          movieList: res.data,
         });
       });
   },

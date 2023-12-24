@@ -1,24 +1,23 @@
 <view class="title">
   <view class="titleTxt">推荐歌单</view>
 </view>
+
+
 <!-- 推荐音乐 -->
 <view class="recommendMusic">
   <!-- 音乐列表 -->
-  <view class="playlist-item" wx:for="{{playlist}}" wx:key="_id" bindtap="change" data-index="{{index}}">
-    <image class="playlist-cover" src="{{item.coverImgUrl}}"></image>
+  <view class="playlist-item" wx:for="{{playlist}}" wx:key="_id" data-index="{{index}}">
+    <image class="playlist-cover" src="{{item.cover_url}}"></image>
     <view class="playlist-info">
-      <view class="playlist-info-title">{{item.title}}</view>
+      <view class="playlist-info-title">{{item.name}}</view>
       <view class="playlist-info-singer">{{item.singer}}</view>
-    </view>
-    <view class="playlist-controls">
-      <text wx:if="{{index==playIndex}}">正在播放</text>
     </view>
   </view>
 </view>
 
 
 <!-- 底部播放器 -->
-<view class="player">
+<!-- <view class="player">
   <image class="player-cover" src="{{play.coverImgUrl}}" />
   <view class="player-info">
     <view class="player-info-title">{{play.title}}</view>
@@ -31,4 +30,4 @@
   <view class="player-controls2">
     <image src="/icons/next-icon.jpg" bindtap="next"></image>
   </view>
-</view>
+</view> -->

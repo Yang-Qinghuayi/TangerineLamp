@@ -169,6 +169,15 @@ page {
   background-color: #faf2f1;
 }
 
+.contentContainer .contentBodyMusic {
+  width: 304rpx;
+  height: 310rpx;
+  margin-bottom: 15rpx;
+  position: relative;
+  border-radius: 20rpx;
+  background-color: #faf2f1;
+}
+
 .contentContainer .introPic {
   width: 304rpx;
   height: 244rpx;
@@ -177,6 +186,21 @@ page {
 
 .contentContainer .contentTitle {
   font-size: 30rpx;
+  font-weight: bold;
+  color: #666;
+  /* 水平方向margin */
+  margin-left: 20rpx;
+  margin-bottom: 10rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  text-emphasis: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.contentContainer .contentAbout {
+  font-size: 24rpx;
   font-weight: bold;
   color: #666;
   /* 水平方向margin */
