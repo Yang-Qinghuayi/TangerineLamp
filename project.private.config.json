@@ -3,5 +3,40 @@
   "projectname": "TangerineLamp",
   "setting": {
     "compileHotReLoad": true
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "db guide",
+          "pathName": "pages/databaseGuide/databaseGuide",
+          "query": ""
+        },
+        {
+          "name": "心理专攻编译模式",
+          "pathName": "pages/index1/index1/index1",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "开发通道",
+          "pathName": "pages/index3/developer/developer",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "词条检索编译模式",
+          "pathName": "pages/index1/words/wordsEdit/wordsEdit",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "课程编辑",
+          "pathName": "pages/index1/course/courseEdit/courseEdit",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
   }
 }

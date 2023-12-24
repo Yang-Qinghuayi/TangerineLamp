@@ -31,7 +31,7 @@ Page({
     wx.navigateTo({
       url: '/pages/index3/editor/editor',
       success: (result) => {
-        console.log("跳转到设置页面")
+
       },
       fail: () => { },
       complete: () => { }
@@ -106,9 +106,7 @@ Page({
     wx.getUserProfile({
       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
-        console.log("从getUserProfile里面获得信息",this.data.userInfo)
         // 先将所有的信息传到全局变量里面
-        console.log(res)
         app.globalData.userInfo = res.userInfo
         app.globalData.isLogin = true
         this.getdailyQianDaoCount() //获取签到数量
@@ -143,7 +141,6 @@ Page({
     this.getAdviceCount()
     this.getAdviceListCount()
     this.data.hasUserInfo=app.globalData.hasUserInfo
-    console.log(this.data.hasUserInfo)
   },
   /**
    * 获取自己的签到天数
@@ -209,7 +206,6 @@ Page({
       }
     ])).count()
     .then(res=>{
-      console.log("获取评论res:",res)
       this.setData({
         messageCount: res.total
       })
@@ -305,20 +301,13 @@ Page({
   },
 
   async initOpenID() {
-    console.log("In initOpenID")
     return this.try(async () => {
-      console.log("openid")
       const openId = await this.getOpenID()
-      console.log(openId)
       wx.setStorageSync('openid',openId)
       this.getAuthority(openId);
       this.getDoctorAuth(openId);
       this.getCertiStudentAuth(openId);
       app.globalData.openid = openId
-      // this.setData({
-      //   openid: app.globalData.openid
-      // })
-      console.log("当前用户的openid为",app.globalData.openid)
     }, '初始化 openId 失败')
   },
 
@@ -347,7 +336,6 @@ Page({
         }
       }
       app.globalData.isDeveloper = flag
-      console.log("用户是否为开发者",app.globalData.isDeveloper)
     })
   },
 
@@ -377,7 +365,6 @@ Page({
         }
       }
       app.globalData.isDoctor = flag
-      console.log("用户是否是心理咨询师",app.globalData.isDoctor)
     })
   }
   ,
@@ -408,7 +395,6 @@ Page({
         }
       }
       app.globalData.isCertiStudent = flag
-      console.log("用户是否是认证学生",app.globalData.isCertiStudent)
     })
   },
 

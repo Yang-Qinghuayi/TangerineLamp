@@ -10,13 +10,37 @@ Page({
     month: 0,
     date: ['日', '一', '二', '三', '四', '五', '六'],
     dateArr: [],
+    dateClicked: -1,
     isToday: 0,
     isTodayWeek: false,
     todayIndex: 0,
-    picList:[]
+    picList: [],
+    sentence: [
+      "把快乐放进重点反复背诵。",
+      "可遇，可望，可期。",
+      "随心、随缘、随喜。",
+      "阅己，悦己，越己。",
+      "自静，自醒，自清欢。",
+      "不将就自己，不敷衍生活。",
+      "清醒，知趣，明得失，知进退。",
+      "永怀善意，清澈明朗，从始如一。",
+      "万事，尽心尽力，而后，顺其自然。",
+      "热爱漫无边际，生活自有分寸。",
+      "各自乘流而上，互为欢喜人间。",
+      "做一阵风吧，有温柔也有英勇。",
+      "总觉得我应该成为更好的自己。",
+      "每个灵魂里都有一朵玫瑰。",
+      "在心里种花，人生才不会荒芜。",
+      "人生，就是一场花时间爱自己的旅行。",
+      "四季周而复始的更替，来年还是春风绕枝头。",
+      "将昨日事，归欢喜处。",
+      "睡前旧事归于尽，醒来依旧迎花开。",
+      "一身温柔，满怀暖意，静度一生。"
+    ],
+    rand: ""
   },
   onLoad: function () {
-    var picList=[]
+    var picList = []
     picList.push("cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/LOGO/arrow-left.png")
     picList.push("cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/LOGO/arrow-right.png")
     let now = new Date();
@@ -27,17 +51,13 @@ Page({
       year: year,
       month: month,
       isToday: '' + year + month + now.getDate(),
-      picList:picList
+      picList: picList
     })
-    console.log(this.data.picList)
     this.getData();
     this.checkIsQianDao();
     this.isColor();
-
   },
   checkIsQianDao() {
-    console.log("In QianDao")
-    console.log(app.globalData.openid)
     //查询今天是否已经签到
     db.collection("index3_qiandao_daily")
       .where({
@@ -47,14 +67,12 @@ Page({
       })
       .get({
         success: res => {
-          console.log(res)
           if (res.data.length == 0) {
             this.setData({
               isQianDao: false,
               content: "每日签到"
             })
-          }
-          else {
+          } else {
             this.setData({
               isQianDao: true,
               content: "今日已签到"
@@ -66,28 +84,19 @@ Page({
 
   checkDate(date) {
     let flag = false
-    console.log(flag)
     for (let i = 0; i < alreadylist.arrLen(); i++) {
       if (this.data.alreadylist[i].isToday == date) {
         flag = true;
         break;
       }
     }
-    console.log(flag)
     return flag
   },
-  // getData() {
-  //   db.collection("index3_qiandao_daily").get()
-  //     .then(res => {
-  //       this.setData({
-  //         alreadylist: res.data
-  //       })
-  //     })
-  // },
+
   getData() {
     db.collection("index3_qiandao_daily")
       .where({
-        _openid:app.globalData.openid
+        _openid: app.globalData.openid
       })
       .get()
       .then(res => {
@@ -111,9 +120,7 @@ Page({
     for (let i = 0; i < this.data.alreadylist.arrLen; i++) {
       for (let j = 0; j < this.data.dateArr.arrLen; j++) {
         if (this.data.alreadylist[i].isToday == this.data.dateArr[j].isToday)
-          // this.data.dateArr[j].isColor=true
           copy[j].isColor = true
-        // console.log(copy[j].isToday)
       }
     }
     this.setData({
@@ -131,20 +138,19 @@ Page({
         success: (result) => {
 
         },
-        fail: () => { },
-        complete: () => { }
+        fail: () => {},
+        complete: () => {}
       });
 
-    }
-    else {
+    } else {
       wx.showLoading({
         title: "签到中",
         mask: true,
         success: (result) => {
 
         },
-        fail: () => { },
-        complete: () => { }
+        fail: () => {},
+        complete: () => {}
       });
       this.setData({
         isQianDao: true,
@@ -164,7 +170,7 @@ Page({
           isQianDao: true
         }
       }).then(res => {
-        console.log(res);
+
       })
 
       this.getData();
@@ -172,16 +178,16 @@ Page({
   },
   dateInit: function (setYear, setMonth) {
     //全部时间的月份都是按0~11基准，显示月份才+1
-    let dateArr = [];                        //需要遍历的日历数组数据
-    let arrLen = 0;                            //dateArr的数组长度
+    let dateArr = []; //需要遍历的日历数组数据
+    let arrLen = 0; //dateArr的数组长度
     let now = setYear ? new Date(setYear, setMonth) : new Date();
     let year = setYear || now.getFullYear();
     let nextYear = 0;
-    let month = setMonth || now.getMonth();                    //没有+1方便后面计算当月总天数
+    let month = setMonth || now.getMonth(); //没有+1方便后面计算当月总天数
     let nextMonth = (month + 1) > 11 ? 1 : (month + 1);
     let startWeek = new Date(year + '/' + (month + 1) + '/' + 1).getDay();
     //let startWeek = new Date(year, (month + 1), 1).getDay()  ;                        //目标月1号对应的星期
-    let dayNums = new Date(year, nextMonth, 0).getDate();                //获取目标月有多少天
+    let dayNums = new Date(year, nextMonth, 0).getDate(); //获取目标月有多少天
     let obj = {};
     let num = 0;
 
@@ -193,12 +199,12 @@ Page({
     for (let i = 0; i < arrLen; i++) {
       if (i >= startWeek) {
         num = i - startWeek + 1;
+        //设置date的参数
         obj = {
           isToday: '' + year + (month + 1) + num,
           dateNum: num,
           weight: 5,
-          isColor: false
-
+          isColor: false,
         }
       } else {
         obj = {};
@@ -249,6 +255,21 @@ Page({
     })
     this.dateInit(year, month);
     this.getData();
+  },
+  // 点击签到日期后展示每日一句
+  onClickCheckedDate: function (event) {
+    let index = Math.floor(Math.random() * this.data.sentence.length);
+    this.setData({
+      rand: this.data.sentence[index],
+      dateClicked: event.mark.dateArrID
+    })
+  },
+  //未签到提示补签
+  onClickUncheckedDate: function (event) {
+    let index = Math.floor(Math.random() * this.data.sentence.length);
+    this.setData({
+      rand: this.data.sentence[index],
+      dateClicked: event.mark.dateArrID
+    })
   }
-
 })
