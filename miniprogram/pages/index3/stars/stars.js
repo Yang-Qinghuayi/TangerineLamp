@@ -209,7 +209,6 @@ Page({
     let Arr = this.data.dateArr;
     Arr[this.data.dateClicked].isColor = true;
     this.setData({
-      content: "补签成功",
       dateArr: Arr
     })
     wx.hideLoading();
@@ -224,7 +223,9 @@ Page({
         isResigning: true
       }
     }).then(res => {
-
+      this.setData({
+        content: "补签成功"
+      })
     })
 
     this.getData();
