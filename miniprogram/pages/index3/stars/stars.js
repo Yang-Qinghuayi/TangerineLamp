@@ -275,6 +275,9 @@ Page({
   },
   // 点击签到日期后展示每日一句
   onClickCheckedDate: function (event) {
+    this.setData({
+      rand: "",
+    })
     db.collection("recommended_sentences")
       .where({
         date:event.mark.istoday
