@@ -161,3 +161,9 @@
   background-color: #00ddee;
   margin: 0 auto;
 }
+
+.dailysentencebox{
+  text-align: center;
+  font-family: "楷体";
+  padding-top: 80rpx;
+}

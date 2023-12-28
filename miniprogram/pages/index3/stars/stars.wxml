@@ -18,7 +18,7 @@
   </view>
   <view class='date-box'>
     <!-- 渲染的时候用数据库里的数据，同一月份的数据，有数据样式就改变 -->
-    <view wx:for='{{dateArr}}' wx:key="DATE" wx:for-item="item" class='{{item.isColor? (index==dateClicked? "nowDayClicked" : "nowDay") : (index==dateClicked? "notNowDayClicked" : "")}}' bindtap='{{item.isColor? "onClickCheckedDate" : (item.isToday<=isToday? (item.isToday==isToday ? "onClickUncheckedToday":"onClickUncheckedDate") : "onClickFutureDate")}}' mark:dateArrID="{{index}}">
+    <view wx:for='{{dateArr}}' wx:key="DATE" wx:for-item="item" class='{{item.isColor? (index==dateClicked? "nowDayClicked" : "nowDay") : (index==dateClicked? "notNowDayClicked" : "")}}' bindtap='{{item.isColor? "onClickCheckedDate" : (item.isToday<=isToday? (item.isToday==isToday ? "onClickUncheckedToday":"onClickUncheckedDate") : "onClickFutureDate")}}' mark:dateArrID="{{index}}" mark:istoday="{{item.isToday}}">
       <view class='date-head'>
         <view>{{ item.dateNum }}</view>
       </view>
@@ -26,4 +26,4 @@
   </view>
 </view>
 <button class="submit" bindtap='{{isQianDao? (isResigning ? "resign":"haveSigned") : "sign_in"}}'>{{content}}</button>
-<text>{{rand}}</text>
+<view class="dailysentencebox">{{rand}}</view>
