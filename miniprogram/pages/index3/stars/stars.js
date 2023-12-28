@@ -310,7 +310,8 @@ Page({
       rand: this.data.sentence[index],
       dateClicked: event.mark.dateArrID,
       content: "补签",
-      isResigning: true
+      isResigning: true,
+      rand : ""
     })
   },
   onClickFutureDate: function (event) {
@@ -318,6 +319,15 @@ Page({
       rand: "",
       dateClicked: event.mark.dateArrID,
       content: "✧*｡٩(ˊωˋ*)و✧*｡",
+      isResigning: false
+    })
+
+  },
+  onClickUncheckedToday: function (event) {
+    this.setData({
+      rand: "",
+      dateClicked: event.mark.dateArrID,
+      content: "每日签到",
       isResigning: false
     })
 
