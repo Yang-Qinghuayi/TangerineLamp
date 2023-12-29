@@ -23,10 +23,10 @@
     </view>
     <view class="daily-info">歌单</view>
   </navigator>
-  <!-- 心理漫画 -->
+  <!-- 影院 -->
   <navigator url="/pages/index0/movie/movie" hover-class="navigator-hover" class="daily-item1">
     <view class="daily-icon-passage">
-      <image src="{{comicIconSrc}}"></image>
+      <image src="cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/icon/film.svg"></image>
     </view>
     <view class="daily-info">影院</view>
   </navigator>
@@ -83,8 +83,6 @@
     <view class="contentAbout">{{item0.about}}</view>
   </view>
 </view>
-
-
 <van-popup round position="bottom" custom-style="height: 20%" bind:close="onClose" show="{{ show_article }}">
   <view class="dialog" bindtap="collectArticle">
     <view class="daily-icon-passage">
