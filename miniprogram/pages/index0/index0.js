@@ -77,9 +77,10 @@ Page({
             fail: () => {},
             complete: () => {},
           });
+          this.setData({ show: false });
         } else {
           //首先通过文章id获取文章的详细信息
-          db.collection("recommened_article")
+          db.collection("recommended_article")
             .where({
               _id: that.data.selected_article_id,
             })
@@ -111,11 +112,11 @@ Page({
                     fail: () => {},
                     complete: () => {},
                   });
+                  this.setData({ show: false });
                 });
             });
         }
       });
-    this.setData({ show: false });
   },
 
   //根据长按得到目前操作的音乐
@@ -130,7 +131,7 @@ Page({
     //判断我是否已经收藏过这首音乐
     db.collection("collected_music")
       .where({
-       music_id: this.data.selected_music_id,
+        music_id: this.data.selected_music_id,
         _openid: app.globalData.openid,
       })
       .get()
@@ -146,6 +147,7 @@ Page({
             fail: () => {},
             complete: () => {},
           });
+          this.setData({ show: false });
         } else {
           // 首先通过音乐id获取音乐的详细信息
           db.collection("recommended_music")
@@ -180,6 +182,7 @@ Page({
                     fail: () => {},
                     complete: () => {},
                   });
+                  this.setData({ show: false });
                 });
             });
         }
@@ -196,25 +199,64 @@ Page({
 
   //收藏电影
   collectMovie() {
+    let that = this;
+    //判断我是否已经收藏过这部电影
     db.collection("collected_movie")
-      .add({
-        data: {
-          movie_id: this.data.selected_movie_id,
-        },
+      .where({
+        movie_id: this.data.selected_movie_id,
+        _openid: app.globalData.openid,
       })
-      .then(() => {
-        wx.showToast({
-          title: "收藏成功",
-          icon: "none",
-          image: "",
-          duration: 1500,
-          mask: false,
-          success: () => {},
-          fail: () => {},
-          complete: () => {},
-        });
-      });
+      .get()
+      .then((res) => {
+        if (res.data.length != 0) {
+          wx.showToast({
+            title: "您已经收藏过这部电影了",
+            icon: "none",
+            image: "",
+            duration: 1500,
+            mask: false,
+            success: () => {},
+            fail: () => {},
+            complete: () => {},
+          });
+          this.setData({ show: false });
+        } else {
+          //获取详细信息
+          db.collection("recommended_movie")
+            .where({
+              _id: that.data.selected_movie_id,
+            })
+            .get()
+            .then((res) => {
+              //得到文章的详细信息
+              let movie = res.data[0];
 
+              //将文章信息存入数据库
+              db.collection("collected_movie")
+                .add({
+                  data: {
+                    movie_id: movie._id,
+                    cover_url: movie.cover_url,
+                    name: movie.name,
+                    push_time: movie.push_time,
+                    about: movie.about,
+                  },
+                })
+                .then(() => {
+                  wx.showToast({
+                    title: "收藏成功",
+                    icon: "none",
+                    image: "",
+                    duration: 1500,
+                    mask: false,
+                    success: () => {},
+                    fail: () => {},
+                    complete: () => {},
+                  });
+                });
+            });
+        }
+      });
     this.setData({ show: false });
   },
 
@@ -347,7 +389,7 @@ Page({
   getPassageList() {
     // 文章使用长图模式展示，从passageLongPicture集合获取，数据库模式从passage集合获取
     // 降序，越新的文章排在越前面
-    db.collection("recommened_article")
+    db.collection("recommended_article")
       .orderBy("pushTime", "desc")
       .get()
       .then((res) => {

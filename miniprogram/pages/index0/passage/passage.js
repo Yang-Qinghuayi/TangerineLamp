@@ -63,7 +63,7 @@ Page({
   getPassageList() {
     // 文章使用长图模式展示，从passageLongPicture集合获取，数据库模式从passage集合获取
     // 降序，越新的文章排在越前面
-    db.collection("index0_passageLongPicture")
+    db.collection("recommended_article")
       .orderBy("pushTime", "desc")
       .get()
       .then((res) => {
@@ -107,7 +107,7 @@ Page({
       wx.showLoading({
         title: "加载中",
       });
-      db.collection("index0_passageLongPicture")
+      db.collection("recommended_article")
         .orderBy("pushTime", "desc")
         .skip(oldData.length)
         .limit(8)
@@ -131,7 +131,7 @@ Page({
 
   // 获得文章的数目
   getCount() {
-    db.collection("index0_passageLongPicture")
+    db.collection("recommended_article")
       .count()
       .then((res) => {
         cnt = res.total;
