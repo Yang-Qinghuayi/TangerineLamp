@@ -21,25 +21,65 @@ Page({
 
   //收藏电影
   collectMovie() {
+    let that = this;
+    //判断我是否已经收藏过这部电影
     db.collection("collected_movie")
-      .add({
-        data: {
-          movie_id: this.data.selected_movie_id,
-        },
+      .where({
+        movie_id: this.data.selected_movie_id,
+        _openid: app.globalData.openid,
       })
+      .get()
       .then((res) => {
-        wx.showToast({
-          title: "收藏成功",
-          icon: "none",
-          image: "",
-          duration: 1500,
-          mask: false,
-          success: (result) => {},
-          fail: () => {},
-          complete: () => {},
-        });
-        this.setData({ show_movie: false });
+        if (res.data.length != 0) {
+          wx.showToast({
+            title: "您已经收藏过这部电影了",
+            icon: "none",
+            image: "",
+            duration: 1500,
+            mask: false,
+            success: () => {},
+            fail: () => {},
+            complete: () => {},
+          });
+          this.setData({ show: false });
+        } else {
+          //获取详细信息
+          db.collection("recommended_movie")
+            .where({
+              _id: that.data.selected_movie_id,
+            })
+            .get()
+            .then((res) => {
+              //得到文章的详细信息
+              let movie = res.data[0];
+
+              //将文章信息存入数据库
+              db.collection("collected_movie")
+                .add({
+                  data: {
+                    movie_id: movie._id,
+                    cover_url: movie.cover_url,
+                    name: movie.name,
+                    push_time: movie.push_time,
+                    about: movie.about,
+                  },
+                })
+                .then(() => {
+                  wx.showToast({
+                    title: "收藏成功",
+                    icon: "none",
+                    image: "",
+                    duration: 1500,
+                    mask: false,
+                    success: () => {},
+                    fail: () => {},
+                    complete: () => {},
+                  });
+                });
+            });
+        }
       });
+    this.setData({ show: false });
   },
 
   onClose() {

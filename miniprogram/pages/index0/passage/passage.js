@@ -1,5 +1,6 @@
 const db = wx.cloud.database();
 let cnt = 0;
+const app = getApp();
 
 // let passageList = [];
 
@@ -37,28 +38,67 @@ Page({
   },
   //收藏文章
   collectArticle() {
+    let that = this;
+    //判断我是否已经收藏过这篇文章
     db.collection("collected_article")
-      .add({
-        data: {
-          article_id: this.data.selected_article_id,
-        },
+      .where({
+        article_id: this.data.selected_article_id,
+        _openid: app.globalData.openid,
       })
+      .get()
       .then((res) => {
-        wx.showToast({
-          title: "收藏成功",
-          icon: "none",
-          image: "",
-          duration: 1500,
-          mask: false,
-          success: (result) => {},
-          fail: () => {},
-          complete: () => {},
-        });
+        if (res.data.length != 0) {
+          wx.showToast({
+            title: "您已经收藏过这篇文章了",
+            icon: "none",
+            image: "",
+            duration: 1500,
+            mask: false,
+            success: () => {},
+            fail: () => {},
+            complete: () => {},
+          });
+          this.setData({ show: false });
+        } else {
+          //首先通过文章id获取文章的详细信息
+          db.collection("recommended_article")
+            .where({
+              _id: that.data.selected_article_id,
+            })
+            .get()
+            .then((res) => {
+              //得到文章的详细信息
+              let article = res.data[0];
+
+              //将文章信息存入数据库
+              db.collection("collected_article")
+                .add({
+                  data: {
+                    article_id: article._id,
+                    author: article.author,
+                    body: article.body,
+                    introImage: article.introImage,
+                    pushTime: article.pushTime,
+                    title: article.title,
+                  },
+                })
+                .then(() => {
+                  wx.showToast({
+                    title: "收藏成功",
+                    icon: "none",
+                    image: "",
+                    duration: 1500,
+                    mask: false,
+                    success: () => {},
+                    fail: () => {},
+                    complete: () => {},
+                  });
+                  this.setData({ show: false });
+                });
+            });
+        }
       });
-
-    this.setData({ show: false });
   },
-
   // 获取文章列表
   getPassageList() {
     // 文章使用长图模式展示，从passageLongPicture集合获取，数据库模式从passage集合获取

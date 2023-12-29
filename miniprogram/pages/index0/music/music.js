@@ -1,6 +1,7 @@
 // pages/index/index.js
 
 const db = wx.cloud.database();
+const app = getApp();
 
 Page({
   /**
@@ -48,27 +49,69 @@ Page({
   },
   //收藏音乐
   collectMusic() {
+    let that = this;
+    //判断我是否已经收藏过这首音乐
     db.collection("collected_music")
-      .add({
-        data: {
-          music_id: this.data.selected_music_id,
-        },
+      .where({
+        music_id: this.data.selected_music_id,
+        _openid: app.globalData.openid,
       })
+      .get()
       .then((res) => {
-        wx.showToast({
-          title: "收藏成功",
-          icon: "none",
-          image: "",
-          duration: 1500,
-          mask: false,
-          success: (result) => {},
-          fail: () => {},
-          complete: () => {},
-        });
-      });
+        if (res.data.length != 0) {
+          wx.showToast({
+            title: "您已经收藏过这首音乐了",
+            icon: "none",
+            image: "",
+            duration: 1500,
+            mask: false,
+            success: () => {},
+            fail: () => {},
+            complete: () => {},
+          });
+          this.setData({ show: false });
+        } else {
+          // 首先通过音乐id获取音乐的详细信息
+          db.collection("recommended_music")
+            .where({
+              _id: that.data.selected_music_id,
+            })
+            .get()
+            .then((res) => {
+              //得到详细信息
+              let music = res.data[0];
 
-    this.setData({ show_music: false });
+              //将文章信息存入数据库
+              db.collection("collected_music")
+                .add({
+                  data: {
+                    music_id: music._id,
+                    cover_url: music.cover_url,
+                    name: music.name,
+                    singer: music.singer,
+                    src: music.src,
+                    push_time: music.push_time,
+                  },
+                })
+                .then(() => {
+                  wx.showToast({
+                    title: "收藏成功",
+                    icon: "none",
+                    image: "",
+                    duration: 1500,
+                    mask: false,
+                    success: () => {},
+                    fail: () => {},
+                    complete: () => {},
+                  });
+                  this.setData({ show: false });
+                });
+            });
+        }
+      });
+    this.setData({ show: false });
   },
+
   onClose() {
     this.setData({ show_music: false });
   },
