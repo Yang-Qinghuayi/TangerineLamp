@@ -1,9 +1,8 @@
 <van-tabs type="line">
   <van-tab title="文章">
-     <scroll-view scroll-top="{{0}}" scroll-y class="passage">
+    <scroll-view scroll-top="{{0}}" scroll-y class="passage">
       <!-- 文章导航 -->
-      <navigator data-articleid="{{item0._id}}" bindlongpress="collectArticleDialog"
-      class="passage-item" wx:for="{{collectedArticles}}" wx:key="id" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
+      <navigator data-articleid="{{item0._id}}" bindlongpress="collectArticleDialog" class="passage-item" wx:for="{{collectedArticles}}" wx:key="id" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
         <!-- 文章信息 title/des -->
         <view class="passage-info">
           <view class="passage-title">{{item0.title}}</view>
@@ -14,12 +13,17 @@
           <image src="{{item0.introImage}}" mode="aspectFill"></image>
         </view>
       </navigator>
-    </scroll-view>   
-
+    </scroll-view>
   </van-tab>
-  <van-tab title="歌单">内容 2</van-tab>
+  <van-tab title="歌单">
+    <view class="contentContainer">
+      <!-- 内容 -->
+      <view data-musicid="{{item0._id}}" bindlongpress="collectMusicDialog" class="contentBodyMusic" wx:for="{{collectedMusics}}" wx:key="id" wx:for-index="index0" wx:for-item="item0">
+        <!-- 这里面每一个都是文章卡片 -->
+        <image class="introPic" src="{{item0.cover_url}}" mode="aspectFill"></image>
+        <view class="contentTitle">{{item0.name}}</view>
+      </view>
+    </view>
+  </van-tab>
   <van-tab title="电影">内容 3</van-tab>
 </van-tabs>
-
-
-

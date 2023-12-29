@@ -1,3 +1,45 @@
+
+.contentContainer {
+  margin-top: 18rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+}
+.contentContainer .contentBodyMusic {
+  width: 310rpx;
+  height: 380rpx;
+  margin-bottom: 15rpx;
+  position: relative;
+  border-radius: 20rpx;
+  background-color: #faf2f1;
+}
+
+.contentContainer .introPic {
+  width: 304rpx;
+  height: 304rpx;
+  border-radius: 20rpx;
+}
+
+.contentContainer .contentTitle {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #666;
+  /* 水平方向margin */
+  margin-left: 21rpx;
+  margin-top: 10rpx;
+  /* margin-bottom: 10rpx; */
+  display: -webkit-box;
+  overflow: hidden;
+  text-emphasis: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+
+
 .bottom {
   background-color: orange;
   height: 10vh;
