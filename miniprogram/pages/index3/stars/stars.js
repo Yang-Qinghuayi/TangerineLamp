@@ -15,29 +15,8 @@ Page({
     isTodayWeek: false,
     todayIndex: 0,
     picList: [],
-    sentence: [
-      "把快乐放进重点反复背诵。",
-      "可遇，可望，可期。",
-      "随心、随缘、随喜。",
-      "阅己，悦己，越己。",
-      "自静，自醒，自清欢。",
-      "不将就自己，不敷衍生活。",
-      "清醒，知趣，明得失，知进退。",
-      "永怀善意，清澈明朗，从始如一。",
-      "万事，尽心尽力，而后，顺其自然。",
-      "热爱漫无边际，生活自有分寸。",
-      "各自乘流而上，互为欢喜人间。",
-      "做一阵风吧，有温柔也有英勇。",
-      "总觉得我应该成为更好的自己。",
-      "每个灵魂里都有一朵玫瑰。",
-      "在心里种花，人生才不会荒芜。",
-      "人生，就是一场花时间爱自己的旅行。",
-      "四季周而复始的更替，来年还是春风绕枝头。",
-      "将昨日事，归欢喜处。",
-      "睡前旧事归于尽，醒来依旧迎花开。",
-      "一身温柔，满怀暖意，静度一生。"
-    ],
-    rand: ""
+    rand: "",
+    sentence: []
   },
   onLoad: function () {
     var picList = []
@@ -230,7 +209,6 @@ Page({
     let Arr = this.data.dateArr;
     Arr[this.data.dateClicked].isColor = true;
     this.setData({
-      content: "补签成功",
       dateArr: Arr
     })
     wx.hideLoading();
@@ -245,7 +223,9 @@ Page({
         isResigning: true
       }
     }).then(res => {
-
+      this.setData({
+        content: "补签成功"
+      })
     })
 
     this.getData();
@@ -295,9 +275,26 @@ Page({
   },
   // 点击签到日期后展示每日一句
   onClickCheckedDate: function (event) {
-    let index = Math.floor(Math.random() * this.data.sentence.length);
     this.setData({
-      rand: this.data.sentence[index],
+      rand: "",
+    })
+    db.collection("recommended_sentences")
+      .where({
+        date:event.mark.istoday
+      })
+      .get()
+      .then(res => {
+        let resdata = res.data
+        try{
+          this.setData({
+            rand: resdata[0].sentence,
+          })
+        }catch(e){
+
+        }
+        
+      })
+    this.setData({
       dateClicked: event.mark.dateArrID,
       content: "今日已签到",
       isResigning: false
@@ -305,19 +302,27 @@ Page({
   },
   //未签到提示补签
   onClickUncheckedDate: function (event) {
-    let index = Math.floor(Math.random() * this.data.sentence.length);
-    this.setData({
-      rand: this.data.sentence[index],
-      dateClicked: event.mark.dateArrID,
-      content: "补签",
-      isResigning: true
-    })
+      this.setData({
+        dateClicked: event.mark.dateArrID,
+        content: "补签",
+        isResigning: true,
+        rand : ""
+      })
   },
   onClickFutureDate: function (event) {
     this.setData({
       rand: "",
       dateClicked: event.mark.dateArrID,
       content: "✧*｡٩(ˊωˋ*)و✧*｡",
+      isResigning: false
+    })
+
+  },
+  onClickUncheckedToday: function (event) {
+    this.setData({
+      rand: "",
+      dateClicked: event.mark.dateArrID,
+      content: "每日签到",
       isResigning: false
     })
 
