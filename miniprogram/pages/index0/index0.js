@@ -36,6 +36,7 @@ Page({
     //用于收藏文章的弹窗
     show_article: false,
     selected_article_id: "",
+    selected_article: {},
 
     //用于收藏音乐的弹窗
     show_music: false,
@@ -58,25 +59,65 @@ Page({
   },
   //收藏文章
   collectArticle() {
-    db.collection("collected_article")
-      .add({
-        data: {
-          article_id: this.data.selected_article_id,
-        },
-      })
-      .then((res) => {
-        wx.showToast({
-          title: "收藏成功",
-          icon: "none",
-          image: "",
-          duration: 1500,
-          mask: false,
-          success: (result) => {},
-          fail: () => {},
-          complete: () => {},
-        });
-      });
 
+    let iscollected = false;
+    let that = this;
+    //判断我是否已经收藏过这篇文章
+    db.collection("collected_article")
+      .where({
+        article_id: this.data.selected_article_id,
+        _openid: app.globalData.openid,
+      })
+      .get()
+      .then((res) => {
+        if (res.data.length != 0) {
+          wx.showToast({
+            title: "您已经收藏过这篇文章了",
+            icon: "none",
+            image: "",
+            duration: 1500,
+            mask: false,
+            success: (result) => {},
+            fail: () => {},
+            complete: () => {},
+          });
+          
+        }else{
+          //首先通过文章id获取文章的详细信息
+          db.collection("recommened_article")
+            .where({
+              _id: that.data.selected_article_id,
+            })
+            .get()
+            .then((res) => {
+              console.log(res.data[0]);
+              that.setData({ selected_article: res.data[0] });
+            });
+          db.collection("collected_article")
+            .add({
+              data: {
+                article_id: that.data.selected_article_id,
+                author: that.data.selected_article.author,
+                body: that.data.selected_article.body,
+                introImage: that.data.selected_article.introImage,
+                pushTime: that.data.selected_article.pushTime,
+                title: that.data.selected_article.title,
+              },
+            })
+            .then((res) => {
+              wx.showToast({
+                title: "收藏成功",
+                icon: "none",
+                image: "",
+                duration: 1500,
+                mask: false,
+                success: (result) => {},
+                fail: () => {},
+                complete: () => {},
+              });
+            });
+        }
+      });
     this.setData({ show: false });
   },
 
@@ -283,10 +324,11 @@ Page({
   getPassageList() {
     // 文章使用长图模式展示，从passageLongPicture集合获取，数据库模式从passage集合获取
     // 降序，越新的文章排在越前面
-    db.collection("index0_passageLongPicture")
+    db.collection("recommened_article")
       .orderBy("pushTime", "desc")
       .get()
       .then((res) => {
+
         this.setData({
           passageList: res.data,
         });
