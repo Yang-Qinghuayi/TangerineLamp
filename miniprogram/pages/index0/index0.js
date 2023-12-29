@@ -87,18 +87,19 @@ Page({
             })
             .get()
             .then((res) => {
-              console.log(res.data[0]);
-              that.setData({ selected_article: res.data[0] });
+              //得到文章的详细信息
+              let article = res.data[0];
+
               //将文章信息存入数据库
               db.collection("collected_article")
                 .add({
                   data: {
-                    article_id: that.data.selected_article_id,
-                    author: that.data.selected_article.author,
-                    body: that.data.selected_article.body,
-                    introImage: that.data.selected_article.introImage,
-                    pushTime: that.data.selected_article.pushTime,
-                    title: that.data.selected_article.title,
+                    article_id: article._id,
+                    author: article.author,
+                    body: article.body, 
+                    introImage: article.introImage,
+                    pushTime: article.pushTime,
+                    title:  article.title,
                   },
                 })
                 .then((res) => {
