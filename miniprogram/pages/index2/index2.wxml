@@ -8,12 +8,10 @@
   <!-- <view class="blank"></view> -->
   <!-- 轮播图 -->
   <view class="swipercontainer">
-    <swiper class="slide" indicator-dots="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff"
-      autoplay="true" interval="5000" duration="1000" circular>
+    <swiper class="slide" indicator-dots="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff" autoplay="true" interval="5000" duration="1000" circular>
       <block wx:for="{{picList}}" wx:key="index">
         <swiper-item>
-          <image src="{{item}}" class="slide-image" mode="aspectFill" bindtap='previewImg' data-previewurl='{{picList}}'
-            data-currenturl='{{item}}' />
+          <image src="{{item}}" class="slide-image" mode="aspectFill" bindtap='previewImg' data-previewurl='{{picList}}' data-currenturl='{{item}}' />
         </swiper-item>
       </block>
     </swiper>
@@ -23,41 +21,29 @@
     <view class='imgcontainer'>
       <view class='imghalf in_mid'>
         <button class="singleimg">
-          <image
-            src="{{game}}"
-            class='stdimg' mode='aspectFill' data-treeholename="game" bindtap='gotoTreehole' value="game"></image>
+          <image src="{{game}}" class='stdimg' mode='aspectFill' data-treeholename="game" bindtap='gotoTreehole' value="game"></image>
           <text class="case_info">游戏</text>
         </button>
         <button class="singleimg">
-          <image
-            src="{{study}}"
-            class='stdimg' mode='aspectFill' data-treeholename="study" bindtap='gotoTreehole'></image>
+          <image src="{{study}}" class='stdimg' mode='aspectFill' data-treeholename="study" bindtap='gotoTreehole'></image>
           <text class="case_info">学习</text>
         </button>
         <button class="singleimg">
-          <image
-            src="{{emotion}}"
-            class='stdimg' mode='aspectFill' data-treeholename="emotion" bindtap='gotoTreehole'></image>
+          <image src="{{emotion}}" class='stdimg' mode='aspectFill' data-treeholename="emotion" bindtap='gotoTreehole'></image>
           <text class="case_info">情感</text>
         </button>
       </view>
       <view class='imghalf in_top'>
         <button class="singleimg">
-          <image
-            src="{{work}}"
-            class='stdimg' mode='aspectFill' data-treeholename="work" bindtap='gotoTreehole'></image>
+          <image src="{{work}}" class='stdimg' mode='aspectFill' data-treeholename="work" bindtap='gotoTreehole'></image>
           <text class="case_info">工作</text>
         </button>
         <button class="singleimg">
-          <image
-            src="{{life}}"
-            class='stdimg' mode='aspectFill' data-treeholename="life" bindtap='gotoTreehole'></image>
+          <image src="{{life}}" class='stdimg' mode='aspectFill' data-treeholename="life" bindtap='gotoTreehole'></image>
           <text class="case_info">生活</text>
         </button>
         <button class="singleimg">
-          <image
-            src="{{exam}}"
-            class='stdimg' mode='aspectFill' data-treeholename="exam" bindtap='gotoTreehole'></image>
+          <image src="{{exam}}" class='stdimg' mode='aspectFill' data-treeholename="exam" bindtap='gotoTreehole'></image>
           <text class="case_info">考研</text>
         </button>
       </view>

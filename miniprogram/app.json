@@ -75,7 +75,8 @@
     "pages/index2/chatPage/chatPage",
     "pages/index4/feedBackList/feedBackList",
     "pages/index4/feedBackDetail/feedBackDetail",
-    "pages/index0/movie/movie"
+    "pages/index0/movie/movie",
+    "pages/index0/movie/movieDetail/movieDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -95,12 +96,7 @@
         "iconPath": "icons/planet.png",
         "selectedIconPath": "icons/planet_active.png"
       },
-      {
-        "pagePath": "pages/index3/collection/collection",
-        "text": "收藏",
-        "iconPath": "icons/disc-3.png",
-        "selectedIconPath": "icons/disc-3.png"
-      },
+      
       {
         "pagePath": "pages/index2/index2",
         "text": "心灵空间",

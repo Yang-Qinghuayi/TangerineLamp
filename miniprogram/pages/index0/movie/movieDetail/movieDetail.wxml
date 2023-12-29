@@ -1,0 +1,3 @@
+<view class="body" wx:key="{{passage}}">
+    {{movie.about}}
+</view>
