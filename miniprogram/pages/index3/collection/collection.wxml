@@ -3,7 +3,7 @@
      <scroll-view scroll-top="{{0}}" scroll-y class="passage">
       <!-- 文章导航 -->
       <navigator data-articleid="{{item0._id}}" bindlongpress="collectArticleDialog"
-      class="passage-item" wx:for="{{passageList}}" wx:key="id" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
+      class="passage-item" wx:for="{{collectedArticles}}" wx:key="id" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
         <!-- 文章信息 title/des -->
         <view class="passage-info">
           <view class="passage-title">{{item0.title}}</view>

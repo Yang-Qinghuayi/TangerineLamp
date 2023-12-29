@@ -57,8 +57,6 @@ Page({
   },
   //收藏文章
   collectArticle() {
-
-    let iscollected = false;
     let that = this;
     //判断我是否已经收藏过这篇文章
     db.collection("collected_article")
@@ -75,7 +73,7 @@ Page({
             image: "",
             duration: 1500,
             mask: false,
-            success: (result) => {},
+            success: () => {},
             fail: () => {},
             complete: () => {},
           });
@@ -102,14 +100,14 @@ Page({
                     title:  article.title,
                   },
                 })
-                .then((res) => {
+                .then(() => {
                   wx.showToast({
                     title: "收藏成功",
                     icon: "none",
                     image: "",
                     duration: 1500,
                     mask: false,
-                    success: (result) => {},
+                    success: () => {},
                     fail: () => {},
                     complete: () => {},
                   });
@@ -134,14 +132,14 @@ Page({
           music_id: this.data.selected_music_id,
         },
       })
-      .then((res) => {
+      .then(() => {
         wx.showToast({
           title: "收藏成功",
           icon: "none",
           image: "",
           duration: 1500,
           mask: false,
-          success: (result) => {},
+          success: () => {},
           fail: () => {},
           complete: () => {},
         });
@@ -165,14 +163,14 @@ Page({
           movie_id: this.data.selected_movie_id,
         },
       })
-      .then((res) => {
+      .then(() => {
         wx.showToast({
           title: "收藏成功",
           icon: "none",
           image: "",
           duration: 1500,
           mask: false,
-          success: (result) => {},
+          success: () => {},
           fail: () => {},
           complete: () => {},
         });
@@ -204,7 +202,7 @@ Page({
           image: "",
           duration: 1500,
           mask: false,
-          success: (result) => {},
+          success: () => {},
           fail: () => {},
           complete: () => {},
         });
@@ -303,7 +301,6 @@ Page({
 
   //获取轮播图片列表
   getPicList() {
-    var picList = [];
     db.collection("index0_swiper")
       .get()
       .then((res) => {
