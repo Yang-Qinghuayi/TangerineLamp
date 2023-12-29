@@ -2,8 +2,6 @@
 const app = getApp();
 const db = wx.cloud.database();
 
-import Dialog from "@vant/weapp/dialog/dialog";
-
 Page({
   data: {
     // 签到部分
@@ -81,8 +79,7 @@ Page({
             fail: () => {},
             complete: () => {},
           });
-          
-        }else{
+        } else {
           //首先通过文章id获取文章的详细信息
           db.collection("recommened_article")
             .where({
@@ -92,29 +89,30 @@ Page({
             .then((res) => {
               console.log(res.data[0]);
               that.setData({ selected_article: res.data[0] });
-            });
-          db.collection("collected_article")
-            .add({
-              data: {
-                article_id: that.data.selected_article_id,
-                author: that.data.selected_article.author,
-                body: that.data.selected_article.body,
-                introImage: that.data.selected_article.introImage,
-                pushTime: that.data.selected_article.pushTime,
-                title: that.data.selected_article.title,
-              },
-            })
-            .then((res) => {
-              wx.showToast({
-                title: "收藏成功",
-                icon: "none",
-                image: "",
-                duration: 1500,
-                mask: false,
-                success: (result) => {},
-                fail: () => {},
-                complete: () => {},
-              });
+              //将文章信息存入数据库
+              db.collection("collected_article")
+                .add({
+                  data: {
+                    article_id: that.data.selected_article_id,
+                    author: that.data.selected_article.author,
+                    body: that.data.selected_article.body,
+                    introImage: that.data.selected_article.introImage,
+                    pushTime: that.data.selected_article.pushTime,
+                    title: that.data.selected_article.title,
+                  },
+                })
+                .then((res) => {
+                  wx.showToast({
+                    title: "收藏成功",
+                    icon: "none",
+                    image: "",
+                    duration: 1500,
+                    mask: false,
+                    success: (result) => {},
+                    fail: () => {},
+                    complete: () => {},
+                  });
+                });
             });
         }
       });
