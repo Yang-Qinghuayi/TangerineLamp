@@ -94,10 +94,10 @@ Page({
                   data: {
                     article_id: article._id,
                     author: article.author,
-                    body: article.body, 
+                    body: article.body,
                     introImage: article.introImage,
                     pushTime: article.pushTime,
-                    title:  article.title,
+                    title: article.title,
                   },
                 })
                 .then(() => {
@@ -126,25 +126,64 @@ Page({
   },
   //收藏音乐
   collectMusic() {
+    let that = this;
+    //判断我是否已经收藏过这首音乐
     db.collection("collected_music")
-      .add({
-        data: {
-          music_id: this.data.selected_music_id,
-        },
+      .where({
+       music_id: this.data.selected_music_id,
+        _openid: app.globalData.openid,
       })
-      .then(() => {
-        wx.showToast({
-          title: "收藏成功",
-          icon: "none",
-          image: "",
-          duration: 1500,
-          mask: false,
-          success: () => {},
-          fail: () => {},
-          complete: () => {},
-        });
-      });
+      .get()
+      .then((res) => {
+        if (res.data.length != 0) {
+          wx.showToast({
+            title: "您已经收藏过这首音乐了",
+            icon: "none",
+            image: "",
+            duration: 1500,
+            mask: false,
+            success: () => {},
+            fail: () => {},
+            complete: () => {},
+          });
+        } else {
+          // 首先通过音乐id获取音乐的详细信息
+          db.collection("recommended_music")
+            .where({
+              _id: that.data.selected_music_id,
+            })
+            .get()
+            .then((res) => {
+              //得到详细信息
+              let music = res.data[0];
 
+              //将文章信息存入数据库
+              db.collection("collected_music")
+                .add({
+                  data: {
+                    music_id: music._id,
+                    cover_url: music.cover_url,
+                    name: music.name,
+                    singer: music.singer,
+                    src: music.src,
+                    push_time: music.push_time,
+                  },
+                })
+                .then(() => {
+                  wx.showToast({
+                    title: "收藏成功",
+                    icon: "none",
+                    image: "",
+                    duration: 1500,
+                    mask: false,
+                    success: () => {},
+                    fail: () => {},
+                    complete: () => {},
+                  });
+                });
+            });
+        }
+      });
     this.setData({ show: false });
   },
 
@@ -194,7 +233,6 @@ Page({
         },
       })
       .then((res) => {
-        console.log(res);
         this.checkIsQianDao();
         wx.showToast({
           title: "签到成功",
@@ -226,9 +264,6 @@ Page({
       })
       .get({
         success: (res) => {
-          console.log("datay");
-          console.log(res.data);
-          console.log(this.data.isToday);
           this.setData({
             sentence: res.data[0].sentence,
           });
@@ -265,8 +300,6 @@ Page({
     let isDeveloper = wx.getStorageSync("isDeveloper");
     let isDoctor = wx.getStorageSync("isDoctor");
     let isCertiStudent = wx.getStorageSync("isCertiStudent");
-    console.log("hasUserInfo", hasUserInfo);
-    console.log("openid", openid);
 
     if (hasUserInfo == true) {
       app.globalData.openid = openid;
@@ -304,14 +337,8 @@ Page({
     db.collection("index0_swiper")
       .get()
       .then((res) => {
-        console.log(res.data);
-        console.log("kissme");
         this.setData({
           picList: res.data,
-          // picList:[{
-          //   "src" : "https://avatars.githubusercontent.com/u/87259286?v=4",
-          //   "id" : "1"
-          // }]
         });
       });
   },
@@ -324,7 +351,6 @@ Page({
       .orderBy("pushTime", "desc")
       .get()
       .then((res) => {
-
         this.setData({
           passageList: res.data,
         });
