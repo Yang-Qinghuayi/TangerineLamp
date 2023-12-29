@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "影片详情",
+          "pathName": "pages/index0/movie/movieDetail/movieDetail",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "db guide",
           "pathName": "pages/databaseGuide/databaseGuide",
           "query": ""

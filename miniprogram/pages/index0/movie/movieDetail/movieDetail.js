@@ -21,6 +21,7 @@ Page({
     var that = this;
     db.collection("recommended_movie")
       .doc(_id)
+      // .doc('8f4556c96587e88f0064869e17e83fe1')
       .get()
       .then((res) => {
         that.setData({

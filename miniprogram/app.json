@@ -96,7 +96,6 @@
         "iconPath": "icons/planet.png",
         "selectedIconPath": "icons/planet_active.png"
       },
-      
       {
         "pagePath": "pages/index2/index2",
         "text": "心灵空间",

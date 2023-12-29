@@ -1,3 +1,9 @@
 <view class="body" wx:key="{{passage}}">
-    {{movie.about}}
+    <!-- 放图片 -->
+    <image class="pic" src="{{movie.cover_url}}" mode="widthFix"></image>
+    <view class="nameAb">
+        <view class="name">《{{movie.name}}》</view>
+        <view class="about">"{{movie.about}}"</view>
+    </view>
 </view>
+<view class="comment">{{movie.comment}}</view>

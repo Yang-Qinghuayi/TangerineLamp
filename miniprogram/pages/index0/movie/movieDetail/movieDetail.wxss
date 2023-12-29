@@ -1,1 +1,77 @@
-/* pages/index0/movie/movieDetail/movieDetail.wxss */
+.pic {
+  width: 15vh;
+  border-radius: 16rpx;
+  /* 边框 */
+  border: 4rpx solid #a5966f;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 1vh;
+  /* 阴影 */
+  /* box-shadow: 0 5rpx 5rpx #666; */
+}
+
+.body {
+  height: 30vh;
+  /* background: #f8ffea; */
+  margin: 20rpx;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  /* 居中 */
+  justify-items: center;
+}
+
+.comment {
+  justify-content: center;
+  margin: 28rpx 14rpx 0 14rpx;
+  background: #e6edfd;
+  padding: 40rpx 20rpx 30rpx 40rpx;
+  /* 字体颜色 */
+  /* color: #b8974a; */
+  /* 字体间距 */
+  letter-spacing: 4rpx;
+  /* 行间距 */
+  line-height: 50rpx;
+  /* 字体大小 */
+  font-size: 38rpx;
+  /* font-weight: 550; */
+  /* 字体 */
+  font-family: "楷体";
+  border-radius: 18rpx;
+}
+
+.name {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50rpx;
+  /* 字体颜色 */
+  color: #b8974a;
+  /* 字体间距 */
+  letter-spacing: 3rpx;
+  /* 行间距 */
+  line-height: 50rpx;
+  /* 字体大小 */
+  font-size: 40rpx;
+  font-weight: 550;
+  border-radius: 30rpx;
+}
+
+.nameAb {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* grid-template-rows: 1fr 1fr; */
+}
+
+.about {
+  /* margin: 0 14rpx 0 14rpx; */
+  /* 字体颜色 */
+  color: #666;
+  /* 字体间距 */
+  letter-spacing: 4rpx;
+  /* 行间距 */
+  line-height: 50rpx;
+  /* 字体大小 */
+  font-size: 34rpx;
+  font-weight: 550;
+  border-radius: 30rpx;
+}
