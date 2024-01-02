@@ -22,7 +22,7 @@ Page({
   },
 
   getTestDetail(_id) {
-    db.collection("index1_freeTestList").doc(_id).get().then(res=>{
+    db.collection("psychology_evaluation").doc(_id).get().then(res=>{
       this.setData({
         testDetail:res.data
       })

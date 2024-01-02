@@ -1,27 +1,216 @@
 const db = wx.cloud.database();
 const app = getApp();
+
+
 var maxPaidTest;
 var maxFreeTest;
 //index1_paidTestList
 //index1_freeTestList
+
 
 Page({
   data: {
     currentIndex:0,
     scrollTop:0,
     // leftMenuList:["专业测评","娱乐测评"],
-    leftMenuList:["专业测评"],
+    leftMenuList:["专业测评", "趣味测评"],
     rightTestList:[],
+
+    select: true, 
+
+    online: true, 
+
+    active: 1, 
+
+    doctor: []
+
+
+
   },
+
+
+  //修改显示状态
+  changeStatue1(){
+
+    
+
+    this.setData({
+      select: true
+    })
+    console.log("*********"+this.select)
+  },
+
+  changeStatue2(){
+
+    const that = this
+
+    this.setData({
+      select: false
+    })
+    //请求数据
+
+    db.collection('scheduling').where({
+      online: true, 
+      value: db.command.gt(0)
+    }).get({
+      success: function(res){
+
+
+
+        for(var i = 0; i < res.data.length; i++){
+          db.collection('doctors').where({
+            _id: res.data[i].Did 
+          }).get({
+            success: function(result){
+
+              that.setData({
+                doctor: that.data.doctor.concat(result.data)
+              })
+            }
+          })
+  
+        }
+
+        console.log(res.data)
+        console.log("doctor: "+ that.doctor.length)
+      }
+    })
+
+    console.log("*********"+this.select)
+  }, 
+
+
+  //查询对应列表
+  getListData(stype){
+
+    const that = this; 
+    if(stype == 'interesting')
+      that.setData({
+        currentIndex: 1
+      })
+    else
+      that.setData({
+        currentIndex: 0
+      })
+
+      db.collection('psychology_evaluation').where({
+        stype: stype
+      }).get({
+        success: function(res){
+          console.log("res:"+res.data[0].name)
+          that.setData({
+            rightTestList: res.data, 
+            scrollTop:0
+          })
+          console.log("*************")
+          console.log("rightTestList:"+that.rightTestList)
+
+          
+
+        }
+      })
+  },
+
+
+  getYuyueData(e){
+
+
+    const that = this
+
+    const on = e.currentTarget.dataset.index
+
+    if(on){
+      
+      that.setData({
+        online: true
+      })
+      console.log(that.online)
+
+      that.setData({
+        doctor: []
+      })
+      db.collection('scheduling').where({
+        online: true, 
+        value: db.command.gt(0)
+      }).get({
+        success: function(res){
+  
+  
+  
+          for(var i = 0; i < res.data.length; i++){
+            db.collection('doctors').where({
+              _id: res.data[i].Did 
+            }).get({
+              success: function(result){
+  
+                that.setData({
+                  doctor: that.data.doctor.concat(result.data)
+                })
+              }
+            })
+    
+          }
+  
+          console.log(res.data)
+          console.log("doctor: "+ that.doctor.length)
+        }
+      })
+  
+
+    }else{
+      that.setData({
+        online: false
+      })
+      console.log(that.online)
+
+      that.setData({
+        doctor: []
+      })
+      db.collection('scheduling').where({
+        online: false, 
+        value: db.command.gt(0)
+      }).get({
+        success: function(res){
+  
+  
+  
+          for(var i = 0; i < res.data.length; i++){
+            db.collection('doctors').where({
+              _id: res.data[i].Did 
+            }).get({
+              success: function(result){
+  
+                that.setData({
+                  doctor: that.data.doctor.concat(result.data)
+                })
+              }
+            })
+    
+          }
+  
+          console.log(res.data)
+          console.log("doctor: "+ that.doctor.length)
+        }
+      })
+
+
+    }
+
+
+  },  
+
+
 
   //首次加载页面时，调用onload
   onLoad: function(options){
     wx.showLoading({
       title: '加载中'
     })
-    this.getCount();
-    this.getIndex0();
+    // this.getCount();
+    // this.getIndex0();
+    this.getListData('specialized')
     wx.hideLoading();
+    
   },
 
   //获取最大记录条数
@@ -106,22 +295,22 @@ Page({
   
   //导航至词条检索
   bindViewTap1() {
-    if (app.globalData.isLogin){
+    // if (app.globalData.isLogin){
       wx.navigateTo({
         url: "/pages/index1/words/wordsIndex/wordsIndex"
       })
-    }
+    // }
     // 如果没有登录则提醒先登录
-    else {
-      wx.switchTab({
-        url: '/pages/index3/index3',
-      })
-      wx.showToast({
-        title: '请先登录',
-        icon: 'none',
-        duration: 1000
-      })
-    }
+    // else {
+    //   wx.switchTab({
+    //     url: '/pages/index3/index3',
+    //   })
+    //   wx.showToast({
+    //     title: '请先登录',
+    //     icon: 'none',
+    //     duration: 1000
+    //   })
+    // }
   },
   //导航至心理咨询
   bindViewTap2() {
@@ -156,9 +345,9 @@ Page({
       title: '加载中',
     })
     if(index===0){
-      this.getIndex0();
+      this.getListData('specialized');
     }else{
-      this.getIndex1();
+      this.getListData('interesting');
     }
     wx.hideLoading();
   },
@@ -166,7 +355,7 @@ Page({
   //心理测评导航点击事件
   navToTap(e){
     let tempid = e.currentTarget.dataset.id;
-    if (app.globalData.isLogin){
+    // if (app.globalData.isLogin){
       if(this.data.currentIndex==0){
         wx.navigateTo({
           url: '/pages/index1/test1/paidTestDetail/paidTestDetail?_id='+tempid,
@@ -176,18 +365,18 @@ Page({
           url: '/pages/index1/test1/freeTestDetail/freeTestDetail?_id='+tempid,
         })
       }
-    }
+    // }
     // 如果没有登录则提醒先登录
-    else {
-      wx.switchTab({
-        url: '/pages/index3/index3',
-      })
-      wx.showToast({
-        title: '请先登录',
-        icon: 'none',
-        duration: 1000
-      })
-    }
+    // else {
+    //   wx.switchTab({
+    //     url: '/pages/index3/index3',
+    //   })
+    //   wx.showToast({
+    //     title: '请先登录',
+    //     icon: 'none',
+    //     duration: 1000
+    //   })
+    // }
   }
 
 
