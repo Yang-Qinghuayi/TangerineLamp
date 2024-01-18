@@ -1,4 +1,4 @@
-/* pages/index3/index3.wxss */
+pages/index3/index3.wxss
 .user_info_wrap {
   height: 50%;
   width: 100%;

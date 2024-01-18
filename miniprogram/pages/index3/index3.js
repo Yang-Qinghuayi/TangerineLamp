@@ -12,6 +12,9 @@ Page({
     messageCount: 0,    //  需要展示的消息数量
     treeholesCount: 0,  //  需要展示的树洞数量
     collectionCount: 0,
+    colledtedArticleCount: 0,
+    collectedMovieCount: 0,
+    collectedMusicCount: 0,
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -60,7 +63,6 @@ Page({
       year: year,
       month: month
     })
-    // this.initOpenID() //  获得openid
     //  已经登录过了
     // 清除缓存的时候要先更新
     this.data.hasUserInfo = app.globalData.hasUserInfo
@@ -167,17 +169,48 @@ Page({
  * 获取自己的文章收藏数量
  */
   getcollectionCount() {
-    db.collection("index0_passageCollect").where({
+    let articleCount = 0;
+    db.collection("collected_article").where({
       _openid: app.globalData.openid,
-      isCollected: true
     })
       .count()
       .then(res => {
         this.setData({
-          collectionCount: res.total
+          colledtedArticleCount: res.total
+        })
+        this.getMovieCount()
+      })
+  },
+
+
+  getMovieCount() {
+    db.collection("collected_movie").where({
+      _openid: app.globalData.openid,
+    })
+      .count()
+      .then(res => {
+        this.setData({
+          collectedMovieCount: res.total
+        })
+        this.getMusicCount()
+      })
+  },
+
+  getMusicCount() {
+    db.collection("collected_music").where({
+      _openid: app.globalData.openid,
+    })
+      .count()
+      .then(res => {
+        this.setData({
+          collectedMusicCount: res.total
+        })
+        this.setData({
+          collectionCount: this.data.colledtedArticleCount + this.data.collectedMovieCount + this.data.collectedMusicCount
         })
       })
   },
+
 
   /**
    * 获取自己的树洞数量
