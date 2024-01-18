@@ -1,7 +1,7 @@
 <view class="user_info_wrap">
-  <block wx:if="{{!hasUserInfo}}">
-    <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" class="user_btn">登录</button>
-  </block>
+  <view wx:if="{{!hasUserInfo}}" class="user_login">
+    <button bindtap="getUserProfile " class="user_login_btn">登录</button>
+  </view>
   <view wx:else class="user_info_part">
     <view class="user_info">
       <image class="user_info_pic" src="{{userInfo.avatarUrl}}"></image>
@@ -9,10 +9,7 @@
     </view>
   </view>
 </view>
-
-
 <view class="user_content">
-
   <view class="user_main">
     <!-- 我的旅程 -->
     <view class="history_wrap">
@@ -38,8 +35,6 @@
         <view class="redPoint" wx:if="{{messageCount != 0}}"></view>
       </navigator>
     </view>
-
-
     <view class="orders_wrap">
       <view class="order_content">
         <navigator class="redPointContainer2" url="/pages/index1/advice/adviceList/adviceList">
@@ -61,8 +56,6 @@
         </navigator>
       </view>
     </view>
-
-
     <view class="app_info_wrap">
       <!-- <navigator class="app_info_item" url="/pages/index3/adjustAdviceTime/adjustAdviceTime" wx:if="{{isDoctor}}">个人咨询时间调整</navigator> -->
       <navigator class="app_info_item" url="/pages/index3/adviceTimeList/adviceTimeList" wx:if="{{isDeveloper}}">
