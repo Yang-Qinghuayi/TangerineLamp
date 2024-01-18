@@ -1,7 +1,4 @@
 /* pages/index3/index3.wxss */
-page {
-  background-color: #edece8;
-}
 .user_info_wrap {
   height: 50%;
   width: 100%;
@@ -18,13 +15,13 @@ page {
   filter: blur(10rpx);
 }
 .user_info_part {
-  height: 500rpx;
+  height: 400rpx;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .user_info_part .user_info {
-  background-color: #b897a0;
+  background-color: #c4b33f;
   flex: 1;
   margin-left: 10rpx;
   margin-right: 10rpx;
@@ -87,19 +84,22 @@ page {
 }
 .user_content {
   position: relative;
+  font-weight: bold;
+  color: #604242;
+  font-size: 30rpx;
 }
 .user_content .user_main {
-  padding-bottom: 100rpx;
-  color: #666;
-  position: absolute;
-  width: 80%;
-  left: 50%;
-  transform: translateX(-50%);
-  top: -40rpx;
+  display: flex;
+  flex-direction: column;
 }
 .user_content .user_main .history_wrap {
-  background-color: #fff;
+  flex: 1;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  padding: 10rpx;
+  background-color: #eeeeee;
   display: flex;
+  border-radius: 10rpx;
 }
 .user_content .user_main .history_wrap navigator {
   flex: 1;
@@ -110,8 +110,11 @@ page {
   color: orange;
 }
 .user_content .user_main .orders_wrap {
-  background-color: #fff;
+  margin-left: 10rpx;
+  background-color: #eeeeee;
+  margin-right: 10rpx;
   margin-top: 30rpx;
+  border-radius: 10rpx;
 }
 .user_content .user_main .orders_wrap .orders_title {
   padding: 20rpx;
@@ -135,19 +138,28 @@ page {
   padding: 20rpx;
 }
 .user_content .user_main .app_info_wrap {
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  border-radius: 10rpx;
   margin-top: 30rpx;
-  background-color: #fff;
+  background-color: #eeeeee;
 }
 .user_content .user_main .app_info_wrap .app_info_item {
-  padding: 20rpx;
-  border-bottom: 1rpx solid #ccc;
+  padding: 40rpx;
 }
 .user_content .user_main .app_info_wrap .app_info_contact {
+  font-weight: bold;
   display: flex;
   justify-content: space-between;
 }
 .user_content .user_main .recommend_wrap {
   margin-top: 30rpx;
-  background-color: #fff;
-  padding: 20rpx;
+  margin-bottom: 40rpx;
+  background-color: #eeeeee;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  border-radius: 10rpx;
+  color: #c4b33f;
+  font-weight: bold;
+  padding: 40rpx;
 }

@@ -1,14 +1,12 @@
 /* pages/index3/index3.wxss */
 page {
-  background-color: #edece8;
+  // background-color: #edece8;
 }
 
 .user_info_wrap {
   height: 50%;
   width: 100%;
   overflow: hidden;
-  //width: 10rpx;//宽度感觉有点问题
-  // background-color: orange;
 }
 
 .user_img_wrap {
@@ -26,14 +24,14 @@ page {
 
 // 这是哥们写的样式
 .user_info_part {
-  height: 500rpx;
+  height: 400rpx;
   // background-color: orange;
   display: flex;
   justify-content: center;
   align-items: center;
 
   .user_info {
-    background-color: #b897a0;
+    background-color: #c4b33f;
     // width: 100%;
     flex: 1;
     margin-left: 10rpx;
@@ -55,7 +53,6 @@ page {
       margin-top: 20rpx;
       margin-left: 24rpx;
       margin-bottom: 20rpx;
-
     }
   }
 }
@@ -109,19 +106,22 @@ page {
 // 下半部分
 .user_content {
   position: relative;
+  font-weight: bold;
+  color: #604242;
+  font-size: 30rpx;
 
   .user_main {
-    padding-bottom: 100rpx;
-    color: #666;
-    position: absolute;
-    width: 80%; //here is 
-    left: 50%;
-    transform: translateX(-50%);
-    top: -40rpx;
+    display: flex;
+    flex-direction: column;
 
     .history_wrap {
-      background-color: #fff;
+      flex: 1;
+      margin-left: 10rpx;
+      margin-right: 10rpx;
+      padding: 10rpx;
+      background-color: #eeeeee;
       display: flex;
+      border-radius: 10rpx;
 
       navigator {
         flex: 1;
@@ -135,8 +135,11 @@ page {
     }
 
     .orders_wrap {
-      background-color: #fff;
+      margin-left: 10rpx;
+      background-color: #eeeeee;
+      margin-right: 10rpx;
       margin-top: 30rpx;
+      border-radius: 10rpx;
 
       .orders_title {
         padding: 20rpx;
@@ -166,15 +169,21 @@ page {
     }
 
     .app_info_wrap {
+      margin-left: 10rpx;
+      margin-right: 10rpx;
+      border-radius: 10rpx;
       margin-top: 30rpx;
-      background-color: #fff;
+      background-color: #eeeeee;
 
       .app_info_item {
-        padding: 20rpx;
-        border-bottom: 1rpx solid #ccc;
+        padding: 40rpx;
       }
 
       .app_info_contact {
+        // font
+        // font-size: 20rpx;
+        font-weight: bold;
+        // font color
         display: flex;
         justify-content: space-between;
       }
@@ -182,8 +191,14 @@ page {
 
     .recommend_wrap {
       margin-top: 30rpx;
-      background-color: #fff;
-      padding: 20rpx;
+      margin-bottom: 40rpx;
+      background-color: #eeeeee;
+      margin-left: 10rpx;
+      margin-right: 10rpx;
+      border-radius: 10rpx;
+      color: #c4b33f;
+      font-weight: bold;
+      padding: 40rpx;
     }
   }
 }

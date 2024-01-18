@@ -2,27 +2,17 @@
   <block wx:if="{{!hasUserInfo}}">
     <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" class="user_btn">登录</button>
   </block>
-  <!-- <block wx:else>
-    <view class="user_img_wrap">
-      <image class="user_bg" src="{{userInfo.avatarUrl}}"></image>
-      <view class="user_info">
-        <image class="user_icon" src="{{userInfo.avatarUrl}}" mode="aspectFit">
-          <image wx:if="{{isDoctor}}" class="user_vip" src="/icons/vip.svg" mode='aspectFit'></image>
-        </image>
-      </view>
-      <view class="user_name">{{userInfo.nickName}}</view>
-      <view wx:if="{{isCertiStudent}}" class="user_student_box"><view class="user_student">认证学生</view></view>
-    </view>
-  </block> -->
-  <view class="user_info_part">
+  <view wx:else class="user_info_part">
     <view class="user_info">
       <image class="user_info_pic" src="{{userInfo.avatarUrl}}"></image>
       <view class="user_info_name">{{userInfo.nickName}}</view>
     </view>
   </view>
-  <!-- </block> -->
 </view>
+
+
 <view class="user_content">
+
   <view class="user_main">
     <!-- 我的旅程 -->
     <view class="history_wrap">
@@ -48,8 +38,9 @@
         <view class="redPoint" wx:if="{{messageCount != 0}}"></view>
       </navigator>
     </view>
+
+
     <view class="orders_wrap">
-      <view class="orders_title">我的</view>
       <view class="order_content">
         <navigator class="redPointContainer2" url="/pages/index1/advice/adviceList/adviceList">
           <view class="redPoint2" wx:if="{{isBooked}}"></view>
@@ -70,7 +61,8 @@
         </navigator>
       </view>
     </view>
-    <view class="address_wrap" bindtap="goToAddress">设置</view>
+
+
     <view class="app_info_wrap">
       <!-- <navigator class="app_info_item" url="/pages/index3/adjustAdviceTime/adjustAdviceTime" wx:if="{{isDoctor}}">个人咨询时间调整</navigator> -->
       <navigator class="app_info_item" url="/pages/index3/adviceTimeList/adviceTimeList" wx:if="{{isDeveloper}}">
