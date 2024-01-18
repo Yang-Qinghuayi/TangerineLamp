@@ -3,73 +3,77 @@ page {
   background-color: #edece8;
 }
 .user_info_wrap {
-  height: 45vh;
-  overflow: hidden;
+  height: 50%;
   width: 100%;
-  background-color: orange;
-  position: relative;
+  overflow: hidden;
 }
-.user_info_wrap .user_img_wrap {
-  position: relative;
+.user_img_wrap {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
 }
-.user_info_wrap .user_img_wrap .user_bg {
-  height: 50vh;
+.user_bg {
+  height: 100%;
   width: 100%;
   filter: blur(10rpx);
 }
-.user_info_wrap .user_img_wrap .user_info {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 20%;
-  text-align: center;
+.user_info_part {
+  height: 500rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.user_info_wrap .user_img_wrap .user_info .user_icon {
+.user_info_part .user_info {
+  background-color: #b897a0;
+  flex: 1;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  border-radius: 10rpx;
+}
+.user_info_part .user_info .user_info_pic {
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  height: 150rpx;
+  width: 150rpx;
+  border-radius: 50%;
+}
+.user_info_part .user_info .user_info_name {
+  font-size: 50rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 20rpx;
+  margin-left: 24rpx;
+  margin-bottom: 20rpx;
+}
+.user_icon {
   width: 150rpx;
   height: 150rpx;
   border-radius: 50%;
+  z-index: 2;
+  position: relative;
 }
-.user_info_wrap .user_img_wrap .user_info .user_vip{
+.user_vip {
   justify-items: center;
   position: absolute;
   background-color: #fff;
   border-radius: 50%;
-  width: 50rpx;
-  height: 50rpx;
-  bottom: -5rpx;
-  right:-5rpx;
+  width: 5rpx;
+  height: 5rpx;
+  bottom: -20rpx;
+  right: -20rpx;
   z-index: 3;
-} 
-.user_info_wrap .user_img_wrap .user_name {
+}
+.user_name {
   color: white;
-  position: absolute;
-  width: 100%;
-  bottom: 40%;
-  text-align: center;
+  margin-top: 40rpx;
   font-size: 40rpx;
 }
-
-.user_info_wrap .user_img_wrap .user_student_box {
-  color: var(--orange1);
-  position: absolute;
+.user_bg {
+  height: 50vh;
   width: 100%;
-  bottom: 30%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  filter: blur(10rpx);
 }
-
-.user_info_wrap .user_img_wrap .user_student {
-  color: white;
-  font-size:30rpx;
-  padding:0 5rpx;
-  text-align: center;
-  background-color: orange;
-  border:solid orange 1rpx;
-  border-radius: 10rpx;
-}
-
-.user_info_wrap .user_btn {
+.user_btn {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -128,14 +132,14 @@ page {
 .user_content .user_main .address_wrap {
   margin-top: 30rpx;
   background-color: #fff;
-  padding: 20rpx ;
+  padding: 20rpx;
 }
 .user_content .user_main .app_info_wrap {
   margin-top: 30rpx;
   background-color: #fff;
 }
 .user_content .user_main .app_info_wrap .app_info_item {
-  padding: 20rpx ;
+  padding: 20rpx;
   border-bottom: 1rpx solid #ccc;
 }
 .user_content .user_main .app_info_wrap .app_info_contact {
@@ -145,45 +149,5 @@ page {
 .user_content .user_main .recommend_wrap {
   margin-top: 30rpx;
   background-color: #fff;
-  padding: 20rpx ;
-}
-
-.qqEmail {
-  padding: 5rpx;
-  font-size:32rpx;
-}
-
-.redPointContainer{
-  position: relative;
-}
-
-.redPointContainer2{
-  position: relative;
-}
-
-.redPoint{
-  border-radius: 50%;
-  position: absolute;
-  width: 20rpx;
-  height: 20rpx;
-  top: 20rpx;
-  right:20rpx;
-  background-color: red;
-  z-index: 1;
-}
-
-.redPoint2{
-  border-radius: 50%;
-  position: absolute;
-  width: 20rpx;
-  height: 20rpx;
-  top: 20rpx;
-  right:20rpx;
-  background-color: red;
-  z-index: 1;
-}
-
-.warning {
-  color:red;
-  font-weight: bold;
+  padding: 20rpx;
 }

@@ -1,39 +1,74 @@
 /* pages/index3/index3.wxss */
-page{
-    background-color: #edece8;
+page {
+  background-color: #edece8;
 }
-.user_info_wrap{
+
+.user_info_wrap {
   height: 50%;
   width: 100%;
   overflow: hidden;
   //width: 10rpx;//宽度感觉有点问题
-  background-color: orange;
+  // background-color: orange;
 }
-.user_img_wrap{
+
+.user_img_wrap {
   height: 100%;
   width: 100%;
   z-index: 1;
 }
-.user_bg{
+
+.user_bg {
   height: 100%;
   width: 100%;
   //高斯模糊
   filter: blur(10rpx);
 }
-.user_info{
-  width: 100%;
-  height: 200rpx;
-  position: relative;
-  z-index: 2;
+
+// 这是哥们写的样式
+.user_info_part {
+  height: 500rpx;
+  // background-color: orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .user_info {
+    background-color: #b897a0;
+    // width: 100%;
+    flex: 1;
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+    border-radius: 10rpx;
+
+    .user_info_pic {
+      margin-left: 20rpx;
+      margin-top: 20rpx;
+      height: 150rpx;
+      width: 150rpx;
+      border-radius: 50%;
+    }
+
+    .user_info_name {
+      font-size: 50rpx;
+      font-weight: bold;
+      color: #fff;
+      margin-top: 20rpx;
+      margin-left: 24rpx;
+      margin-bottom: 20rpx;
+
+    }
+  }
 }
-.user_icon{
+
+.user_icon {
   width: 150rpx;
   height: 150rpx;
   border-radius: 50%;
   z-index: 2;
   position: relative;
 }
-.user_vip{
+
+.user_vip {
   justify-items: center;
   position: absolute;
   background-color: #fff;
@@ -41,102 +76,114 @@ page{
   width: 5rpx;
   height: 5rpx;
   bottom: -20rpx;
-  right:-20rpx;
+  right: -20rpx;
   z-index: 3;
-} 
-.user_name{
+}
+
+.user_name {
   color: white;
   margin-top: 40rpx;
   font-size: 40rpx;
 }
-.user_bg{
-  height:50vh;
+
+.user_bg {
+  height: 50vh;
   width: 100%;
   //高斯模糊
   filter: blur(10rpx);
 }
- 
-.user_btn{
+
+.user_btn {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top:40%;
+  top: 40%;
   background-color: orange;
   border: 1rpx solid whitesmoke;
-  color:whitesmoke;
+  color: whitesmoke;
   font-size: 38rpx;
   padding: 30rpx;
   border-radius: 10rpx;
 }
 
 // 下半部分
-.user_content{
-    position: relative;
-    .user_main{
-        padding-bottom: 100rpx;
-        color: #666;
-        position: absolute;
-        width: 80%;//here is 
-        left: 50%;
-        transform: translateX(-50%);
-        top: -40rpx;
-    
-    .history_wrap{
-        background-color: #fff;
-        display: flex;
-        navigator{
-            flex:1;
-            text-align: center;
-            padding: 10rpx 0;
-            .his_num{
-                color: orange;
-            }
-            .his_name{}
-        }
-    }
-     .orders_wrap{
-        background-color: #fff;
-        margin-top: 30rpx;
-        .orders_title{
-          padding: 20rpx;
-          border-bottom: 1rpx solid #ccc;
-        }
-    
-    .order_content{
-    display: flex;
-    navigator{
-      padding: 15rpx 0;
-      flex: 1;
-      text-align: center;
-      .iconfont{
-        color: orange;
-        font-size: 40rpx;
-      }
-      .order_name{}
-    }
-  }
-}
-.address_wrap{
-    margin-top: 30rpx;
-    background-color: #fff;
-    padding: 20rpx ;
-  }
-  .app_info_wrap{
-    margin-top: 30rpx;
-    background-color: #fff;
-    .app_info_item{
-      padding: 20rpx ;
-      border-bottom: 1rpx solid #ccc;
-    }
-    .app_info_contact{
+.user_content {
+  position: relative;
+
+  .user_main {
+    padding-bottom: 100rpx;
+    color: #666;
+    position: absolute;
+    width: 80%; //here is 
+    left: 50%;
+    transform: translateX(-50%);
+    top: -40rpx;
+
+    .history_wrap {
+      background-color: #fff;
       display: flex;
-      justify-content: space-between;
+
+      navigator {
+        flex: 1;
+        text-align: center;
+        padding: 10rpx 0;
+
+        .his_num {
+          color: orange;
+        }
+      }
+    }
+
+    .orders_wrap {
+      background-color: #fff;
+      margin-top: 30rpx;
+
+      .orders_title {
+        padding: 20rpx;
+        border-bottom: 1rpx solid #ccc;
+      }
+
+      .order_content {
+        display: flex;
+
+        navigator {
+          padding: 15rpx 0;
+          flex: 1;
+          text-align: center;
+
+          .iconfont {
+            color: orange;
+            font-size: 40rpx;
+          }
+        }
+      }
+    }
+
+    .address_wrap {
+      margin-top: 30rpx;
+      background-color: #fff;
+      padding: 20rpx;
+    }
+
+    .app_info_wrap {
+      margin-top: 30rpx;
+      background-color: #fff;
+
+      .app_info_item {
+        padding: 20rpx;
+        border-bottom: 1rpx solid #ccc;
+      }
+
+      .app_info_contact {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    .recommend_wrap {
+      margin-top: 30rpx;
+      background-color: #fff;
+      padding: 20rpx;
     }
   }
-  .recommend_wrap{
-    margin-top: 30rpx;
-    background-color: #fff;
-    padding: 20rpx ;
-  }
-}
 }

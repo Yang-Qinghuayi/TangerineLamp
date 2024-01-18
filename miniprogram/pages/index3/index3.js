@@ -6,9 +6,9 @@ const _ = db.command;
 
 Page({
   data: {
-    dailyQianDaoCount:0,
-    year:0,
-    month:0,
+    dailyQianDaoCount: 0,
+    year: 0,
+    month: 0,
     messageCount: 0,    //  需要展示的消息数量
     treeholesCount: 0,  //  需要展示的树洞数量
     collectionCount: 0,
@@ -19,8 +19,8 @@ Page({
     // 为了保持解耦性，这两个只能从全局变量里面获得
     openid: null, //  用户的openid
     isDeveloper: false,  //  用户的权限
-    isDoctor:false,
-    isCertiStudent:false,
+    isDoctor: false,
+    isCertiStudent: false,
     isLogin: false,  //  用户是否登录
     isBooked: false, //用户是否有心理咨询预约记录
     hasAdvice: false, //数据库是否存在已预约心理咨询
@@ -43,42 +43,45 @@ Page({
    * 加载需要页面的各种信息和内容，包括可能的用户信息和权限
    */
   onLoad() {
+
     let openid = wx.getStorageSync('openid')
     let userInfo = wx.getStorageSync('userInfo')
-    let hasUserInfo=wx.getStorageSync('hasUserInfo')
-    let isDeveloper=wx.getStorageSync('isDeveloper');
-    let isDoctor=wx.getStorageSync('isDoctor')
-    let isCertiStudent=wx.getStorageSync('isCertiStudent')
+    userInfo.avatarUrl = 'https://avatars.githubusercontent.com/u/87259286?v=4'
+    userInfo.nickName = '杨青花一'
+    let hasUserInfo = wx.getStorageSync('hasUserInfo')
+    let isDeveloper = wx.getStorageSync('isDeveloper');
+    let isDoctor = wx.getStorageSync('isDoctor')
+    let isCertiStudent = wx.getStorageSync('isCertiStudent')
     let now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth() + 1;
     this.setData({
-      year:year,
-      month:month
+      year: year,
+      month: month
     })
     // this.initOpenID() //  获得openid
     //  已经登录过了
     // 清除缓存的时候要先更新
-    this.data.hasUserInfo=app.globalData.hasUserInfo
-    if (app.globalData.isLogin||hasUserInfo==true) {
+    this.data.hasUserInfo = app.globalData.hasUserInfo
+    if (app.globalData.isLogin || hasUserInfo == true) {
       this.setData({
         userInfo: userInfo,
         hasUserInfo: hasUserInfo,
-        isDeveloper:isDeveloper,
-        isDoctor:isDoctor,
-        isCertiStudent:isCertiStudent
+        isDeveloper: isDeveloper,
+        isDoctor: isDoctor,
+        isCertiStudent: isCertiStudent
       })
       app.globalData.openid = openid
-      app.globalData.isLogin=hasUserInfo
-      app.globalData.hasUserInfo=hasUserInfo
-      app.globalData.isDeveloper=isDeveloper
-      app.globalData.isDoctor=isDoctor
-      app.globalData.isCertiStudent=isCertiStudent
+      app.globalData.isLogin = hasUserInfo
+      app.globalData.hasUserInfo = hasUserInfo
+      app.globalData.isDeveloper = isDeveloper
+      app.globalData.isDoctor = isDoctor
+      app.globalData.isCertiStudent = isCertiStudent
       this.setData({
         isLogin: app.globalData.isLogin,
         isDeveloper: app.globalData.isDeveloper,
         isDoctor: app.globalData.isDoctor,
-        isCertiStudent:app.globalData.isCertiStudent,
+        isCertiStudent: app.globalData.isCertiStudent,
       })
     } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -91,7 +94,7 @@ Page({
         })
       }
     }
-    
+
     this.initOpenID() //  获得openid
   },
 
@@ -122,134 +125,134 @@ Page({
           isLogin: app.globalData.isLogin,
           isDeveloper: app.globalData.isDeveloper,
           isDoctor: app.globalData.isDoctor,
-          isCertiStudent:app.globalData.isCertiStudent,
+          isCertiStudent: app.globalData.isCertiStudent,
         })
         wx.setStorageSync('userInfo', res.userInfo)
-        wx.setStorageSync('hasUserInfo',true)
+        wx.setStorageSync('hasUserInfo', true)
         wx.setStorageSync('isDeveloper', app.globalData.isDeveloper)
-        wx.setStorageSync('isDoctor',app.globalData.isDoctor)
-        wx.setStorageSync('isCertiStudent',app.globalData.isCertiStudent)
+        wx.setStorageSync('isDoctor', app.globalData.isDoctor)
+        wx.setStorageSync('isCertiStudent', app.globalData.isCertiStudent)
       }
     })
   },
 
-  onShow(){
+  onShow() {
     this.getUserTreeholeCount()
     this.getUserMessageCount()
     this.getdailyQianDaoCount()
     this.getcollectionCount()
     this.getAdviceCount()
     this.getAdviceListCount()
-    this.data.hasUserInfo=app.globalData.hasUserInfo
+    this.data.hasUserInfo = app.globalData.hasUserInfo
   },
   /**
    * 获取自己的签到天数
    */
-  getdailyQianDaoCount(){
+  getdailyQianDaoCount() {
     db.collection("index3_qiandao_daily")
-    .where({
-      _openid: app.globalData.openid,
-      month: this.data.month,
-      year:this.data.year
-    })
-    .count()
-    .then(res=>{
-      this.setData({
-        dailyQianDaoCount: res.total
+      .where({
+        _openid: app.globalData.openid,
+        month: this.data.month,
+        year: this.data.year
       })
-    })
+      .count()
+      .then(res => {
+        this.setData({
+          dailyQianDaoCount: res.total
+        })
+      })
   },
-    /**
-   * 获取自己的文章收藏数量
-   */
-  getcollectionCount(){
+  /**
+ * 获取自己的文章收藏数量
+ */
+  getcollectionCount() {
     db.collection("index0_passageCollect").where({
       _openid: app.globalData.openid,
-      isCollected:true
+      isCollected: true
     })
-    .count()
-    .then(res=>{
-      this.setData({
-        collectionCount: res.total
+      .count()
+      .then(res => {
+        this.setData({
+          collectionCount: res.total
+        })
       })
-    })
   },
 
   /**
    * 获取自己的树洞数量
    */
-  getUserTreeholeCount(){
+  getUserTreeholeCount() {
     db.collection("index2_treeholes").where({
       _openid: app.globalData.openid
     }).count()
-    .then(res=>{
-      this.setData({
-        treeholesCount: res.total
+      .then(res => {
+        this.setData({
+          treeholesCount: res.total
+        })
       })
-    })
   },
 
   /**
    * 获得所有给自己的评论
    */
-  getUserMessageCount(){
+  getUserMessageCount() {
     db.collection("index2_comments")
-    .where(_.and([
-      {
-        _openid: _.not(_.eq(app.globalData.openid))
-      },
-      {
-        toID: app.globalData.openid
-      },
-      {
-        isRead: false
-      }
-    ])).count()
-    .then(res=>{
-      this.setData({
-        messageCount: res.total
+      .where(_.and([
+        {
+          _openid: _.not(_.eq(app.globalData.openid))
+        },
+        {
+          toID: app.globalData.openid
+        },
+        {
+          isRead: false
+        }
+      ])).count()
+      .then(res => {
+        this.setData({
+          messageCount: res.total
+        })
       })
-    })
   },
 
-    /**
-   * 获得心理咨询预约记录
-   */
-  getAdviceCount(){
+  /**
+ * 获得心理咨询预约记录
+ */
+  getAdviceCount() {
     let nowDate = this.getNowDate();
     db.collection("chatroom_group").where({
       members: _.all([app.globalData.openid]),
       timeCount: _.gt(nowDate)
     })
-    .count().then(res=>{
-      this.setData({
-        isBooked: (res.total>0  && app.globalData.isLogin)
+      .count().then(res => {
+        this.setData({
+          isBooked: (res.total > 0 && app.globalData.isLogin)
+        })
       })
-    })
   },
 
   /**
    * 获得已预约咨询时间记录数
    */
-  getAdviceListCount(){
+  getAdviceListCount() {
     let nowDate = this.getNowDate();
     db.collection("doctor_freeTime").where({
       isBooked: true,
       timeCount: _.gt(nowDate)
     })
-    .count().then(res=>{
-      this.setData({
-        hasAdvice: (res.total>0  && app.globalData.isLogin)
+      .count().then(res => {
+        this.setData({
+          hasAdvice: (res.total > 0 && app.globalData.isLogin)
+        })
       })
-    })
   },
-  
+
   /**
    * 前往认证通道
    */
-  toCerti(){
+  toCerti() {
     // 登录了才可以认证
-    if (this.data.isLogin){
+    if (this.data.isLogin) {
       wx.navigateTo({
         url: '/pages/index3/certification/certification',
       })
@@ -264,12 +267,12 @@ Page({
     }
   },
 
-    /**
-   * 前往问卷通道
-   */
-  toQuest(){
+  /**
+ * 前往问卷通道
+ */
+  toQuest() {
     // 登录了才可以认证
-    if (this.data.isLogin){
+    if (this.data.isLogin) {
       wx.navigateTo({
         url: '/pages/index3/student_questionnaire/student_questionnaire',
       })
@@ -285,7 +288,7 @@ Page({
   },
 
   ///////////////////////获取openid并识别开发人员的一些列操作/////////////////////
-  getOpenID: async function() {
+  getOpenID: async function () {
     const { result } = await wx.cloud.callFunction({
       name: 'login',
     })
@@ -303,7 +306,7 @@ Page({
   async initOpenID() {
     return this.try(async () => {
       const openId = await this.getOpenID()
-      wx.setStorageSync('openid',openId)
+      wx.setStorageSync('openid', openId)
       this.getAuthority(openId);
       this.getDoctorAuth(openId);
       this.getCertiStudentAuth(openId);
@@ -311,96 +314,96 @@ Page({
     }, '初始化 openId 失败')
   },
 
-  getAuthority(openId){
+  getAuthority(openId) {
     var that = this
     let flag = false
     db.collection("developer")
-    .where({
-      developer:openId
-    }).count()
-    .then(res=>{
-      if(res.total>0){
-        flag = true
-        if(app.globalData.isDeveloper == !flag){
-          that.setData({
-            isDeveloper:flag
-          })
-          wx.setStorageSync('isDeveloper', flag);
+      .where({
+        developer: openId
+      }).count()
+      .then(res => {
+        if (res.total > 0) {
+          flag = true
+          if (app.globalData.isDeveloper == !flag) {
+            that.setData({
+              isDeveloper: flag
+            })
+            wx.setStorageSync('isDeveloper', flag);
+          }
+        } else {
+          if (app.globalData.isDeveloper == !flag) {
+            that.setData({
+              isDeveloper: flag
+            })
+            wx.setStorageSync('isDeveloper', flag);
+          }
         }
-      }else{
-        if(app.globalData.isDeveloper == !flag){
-          that.setData({
-            isDeveloper:flag
-          })
-          wx.setStorageSync('isDeveloper', flag);
-        }
-      }
-      app.globalData.isDeveloper = flag
-    })
+        app.globalData.isDeveloper = flag
+      })
   },
 
-  getDoctorAuth(openId){
+  getDoctorAuth(openId) {
     var that = this
     let flag = false
     db.collection("doctors")
-    .where({
-      _openid:openId,
-      isCertification:true
-    }).count()
-    .then(res=>{
-      if(res.total>0){
-        flag = true
-        if(app.globalData.isDoctor == !flag){
-          that.setData({
-            isDoctor:flag
-          })
-          wx.setStorageSync('isDoctor',flag);
+      .where({
+        _openid: openId,
+        isCertification: true
+      }).count()
+      .then(res => {
+        if (res.total > 0) {
+          flag = true
+          if (app.globalData.isDoctor == !flag) {
+            that.setData({
+              isDoctor: flag
+            })
+            wx.setStorageSync('isDoctor', flag);
+          }
+        } else {
+          if (app.globalData.isDoctor == !flag) {
+            that.setData({
+              isDoctor: flag
+            })
+            wx.setStorageSync('isDoctor', flag);
+          }
         }
-      }else{
-        if(app.globalData.isDoctor == !flag){
-          that.setData({
-            isDoctor:flag
-          })
-          wx.setStorageSync('isDoctor',flag);
-        }
-      }
-      app.globalData.isDoctor = flag
-    })
+        app.globalData.isDoctor = flag
+      })
   }
   ,
-  getCertiStudentAuth(openId){
+  getCertiStudentAuth(openId) {
     var that = this
     let flag = false
     db.collection("CertiStudent")
-    .where({
-      _openid:openId,
-      isCertification:true,
-    })
-    .count()
-    .then(res=>{
-      if(res.total>0){
-        flag = true
-        if(app.globalData.isCertiStudent == !flag){
-          that.setData({
-            isCertiStudent:flag
-          })
-          wx.setStorageSync('isCertiStudent',flag);
+      .where({
+        _openid: openId,
+        isCertification: true,
+      })
+      .count()
+      .then(res => {
+        if (res.total > 0) {
+          flag = true
+          if (app.globalData.isCertiStudent == !flag) {
+            that.setData({
+              isCertiStudent: flag
+            })
+            wx.setStorageSync('isCertiStudent', flag);
+          }
+        } else {
+          if (app.globalData.isCertiStudent == !flag) {
+            that.setData({
+              isCertiStudent: flag
+            })
+            wx.setStorageSync('isCertiStudent', flag);
+          }
         }
-      }else{
-        if(app.globalData.isCertiStudent == !flag){
-          that.setData({
-            isCertiStudent:flag
-          })
-          wx.setStorageSync('isCertiStudent',flag);
-        }
-      }
-      app.globalData.isCertiStudent = flag
-    })
+        app.globalData.isCertiStudent = flag
+      })
   },
 
 
   // 工具函数 —— 获取今天的时间戳
-  getNowDate(){
+  getNowDate() {
     let timestamp = Date.parse(new Date());
     let nowTime = new Date(timestamp);
     let year = nowTime.getFullYear();
