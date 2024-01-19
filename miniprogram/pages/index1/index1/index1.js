@@ -11,7 +11,6 @@ Page({
   data: {
     currentIndex: 0,
     scrollTop: 0,
-    // leftMenuList:["专业测评","娱乐测评"],
     leftMenuList: ["专业测评", "趣味测评"],
     rightTestList: [],
     select: true,
@@ -29,14 +28,12 @@ Page({
   },
 
   changeStatue2() {
-
     const that = this
-
     this.setData({
       select: false
     })
-    //请求数据
 
+    //请求数据
     db.collection('scheduling').where({
       online: true,
       value: db.command.gt(0)
@@ -83,7 +80,21 @@ Page({
     })
   },
 
-
+  pcl_5() {
+    wx.navigateTo({
+      url: '/pages/index1/test1/testlists/pcl-5/pcl-5',
+    })
+  },
+  phq_9() {
+    wx.navigateTo({
+      url: '/pages/index1/test1/testlists/phq-9/phq-9',
+    })
+  },
+  scl_90() {
+    wx.navigateTo({
+      url: '/pages/index1/test1/testlists/Scl-90/Scl-90',
+    })
+  },
   getYuyueData(e) {
     const that = this
     const on = e.currentTarget.dataset.index
@@ -91,53 +102,34 @@ Page({
       that.setData({
         online: true
       })
-      that.setData({
-        doctor: []
-      })
-      db.collection('scheduling').where({
-        online: true,
-        value: db.command.gt(0)
-      }).get({
-        success: function (res) {
-          for (var i = 0; i < res.data.length; i++) {
-            db.collection('doctors').where({
-              _id: res.data[i].Did
-            }).get({
-              success: function (result) {
-                that.setData({
-                  doctor: that.data.doctor.concat(result.data)
-                })
-              }
-            })
-          }
-        }
-      })
+
+
+      if (app.globalData.isLogin) {
+        wx.navigateTo({
+          url: '/pages/index1/advice/appointment/appointment'
+        })
+      }
+      // 如果没有登录则提醒先登录
+      else {
+        wx.switchTab({
+          url: '/pages/index3/index3',
+        })
+        wx.showToast({
+          title: '请先登录',
+          icon: 'none',
+          duration: 1000
+        })
+      }
     } else {
+      // 线下预约
       that.setData({
         online: false
       })
-      that.setData({
-        doctor: []
+      // 打开链接
+      wx.navigateTo({
+        url: '/pages/index1/advice/outerAppointment/outerAppointment'
       })
-      db.collection('scheduling').where({
-        online: false,
-        value: db.command.gt(0)
-      }).get({
-        success: function (res) {
-          for (var i = 0; i < res.data.length; i++) {
-            db.collection('doctors').where({
-              _id: res.data[i].Did
-            }).get({
-              success: function (result) {
-                that.setData({
-                  doctor: that.data.doctor.concat(result.data)
-                })
-              }
-            })
 
-          }
-        }
-      })
     }
   },
   onLoad: function (options) {

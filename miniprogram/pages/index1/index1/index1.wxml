@@ -10,51 +10,24 @@
 </view>
 <!-- 选择渲染 -->
 <view wx:if="{{select}}">
-  <view class="bottom">
-    <!-- 左侧菜单 -->
-    <scroll-view scroll-y class="left_menu">
-      <view class="menu_item {{index===currentIndex?'active':''}}" wx:for="{{leftMenuList}}" wx:key="*this" bindtap="switchRightTab" data-index="{{index}}">
-        {{item}}
-      </view>
-    </scroll-view>
-    <!-- 右侧心理测试列表 -->
-    <scroll-view scroll-top="{{scrollTop}}" scroll-y class="right_content" bindscrolltolower="bottomRefresh" lower-threshold="20">
-      <block wx:if="{{rightTestList.length===0}}">
-        <view class="noneAppointment">暂无可用测评</view>
-      </block>
-      <block wx:if="{{!(rightTestList.length===0)}}">
-        <view class="test_item" wx:for="{{rightTestList}}" wx:for-index="index1" wx:for-item="item1" wx:key="id" data-id="{{item1._id}}" bindtap="navToTap">
-          <view class="test_left"></view>
-          <view class="test_right">
-            <view class="test_title">{{item1.name}}</view>
-            <view class="test_des">{{item1.name}}</view>
-          </view>
-        </view>
-      </block>
-      <!-- </navigator> -->
-    </scroll-view>
+  <view class="evaluation_list">
+    <view bindtap="pcl_5" class="evaluation_item">创伤后应激障碍筛查量表PCL-5</view>
+    <view bindtap="phq_9" class="evaluation_item">抑郁症筛查量表PHQ-9</view>
+    <!-- <view bindtap="scl_90" class="evaluation_item">心理障碍症状自评量表SCL-90</view> -->
   </view>
 </view>
 <!-- 心理咨询 -->
 <view wx:else="{{!select}}">
   <!-- 两个预约part -->
   <view class="appointment">
-    <view class="online" style="background: {{online?'#e9dbc6':''}}; border-radius:10rpx">
-      <text bindtap="getYuyueData" data-index="{{true}}">线上预约</text>
+    <view bindtap="getYuyueData" data-index="{{true}}" class="online">
+      <text>线上预约</text>
     </view>
-    <view class="offline" style="background: {{!online?'#e9dbc6':''}}; border-radius:10rpx">
-      <text bindtap="getYuyueData" data-index="{{false}}">线下预约 </text>
-    </view>
-  </view>
-  <view wx:if="{{(doctor.length) > 0}}">
-    <view wx:for="{{doctor}}" wx:for-item="item">
-      <view class="itme_xs">
-        <view class="left_show">{{item.name}}
-          {{item.time.getDate()}}</view>
-      </view>
+    <view bindtap="getYuyueData" data-index="{{false}}" class="offline">
+      <text>线下预约</text>
     </view>
   </view>
-  <view wx:else>
-    <van-empty description="暂无医生预约" />
+  <view>
+    <!-- <web-view></web-view> -->
   </view>
 </view>

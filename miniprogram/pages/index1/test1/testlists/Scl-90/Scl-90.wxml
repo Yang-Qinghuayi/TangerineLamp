@@ -17,14 +17,13 @@
           <view class="radio">
             <radio value="{{(index+1) * 10 + buttonNum.value}}" checked="{{false}}" color="#ff6633"/>
           </view>
-          <view class=radioContent">{{buttonNum.name}}</view>
+          <!-- <view class=radioContent">{{buttonNum.name}}</view> -->
         </label>
       </radio-group>
     </view>
     <button class="submit" bindtap="toSubmit" wx:if="{{isShowSubmit}}">提 交</button>
   </scroll-view>
 </block>
-<!--查看结果-->
 <block wx:if="{{isShowResult}}">
   <view class="top">总得分：<text class="big {{totalColor}}">{{totalScores}} </text><text class="tips"> (分值越大症状越严重)</text></view>
   <view>部分得分：</view>

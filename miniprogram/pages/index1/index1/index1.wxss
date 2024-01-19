@@ -127,7 +127,9 @@
   background-color: #fff;
 }
 
+/* 哥们写的 */
 .appointment {
+  margin-top: 30vh;
   margin-left: 90rpx;
   margin-right: 90rpx;
   background-color: #eeeeee;
@@ -150,4 +152,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.evaluation_list {
+  margin-top:18vh;
+  margin-left: 90rpx;
+  margin-right: 90rpx;
+  background-color: #eeeeee;
+  border-radius: 10rpx;
+  display: flex;
+  /* height: 7vh; */
+  flex-direction: column;
+  font-weight: bold;
+  color: #ff9933;
+}
+
+.evaluation_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 9vh;
+  /* border-bottom: 1px solid #d5d5d5; */
 }
