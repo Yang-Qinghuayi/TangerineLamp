@@ -85,19 +85,12 @@ Page({
 
 
   getYuyueData(e) {
-
-
     const that = this
-
     const on = e.currentTarget.dataset.index
-
     if (on) {
-
       that.setData({
         online: true
       })
-      console.log(that.online)
-
       that.setData({
         doctor: []
       })
@@ -106,33 +99,23 @@ Page({
         value: db.command.gt(0)
       }).get({
         success: function (res) {
-
           for (var i = 0; i < res.data.length; i++) {
             db.collection('doctors').where({
               _id: res.data[i].Did
             }).get({
               success: function (result) {
-
                 that.setData({
                   doctor: that.data.doctor.concat(result.data)
                 })
               }
             })
-
           }
-
-          console.log(res.data)
-          console.log("doctor: " + that.doctor.length)
         }
       })
-
-
     } else {
       that.setData({
         online: false
       })
-      console.log(that.online)
-
       that.setData({
         doctor: []
       })
@@ -141,15 +124,11 @@ Page({
         value: db.command.gt(0)
       }).get({
         success: function (res) {
-
-
-
           for (var i = 0; i < res.data.length; i++) {
             db.collection('doctors').where({
               _id: res.data[i].Did
             }).get({
               success: function (result) {
-
                 that.setData({
                   doctor: that.data.doctor.concat(result.data)
                 })
@@ -157,30 +136,16 @@ Page({
             })
 
           }
-
-          console.log(res.data)
-          console.log("doctor: " + that.doctor.length)
         }
       })
-
-
     }
-
-
   },
-
-
-
-  //首次加载页面时，调用onload
   onLoad: function (options) {
     wx.showLoading({
       title: '加载中'
     })
-    // this.getCount();
-    // this.getIndex0();
     this.getListData('specialized')
     wx.hideLoading();
-
   },
 
   //获取最大记录条数
@@ -263,25 +228,6 @@ Page({
     }
   },
 
-  //导航至词条检索
-  bindViewTap1() {
-    // if (app.globalData.isLogin){
-    wx.navigateTo({
-      url: "/pages/index1/words/wordsIndex/wordsIndex"
-    })
-    // }
-    // 如果没有登录则提醒先登录
-    // else {
-    //   wx.switchTab({
-    //     url: '/pages/index3/index3',
-    //   })
-    //   wx.showToast({
-    //     title: '请先登录',
-    //     icon: 'none',
-    //     duration: 1000
-    //   })
-    // }
-  },
   //导航至心理咨询
   bindViewTap2() {
     wx.navigateTo({

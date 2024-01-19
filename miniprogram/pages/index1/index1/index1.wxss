@@ -127,78 +127,27 @@
   background-color: #fff;
 }
 
-.noneAppointment {
-  text-align: center;
-  padding-top: 400rpx;
-  color: #b3b3b3;
-  font-size: 35rpx;
+.appointment {
+  margin-left: 90rpx;
+  margin-right: 90rpx;
+  background-color: #eeeeee;
+  border-radius: 10rpx;
+  display: flex;
+  height: 7vh;
+  font-weight: bold;
+  color: #ff9933;
 }
 
 .online {
-
-  /* text-align: center;
-  margin: 15px; */
-
-  /* margin: 10px 8px auto 1px; */
-  padding: 0.3em;
-  /* width: 65px; */
   flex: 1;
-  min-width: 0;
-  background-color: #1B5385;
-  color: white;
-  font-family: monospace;
-  font-size: 12px;
-
-
-}
-
-.outline {
-  /* text-align: center;
-  margin: 15px; */
-  /* margin: 10px 8px auto 1px; */
-  padding: 0.3em;
-  /* width: 65px; */
-  flex: 1;
-  min-width: 0;
-  background-color: #1B5385;
-  color: white;
-  font-family: monospace;
-  font-size: 12px;
-}
-
-.zixu {
-  /* display: flex;
-  padding: 20rpx;
-  padding-left: 40rpx;
-  padding-right: 40rpx;
-  height: 110rpx;
-  align-items: center;
-  box-sizing: border-box;
-  width: 100%;
-  border-bottom:1px #d5d5d5 solid; */
-
-
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  resize: horizontal;
-  overflow: hidden;
-  max-width: max-content;
-  box-sizing: border-box;
-
+  align-items: center;
 }
 
-.itme_xs {
-  display: flex;
-}
-
-.left_show {
+.offline {
   flex: 1;
-}
-
-.right_show {
-  margin-left: 10px;
-  height: 40px;
-  width: 40px;
-  font-size: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

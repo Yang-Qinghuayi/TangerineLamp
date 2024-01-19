@@ -19,25 +19,12 @@
     </scroll-view>
     <!-- 右侧心理测试列表 -->
     <scroll-view scroll-top="{{scrollTop}}" scroll-y class="right_content" bindscrolltolower="bottomRefresh" lower-threshold="20">
-      <!-- 右侧渲染循环 -->
-      <!-- <navigator
-      class="test_item"
-      wx:for="{{rightTestList}}"
-      wx:for-index="index1"
-      wx:for-item="item1"
-      wx:key="id"
-      url="{{currentIndex===0?('/pages/index1/test1/paidTestDetail/paidTestDetail?_id='+item1._id):'/pages/index1/test1/freeTestDetail/freeTestDetail?_id='+item1._id}}"> -->
       <block wx:if="{{rightTestList.length===0}}">
         <view class="noneAppointment">暂无可用测评</view>
       </block>
       <block wx:if="{{!(rightTestList.length===0)}}">
         <view class="test_item" wx:for="{{rightTestList}}" wx:for-index="index1" wx:for-item="item1" wx:key="id" data-id="{{item1._id}}" bindtap="navToTap">
-          <view class="test_left">
-            <!-- <image src="{{item1.img}}" alt="/icons/none_img.png" mode="aspectFill"></image> -->
-            <!-- <view class="test_type">
-            {{item1.name}}
-          </view> -->
-          </view>
+          <view class="test_left"></view>
           <view class="test_right">
             <view class="test_title">{{item1.name}}</view>
             <view class="test_des">{{item1.name}}</view>
@@ -48,17 +35,15 @@
     </scroll-view>
   </view>
 </view>
+<!-- 心理咨询 -->
 <view wx:else="{{!select}}">
-  <view class="zixu">
-    <view class="online">
-      <button style="background: {{online?'#b7ba6b':''}};" bindtap="getYuyueData" data-index="{{true}}">
-        线上预约
-      </button>
+  <!-- 两个预约part -->
+  <view class="appointment">
+    <view class="online" style="background: {{online?'#e9dbc6':''}}; border-radius:10rpx">
+      <text bindtap="getYuyueData" data-index="{{true}}">线上预约</text>
     </view>
-    <view class="outline">
-      <button style="background: {{!online?'#b7ba6b':''}};" bindtap="getYuyueData" data-index="{{false}}">
-        线下预约
-      </button>
+    <view class="offline" style="background: {{!online?'#e9dbc6':''}}; border-radius:10rpx">
+      <text bindtap="getYuyueData" data-index="{{false}}">线下预约 </text>
     </view>
   </view>
   <view wx:if="{{(doctor.length) > 0}}">
