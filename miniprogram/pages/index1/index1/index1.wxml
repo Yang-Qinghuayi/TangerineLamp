@@ -1,44 +1,24 @@
 <view class="topcontainer">
-
-    <view class="topcenter" style="background: {{select?'#DCDCDC':'#FFFAFA'}};">
-    <view>
-      <image src="/icons/assessment.png" class="topimg" bindtap="changeStatue1"></image>
-    </view>
-    <text style="color:#ff9933;font-size:30rpx" bindtap="changeStatue1">心理测评</text>
+  <view class="evaluation" style="background-color:{{select ? '#e9dbc5': '#eeeeee'}} ; border-radius:10rpx" bindtap="changeStatue1">
+    <image src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZjk5MzMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zY3JvbGwtdGV4dCI+PHBhdGggZD0iTTggMjFoMTJhMiAyIDAgMCAwIDItMnYtMkgxMHYyYTIgMiAwIDEgMS00IDBWNWEyIDIgMCAxIDAtNCAwdjNoNCIvPjxwYXRoIGQ9Ik0xOSAxN1Y1YTIgMiAwIDAgMC0yLTJINCIvPjxwYXRoIGQ9Ik0xNSA4aC01Ii8+PHBhdGggZD0iTTE1IDEyaC01Ii8+PC9zdmc+" class="topimg"></image>
+    <text class="text">心理测评</text>
   </view>
-  <view class="topleft" style="background: {{!select?'#DCDCDC':'#FFFAFA'}};">
-    <view>
-      <image src="/icons/consultation.png" class="topimg" bindtap="changeStatue2"></image>
-    </view>
-    <text style="color:#ff9933;font-size:30rpx" bindtap="changeStatue2">心理咨询</text>
+  <view class="consultation" style="background-color:{{!select ? '#e9dbc5': '#eeeeee'}} ; border-radius:10rpx" bindtap="changeStatue2">
+    <image src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZjk5MzMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jYWxlbmRhci1jaGVjayI+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiB4PSIzIiB5PSI0IiByeD0iMiIgcnk9IjIiLz48bGluZSB4MT0iMTYiIHgyPSIxNiIgeTE9IjIiIHkyPSI2Ii8+PGxpbmUgeDE9IjgiIHgyPSI4IiB5MT0iMiIgeTI9IjYiLz48bGluZSB4MT0iMyIgeDI9IjIxIiB5MT0iMTAiIHkyPSIxMCIvPjxwYXRoIGQ9Im05IDE2IDIgMiA0LTQiLz48L3N2Zz4=" class="topimg"></image>
+    <text class="text">心理咨询</text>
   </view>
-
-  <!-- <view class="topright">
-    <view>
-      <image src="/icons/lesson.png" class="topimg" bindtap="bindViewTap3"></image>
-    </view>
-    <text style="color:#ff9933;font-size:30rpx" bindtap="bindViewTap3">心理课程</text>
-  </view> -->
 </view>
-
-
 <!-- 选择渲染 -->
-<view  wx:if="{{select}}">
+<view wx:if="{{select}}">
   <view class="bottom">
     <!-- 左侧菜单 -->
     <scroll-view scroll-y class="left_menu">
-      <view
-      class="menu_item {{index===currentIndex?'active':''}}"
-      wx:for="{{leftMenuList}}"
-      wx:key="*this"
-      bindtap="switchRightTab"
-      data-index="{{index}}">
+      <view class="menu_item {{index===currentIndex?'active':''}}" wx:for="{{leftMenuList}}" wx:key="*this" bindtap="switchRightTab" data-index="{{index}}">
         {{item}}
       </view>
     </scroll-view>
     <!-- 右侧心理测试列表 -->
-    <scroll-view scroll-top="{{scrollTop}}" scroll-y class="right_content"
-    bindscrolltolower="bottomRefresh" lower-threshold="20">
+    <scroll-view scroll-top="{{scrollTop}}" scroll-y class="right_content" bindscrolltolower="bottomRefresh" lower-threshold="20">
       <!-- 右侧渲染循环 -->
       <!-- <navigator
       class="test_item"
@@ -47,76 +27,49 @@
       wx:for-item="item1"
       wx:key="id"
       url="{{currentIndex===0?('/pages/index1/test1/paidTestDetail/paidTestDetail?_id='+item1._id):'/pages/index1/test1/freeTestDetail/freeTestDetail?_id='+item1._id}}"> -->
-    <block wx:if="{{rightTestList.length===0}}">
-      <view class="noneAppointment">
-        暂无可用测评
-      </view>
-    </block>
-    <block wx:if="{{!(rightTestList.length===0)}}">
-      <view
-      class="test_item"
-      wx:for="{{rightTestList}}"
-      wx:for-index="index1"
-      wx:for-item="item1"
-      wx:key="id"
-      data-id="{{item1._id}}"
-      bindtap="navToTap">
-        <view class="test_left">
-          <!-- <image src="{{item1.img}}" alt="/icons/none_img.png" mode="aspectFill"></image> -->
-          <!-- <view class="test_type">
+      <block wx:if="{{rightTestList.length===0}}">
+        <view class="noneAppointment">暂无可用测评</view>
+      </block>
+      <block wx:if="{{!(rightTestList.length===0)}}">
+        <view class="test_item" wx:for="{{rightTestList}}" wx:for-index="index1" wx:for-item="item1" wx:key="id" data-id="{{item1._id}}" bindtap="navToTap">
+          <view class="test_left">
+            <!-- <image src="{{item1.img}}" alt="/icons/none_img.png" mode="aspectFill"></image> -->
+            <!-- <view class="test_type">
             {{item1.name}}
           </view> -->
-        </view>
-        <view class="test_right">
-          <view class="test_title">
-            {{item1.name}}
           </view>
-          <view class="test_des">
-            {{item1.name}}
+          <view class="test_right">
+            <view class="test_title">{{item1.name}}</view>
+            <view class="test_des">{{item1.name}}</view>
           </view>
         </view>
-      </view>
-    </block>
+      </block>
       <!-- </navigator> -->
     </scroll-view>
+  </view>
 </view>
-
-</view>
-
 <view wx:else="{{!select}}">
-
   <view class="zixu">
     <view class="online">
-      <button style="background: {{online?'#b7ba6b':''}};" bindtap="getYuyueData" data-index="{{true}}">线上预约</button>
-
+      <button style="background: {{online?'#b7ba6b':''}};" bindtap="getYuyueData" data-index="{{true}}">
+        线上预约
+      </button>
     </view>
     <view class="outline">
-      <button style="background: {{!online?'#b7ba6b':''}};" bindtap="getYuyueData" data-index="{{false}}">线下预约</button>
+      <button style="background: {{!online?'#b7ba6b':''}};" bindtap="getYuyueData" data-index="{{false}}">
+        线下预约
+      </button>
     </view>
-    
   </view>
-
   <view wx:if="{{(doctor.length) > 0}}">
     <view wx:for="{{doctor}}" wx:for-item="item">
       <view class="itme_xs">
-
-        <view class="left_show">
-          {{item.name}}
-
-          {{item.time.getDate()}}
-        </view>
-
+        <view class="left_show">{{item.name}}
+          {{item.time.getDate()}}</view>
       </view>
-
     </view>
-  
   </view>
-
   <view wx:else>
     <van-empty description="暂无医生预约" />
   </view>
-
-
-
 </view>
-

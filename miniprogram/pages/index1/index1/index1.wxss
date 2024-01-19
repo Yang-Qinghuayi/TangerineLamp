@@ -1,124 +1,140 @@
-.topcontainer{
+.topcontainer {
+  margin: 28rpx;
+  background-color: #eeeeee;
+  border-radius: 20rpx;
   display: flex;
-  padding: 20rpx;
-  padding-left: 40rpx;
-  padding-right: 40rpx;
-  height: 135rpx;
-  align-items: center;
-  border-bottom:1px #d5d5d5 solid;
-}
-.topleft{
-  flex:1;
-  text-align: center;
+  height: 9vh;
+  font-weight: bold;
+  color: #ff9933;
 }
 
-.topcenter{
-  flex:1;
-  text-align: center;
-}
-.topright{
-  flex:1;
-  text-align: center;
-}
-.icon{
-  border-radius: 50%;
-}
-.topimg{
-  width: 80rpx;
-  height: 80rpx;
-}
-
-.bottom{
-  height: calc( 100vh - 176rpx );
-  display: flex;
-}
-.bottom .left_menu{
-  flex:1.2;
-  border-right:1px #d5d5d5 solid;
-  background-color: #f7f7f7;
-}
-.bottom .left_menu .menu_item{
-  height:100rpx;
+.evaluation {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size:30rpx;
 }
 
-.bottom .right_content{
-  flex:4
+.evaluation .text {
+  margin-left: 10rpx;
 }
-.test_item{
+
+.consultation {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.consultation .text {
+  margin-left: 10rpx;
+}
+
+.topimg {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.bottom {
+  height: calc(100vh - 176rpx);
+  display: flex;
+}
+
+.bottom .left_menu {
+  flex: 1.2;
+  border-right: 1px #d5d5d5 solid;
+  background-color: #f7f7f7;
+}
+
+.bottom .left_menu .menu_item {
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.bottom .right_content {
+  flex: 4
+}
+
+.test_item {
   display: flex;
   height: 222rpx;
   border-bottom: 3rpx solid #ff9933;
   align-items: center;
 }
-.test_left{
+
+.test_left {
   position: relative;
-  flex:1.2;
+  flex: 1.2;
   height: 75%;
-  margin-left:25rpx;
+  margin-left: 25rpx;
 }
-.test_left image{
+
+.test_left image {
   width: 100%;
   height: 100%;
   border-radius: 10rpx;
 }
-.test_right{
-  flex:2;
+
+.test_right {
+  flex: 2;
   height: 90%;
   /* background-color: #000; */
-  margin:10rpx;
+  margin: 10rpx;
   margin-left: 30rpx;
 }
-.test_title{
+
+.test_title {
   margin: 15rpx 0rpx 0rpx 0rpx;
-  font-family: 'Microsoft YaHei','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Microsoft YaHei', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bold;
   font-size: 32rpx;
   overflow: hidden;
 }
-.test_type{
+
+.test_type {
   text-align: center;
   justify-items: center;
   position: absolute;
   color: #ff9933;
   background-color: #fff;
   border-radius: 5rpx;
-  border:1rpx solid #ff9933;
+  border: 1rpx solid #ff9933;
   width: 60rpx;
   font-size: 28rpx;
   bottom: -15rpx;
-  right:-25rpx;
+  right: -25rpx;
 }
-.test_des{
-  margin:18rpx 15rpx 0rpx 0rpx;
+
+.test_des {
+  margin: 18rpx 15rpx 0rpx 0rpx;
   display: -webkit-box;
-  color:#666666;
-  font-size:25rpx;
+  color: #666666;
+  font-size: 25rpx;
   overflow: hidden;
-  white-space:normal;
+  white-space: normal;
   text-overflow: ellipsis;
   word-wrap: break-word;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
-.bottom .left_menu .active{
-  color:#ff6633;
-  border-left:8rpx solid #ff6633;
+.bottom .left_menu .active {
+  color: #ff6633;
+  border-left: 8rpx solid #ff6633;
   background-color: #fff;
 }
 
 .noneAppointment {
   text-align: center;
   padding-top: 400rpx;
-  color:#b3b3b3;
+  color: #b3b3b3;
   font-size: 35rpx;
 }
 
-.online{
+.online {
 
   /* text-align: center;
   margin: 15px; */
@@ -126,7 +142,7 @@
   /* margin: 10px 8px auto 1px; */
   padding: 0.3em;
   /* width: 65px; */
-  flex:1; 
+  flex: 1;
   min-width: 0;
   background-color: #1B5385;
   color: white;
@@ -136,13 +152,13 @@
 
 }
 
-.outline{
+.outline {
   /* text-align: center;
   margin: 15px; */
   /* margin: 10px 8px auto 1px; */
   padding: 0.3em;
   /* width: 65px; */
-  flex:1; 
+  flex: 1;
   min-width: 0;
   background-color: #1B5385;
   color: white;
@@ -150,7 +166,7 @@
   font-size: 12px;
 }
 
-.zixu{
+.zixu {
   /* display: flex;
   padding: 20rpx;
   padding-left: 40rpx;
@@ -161,7 +177,7 @@
   width: 100%;
   border-bottom:1px #d5d5d5 solid; */
 
-  
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -172,15 +188,15 @@
 
 }
 
-.itme_xs{
+.itme_xs {
   display: flex;
 }
 
-.left_show{
+.left_show {
   flex: 1;
 }
 
-.right_show{
+.right_show {
   margin-left: 10px;
   height: 40px;
   width: 40px;

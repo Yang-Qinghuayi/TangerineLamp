@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "心理专攻",
+          "pathName": "pages/index1/index1/index1",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "影片详情",
           "pathName": "pages/index0/movie/movieDetail/movieDetail",
           "query": "",

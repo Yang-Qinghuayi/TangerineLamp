@@ -1,2 +1,3 @@
-<!--pages/index3/share/share.wxml-->
-<image src="cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/QRCODE.png" mode="aspectFit"></image>
+<view class="recommend_us">
+    <image src="cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/QRCODE.png" mode="aspectFit"></image>
+</view>
