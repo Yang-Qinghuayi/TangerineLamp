@@ -15,7 +15,7 @@
   background-color: #c4b33f;
 }
 .user_info_part {
-  height: 380rpx;
+  height: 26vh;
   display: flex;
   justify-content: center;
   align-items: center;
