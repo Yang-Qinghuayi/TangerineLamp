@@ -9,8 +9,8 @@
   width: fit-content;
   border-radius: 10rpx;
   padding: 20rpx;
-  padding-left: 8vw ;
-  padding-right: 8vw ;
+  padding-left: 8vw;
+  padding-right: 8vw;
   color: #ffffff;
   background-color: #c4b33f;
 }
@@ -61,8 +61,8 @@
 .user_content {
   position: relative;
   font-weight: bold;
-  color: #604242;
-  font-size: 30rpx;
+  color: #402121;
+  font-size: 26rpx;
 }
 .user_content .user_main {
   display: flex;
@@ -130,12 +130,21 @@
 }
 .user_content .user_main .recommend_wrap {
   margin-top: 30rpx;
-  margin-bottom: 40rpx;
   background-color: #eeeeee;
   margin-left: 10rpx;
   margin-right: 10rpx;
   border-radius: 10rpx;
   color: #c4b33f;
+  font-weight: bold;
+  padding: 40rpx;
+}
+.user_content .user_main .setting {
+  margin-top: 30rpx;
+  margin-bottom: 40rpx;
+  background-color: #eeeeee;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  border-radius: 10rpx;
   font-weight: bold;
   padding: 40rpx;
 }
