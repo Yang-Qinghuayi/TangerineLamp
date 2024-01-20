@@ -48,7 +48,7 @@
     "pages/index0/music/developMusic/developMusic",
     "pages/index0/comic/developComic/developComic",
     "pages/index1/test1/testlists/pcl-5/pcl-5",
-    "pages/index1/test1/testlists/Scl-90/Scl-90",
+    "pages/index1/test1/testlists/scl-90/scl-90",
     "pages/index1/test1/testlists/phq-9/phq-9",
     "pages/index1/test1/testlists/sds/sds",
     "pages/index1/test1/testlists/sas/sas",
@@ -100,8 +100,8 @@
         "selectedIconPath": "icons/planet_active.png"
       },
       {
-        "pagePath": "pages/index1/test1/testlists/sas/sas",
-        "text": "sas",
+        "pagePath": "pages/index1/test1/testlists/scl-90/scl-90",
+        "text": "scl",
         "iconPath": "icons/comminity.png",
         "selectedIconPath": "icons/comminity_active.png"
       },

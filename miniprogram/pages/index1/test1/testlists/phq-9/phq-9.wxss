@@ -1,47 +1,75 @@
 .bigTitle {
-  margin:20rpx;
-  color :#999999;
-  font-size:35rpx;
+  margin: 20rpx;
+  color: #999999;
+  font-size: 35rpx;
 }
 
 .orange {
-  color:var(--orange0);
+  color: var(--orange0);
 }
 
-.active{
-  background-color:#ffcc33;
-  color:#fff;
+.active {
+  background-color: #eadcc6;
+  color: #fff;
 }
 
 .questionTitle {
-  margin: 0rpx 15rpx 0rpx 15rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40rpx 40rpx 0rpx 40rpx;
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #481c1c;
+  /* margin: 0rpx 15rpx 0rpx 15rpx; */
 }
-
-.question {
-  margin:30rpx;
-  padding:15rpx;
+.chooseBox{
+  background-color: #eeeeee;
   border-radius: 10rpx;
-  border: 1rpx solid var(--orange0);
+  margin: 20rpx 30rpx 0rpx 30rpx;  
+}
+.question {
+  height: 9vh;
+  color: #481c1c;
+  /* background-color: #dedcd8; */
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  /* margin: 25rpx; */
+  /* margin-top: 20rpx; */
+  padding-left: 22rpx;
+  border-radius: 10rpx;
 }
 
 .bottom {
-  margin-top:80rpx;
-  text-align: center;
-  margin-bottom:60rpx;
+  margin: 28rpx;
+  background-color: #eeeeee;
+  border-radius: 10rpx;
+  display: flex;
+  height: 9vh;
+  justify-content: flex-end;
+  /* 居于屏幕底部 */
+  color: #c4b33f;
+  font-weight: bold;
+}
+
+.prequestion {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nextquestion {
-  padding:20rpx;
-  margin-left:80rpx;
-  margin-right:80rpx;
-  border-radius: 10rpx;
-  color:#fff;
-  background-color: #00cc00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
 }
 
 .iteration {
   margin-left: 25rpx;
-  margin-top:20rpx;
+  margin-top: 20rpx;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -55,7 +83,7 @@
 }
 
 .eva_str {
-  margin-top:20rpx;
+  margin-top: 20rpx;
   padding: 10rpx;
 }
 
