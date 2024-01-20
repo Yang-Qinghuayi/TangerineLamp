@@ -37,15 +37,6 @@
     </view>
     <view class="orders_wrap">
       <view class="order_content">
-        <navigator class="redPointContainer2" url="/pages/index1/advice/adviceList/adviceList">
-          <view class="redPoint2" wx:if="{{isBooked}}"></view>
-          <view class="order_icon iconfont icon-yuyue"></view>
-          <view class="order_name">预约</view>
-        </navigator>
-        <navigator url="/pages/index3/list/list">
-          <view class="iconfont icon-fukuan"></view>
-          <view class="order_name">订单</view>
-        </navigator>
         <navigator url="/pages/index3/exam/exam">
           <view class="iconfont icon-xinliceping"></view>
           <view class="order_name">测评</view>

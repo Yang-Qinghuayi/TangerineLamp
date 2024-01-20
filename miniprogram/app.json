@@ -100,12 +100,6 @@
         "selectedIconPath": "icons/planet_active.png"
       },
       {
-        "pagePath": "pages/index1/test1/testlists/scl-90/scl-90",
-        "text": "scl",
-        "iconPath": "icons/comminity.png",
-        "selectedIconPath": "icons/comminity_active.png"
-      },
-      {
         "pagePath": "pages/index2/index2",
         "text": "心灵空间",
         "iconPath": "icons/comminity.png",
