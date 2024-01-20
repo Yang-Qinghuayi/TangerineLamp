@@ -22,11 +22,8 @@
 <view wx:else="{{!select}}">
   <!-- 两个预约part -->
   <view class="appointment">
-    <view bindtap="getYuyueData" data-index="{{true}}" class="online">
-      <text>线上预约</text>
-    </view>
     <view bindtap="getYuyueData" data-index="{{false}}" class="offline">
-      <text>线下预约</text>
+      <text>立即预约</text>
     </view>
   </view>
   <view>
