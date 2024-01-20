@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@vant/weapp": "^1.11.2",
-    "lucide": "^0.312.0"
-  }
-}

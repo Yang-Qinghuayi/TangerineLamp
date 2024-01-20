@@ -18,33 +18,33 @@ Page({
     chosenAnswersLength: 0,  //已回答问题个数
     questions: [
       "",  //仅用来占位，nowIndex从1开始
-      "我感到情绪沮丧，郁闷",
-      "我感到早晨心情最好",
-      "我要哭或想哭",
-      "我夜间睡眠不好",
-      "我吃饭像平常一样多 ",
-      "我的性功能正常",
-      "我感到体重减轻 ",
-      "我为便秘烦恼",
-      "我的心跳比平时快",
-      "我无故感到疲乏",
-      "我的头脑象平常一样清楚",
-      "我做事情象平常一样不感到困难",
-      "我坐卧难安，难以保持平静",
-      "我对未来感到有希望",
-      "我比平时更容易激怒",
-      "我觉得决定什么事很容易",
-      "我感到自己是有用的和不可缺少的人",
-      "我的生活很有意思",
-      "假若我死了，别人会过得更好",
-      "我仍旧喜欢自己平时喜欢的东西"
+      "我感到比往常更加神经过敏和焦虑",
+      "我无缘无故感到担心",
+      "我容易心烦意乱或感到恐慌",
+      "我感到我的身体好像被分成几块，支离破碎",
+      "我感到事事都很顺利，不会有倒霉的事情发生",
+      "我的四肢抖动和震颤",
+      "我因头痛、颈痛、背痛而烦恼",
+      "我感到无力且容易疲劳",
+      "我感到很平静，能安静坐下来",
+      "我感到我的心跳较快",
+      "我因阵阵的眩晕而不舒服",
+      "我有阵阵要昏倒的感觉",
+      "我呼吸时进气和出气都不费力",
+      "我的手指和脚趾感到麻木和刺痛",
+      "我因胃痛和消化不良而苦恼",
+      "我必须时常排尿",
+      "我的手总是很温暖而干燥",
+      "我觉得脸发烧发红",
+      "我容易入睡，晚上休息很好",
+      "我做恶梦"
     ]
 
   },
 
   //选择答案
   chooseAnswer(e) {
-    const revNums = [2, 5, 6, 11, 12, 14, 16, 17, 18, 20];
+    const revNums = [5, 9, 13, 17, 19];
     let currentChosen = e.currentTarget.dataset.index;
 
     let chosenAnswersLength = this.data.chosenAnswersLength;
@@ -88,7 +88,7 @@ Page({
           showCalculation: true
         })
         // ↓ ********* 保存分析结果到数据库 ********* ↓
-        let testName = "抑郁自评量表SDS";
+        let testName = "焦虑自评量表SDS";
         let totalScores = this.data.totalScores;
         let partScores = [];
         let advice = this.data.final_eval_str;
@@ -139,18 +139,20 @@ Page({
     for (var i = 1; i <= 20; i++) {                     //计算各部分得分
       totalScores += this.data.chosenAnswers[i];
     }
-    let totalIndex = totalScores / 80;
-    if (totalIndex < 0.5) {
-      final_eval_str = "恭喜，本次测评未发现抑郁症状！";
+    totalScores *= 1.25;                                //总分乘以1.25
+    // 取整数
+    totalScores = Math.round(totalScores);
+    if (totalScores < 50) {
+      final_eval_str = "恭喜，本次测评未发现焦虑症状！";
       totalColor = "green";
-    } else if (totalIndex >= 0.5 && totalIndex <= 0.59) {
-      final_eval_str = "有极轻微抑郁症状，可自行观察一段时间，或向心理医师寻求建议。";
+    } else if (totalScores >= 50 && totalScores <= 59) {
+      final_eval_str = "有极轻微焦虑症状，可自行观察一段时间，或向心理医师寻求建议。";
       totalColor = "blue";
-    } else if (totalIndex >= 0.6 && totalIndex <= 0.69) {
-      final_eval_str = "有中度抑郁症状，可自行观察一段时间，或向心理医师寻求建议。";
+    } else if (totalScores >= 60 && totalScores <= 69) {
+      final_eval_str = "有中度焦虑症状，可自行观察一段时间，或向心理医师寻求建议。";
       totalColor = "orange";
     } else {
-      final_eval_str = "有较严重抑郁症状，请想办法向心理咨询师寻求帮助！";
+      final_eval_str = "有较严重焦虑症状，请想办法向心理咨询师寻求帮助！";
       totalColor = "red";
     }
 

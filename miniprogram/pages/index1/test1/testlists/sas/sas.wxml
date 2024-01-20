@@ -1,7 +1,7 @@
 <!-- miniprogram/pages/index1/test1/testlists/pcl-5/pcl-5.wxml -->
 <block wx:if="{{!showCalculation}}">
 
-  <view class="bigTitle">请仔细阅读每一条，把意思弄明白。然后根据您最近一周的实际情况选择适当的选项：</view>
+  <view class="bigTitle">下面有20条文字，请仔细阅读每一条,把意思弄明白，然后根据您最一周的实际感觉,在分数栏 1～4 分下选择与你的情况相符的“√”。每道题不要花费太久思考，凭第一印象回答。</view>
   <!-- 注意nowIndex是从1开始的 -->
   <view class="questionTitle">
     <text class="orange">{{nowIndex}}/20</text>
@@ -9,16 +9,16 @@
   </view>
   <view class="chooseBox">
     <view class="question {{1===currentChosen?'active':''}}" bindtap="chooseAnswer" data-index="{{1}}">
-      完全没有
+      没有或很少有
     </view>
     <view class="question {{2===currentChosen?'active':''}}" bindtap="chooseAnswer" data-index="{{2}}">
-      有时
+      有时有
     </view>
     <view class="question {{3===currentChosen?'active':''}}" bindtap="chooseAnswer" data-index="{{3}}">
-      经常
+      经常有
     </view>
     <view class="question {{4===currentChosen?'active':''}}" bindtap="chooseAnswer" data-index="{{4}}">
-      总是如此
+      绝大多数时间有
     </view>
   </view>
   <view class="bottom">

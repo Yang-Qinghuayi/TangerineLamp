@@ -50,6 +50,9 @@
     "pages/index1/test1/testlists/pcl-5/pcl-5",
     "pages/index1/test1/testlists/Scl-90/Scl-90",
     "pages/index1/test1/testlists/phq-9/phq-9",
+    "pages/index1/test1/testlists/sds/sds",
+    "pages/index1/test1/testlists/sas/sas",
+    "pages/index1/test1/testlists/ers/ers",
     "pages/index3/adjustAdviceTime/adjustAdviceTime",
     "pages/index3/adjustAdviceTime/dateChoose/dateChoose",
     "pages/index3/adjustAdviceTime/hoursChoose/hoursChoose",
@@ -95,6 +98,12 @@
         "text": "每日分享",
         "iconPath": "icons/planet.png",
         "selectedIconPath": "icons/planet_active.png"
+      },
+      {
+        "pagePath": "pages/index1/test1/testlists/sas/sas",
+        "text": "sas",
+        "iconPath": "icons/comminity.png",
+        "selectedIconPath": "icons/comminity_active.png"
       },
       {
         "pagePath": "pages/index2/index2",

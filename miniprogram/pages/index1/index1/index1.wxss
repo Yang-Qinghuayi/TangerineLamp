@@ -164,7 +164,7 @@
   /* height: 7vh; */
   flex-direction: column;
   font-weight: bold;
-  color: #ff9933;
+  color: #c4b33f;
 }
 
 .evaluation_item {

@@ -13,7 +13,9 @@
   <view class="evaluation_list">
     <view bindtap="pcl_5" class="evaluation_item">创伤后应激障碍筛查量表PCL-5</view>
     <view bindtap="phq_9" class="evaluation_item">抑郁症筛查量表PHQ-9</view>
-    <!-- <view bindtap="scl_90" class="evaluation_item">心理障碍症状自评量表SCL-90</view> -->
+    <view bindtap="sds" class="evaluation_item">抑郁自评表SDS</view>
+    <view bindtap="sas" class="evaluation_item">焦虑自评表SAS</view>
+    <view bindtap="ers" class="evaluation_item">自我韧性量表ERS</view>
   </view>
 </view>
 <!-- 心理咨询 -->

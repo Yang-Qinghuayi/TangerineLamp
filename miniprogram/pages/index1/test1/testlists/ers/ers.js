@@ -18,44 +18,32 @@ Page({
     chosenAnswersLength: 0,  //已回答问题个数
     questions: [
       "",  //仅用来占位，nowIndex从1开始
-      "我感到情绪沮丧，郁闷",
-      "我感到早晨心情最好",
-      "我要哭或想哭",
-      "我夜间睡眠不好",
-      "我吃饭像平常一样多 ",
-      "我的性功能正常",
-      "我感到体重减轻 ",
-      "我为便秘烦恼",
-      "我的心跳比平时快",
-      "我无故感到疲乏",
-      "我的头脑象平常一样清楚",
-      "我做事情象平常一样不感到困难",
-      "我坐卧难安，难以保持平静",
-      "我对未来感到有希望",
-      "我比平时更容易激怒",
-      "我觉得决定什么事很容易",
-      "我感到自己是有用的和不可缺少的人",
-      "我的生活很有意思",
-      "假若我死了，别人会过得更好",
-      "我仍旧喜欢自己平时喜欢的东西"
+      "我对朋友很慷慨",
+      "我能很快摆脱惊吓，并从中恢复过来",
+      "我乐于应付新的和非同寻常的局面",
+      "我通常能给人们留下很好的印象",
+      "我乐于去品尝没有吃过的食物",
+      "我被认为是一个精力非常充沛的人",
+      "我乐于选择不同的路径到达我熟悉的地方",
+      "比起大多数人我更有好奇心",
+      "我遇到的大多数人都很可爱",
+      "行动之前我总是周密地考虑一些事情",
+      "我喜欢做新奇和不同凡响的事情",
+      "我的日常生活充满了很多让我感兴趣的事情",
+      "我乐于把自己描述为个性很强的人",
+      "我能很快并适时地从对某人的气恼中摆脱出来",
     ]
 
   },
 
   //选择答案
   chooseAnswer(e) {
-    const revNums = [2, 5, 6, 11, 12, 14, 16, 17, 18, 20];
     let currentChosen = e.currentTarget.dataset.index;
-
     let chosenAnswersLength = this.data.chosenAnswersLength;
     let nowIndex = this.data.nowIndex;
     let chosenAnswers = this.data.chosenAnswers;
     // 第几个问题，选择的答案
-    if (revNums.includes(nowIndex)) {
-      chosenAnswers[nowIndex] = 5 - currentChosen;
-    } else
-
-      chosenAnswers[nowIndex] = currentChosen;
+    chosenAnswers[nowIndex] = currentChosen;
     if (nowIndex === chosenAnswersLength + 1) chosenAnswersLength++;
     this.setData({
       currentChosen: currentChosen,
@@ -82,13 +70,14 @@ Page({
         icon: 'none'
       })
     } else {
-      if (this.data.nowIndex === 20) {     //当前index为最后一个题目，准备跳转到结果分析页面
+      if (this.data.nowIndex === 14) {     //当前index为最后一个题目，准备跳转到结果分析页面
+
         this.calculate();
         this.setData({
           showCalculation: true
         })
         // ↓ ********* 保存分析结果到数据库 ********* ↓
-        let testName = "抑郁自评量表SDS";
+        let testName = "自我韧性量表ERS";
         let totalScores = this.data.totalScores;
         let partScores = [];
         let advice = this.data.final_eval_str;
@@ -136,22 +125,24 @@ Page({
     let totalScores = 0;
     let final_eval_str = "";
     let totalColor = "";
-    for (var i = 1; i <= 20; i++) {                     //计算各部分得分
+    for (var i = 1; i <= 14; i++) {                     //计算各部分得分
       totalScores += this.data.chosenAnswers[i];
     }
-    let totalIndex = totalScores / 80;
-    if (totalIndex < 0.5) {
-      final_eval_str = "恭喜，本次测评未发现抑郁症状！";
-      totalColor = "green";
-    } else if (totalIndex >= 0.5 && totalIndex <= 0.59) {
-      final_eval_str = "有极轻微抑郁症状，可自行观察一段时间，或向心理医师寻求建议。";
-      totalColor = "blue";
-    } else if (totalIndex >= 0.6 && totalIndex <= 0.69) {
-      final_eval_str = "有中度抑郁症状，可自行观察一段时间，或向心理医师寻求建议。";
+    if (totalScores <= 10) {
+      final_eval_str = "在本次测评中，您的自我韧性水平非常低，建议您多参加一些锻炼，增强自己的自信心。";
       totalColor = "orange";
+    } else if (totalScores >= 11 && totalScores <= 22) {
+      final_eval_str = "在本次测评中，您表现为低心理弹性特质";
+      totalColor = "orange";
+    } else if (totalScores >= 23 && totalScores <= 34) {
+      final_eval_str = "在本次测评中，您表现为一般心理弹性特质";
+      totalColor = "orange";
+    } else if (totalScores >= 35 && totalScores <= 46) {
+      final_eval_str = "在本次测评中，您表现为高心理弹性特质";
+      totalColor = "green";
     } else {
-      final_eval_str = "有较严重抑郁症状，请想办法向心理咨询师寻求帮助！";
-      totalColor = "red";
+      final_eval_str = "在本次测评中，您表现为非常高心理弹性特质";
+      totalColor = "green";
     }
 
     this.setData({

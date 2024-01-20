@@ -1,24 +1,25 @@
 <!-- miniprogram/pages/index1/test1/testlists/pcl-5/pcl-5.wxml -->
 <block wx:if="{{!showCalculation}}">
-
-  <view class="bigTitle">请仔细阅读每一条，把意思弄明白。然后根据您最近一周的实际情况选择适当的选项：</view>
+  <view class="bigTitle">
+    下面共有14个题目。请根据你的实际情况，从“完全不符合”“有点符合”“基本符合”“完全符合”中选出最贴合自己情况的选项，并计分，分数累加后即为总分
+  </view>
   <!-- 注意nowIndex是从1开始的 -->
   <view class="questionTitle">
-    <text class="orange">{{nowIndex}}/20</text>
+    <text class="orange">{{nowIndex}}/14</text>
     {{"  "+questions[nowIndex]}}
   </view>
   <view class="chooseBox">
     <view class="question {{1===currentChosen?'active':''}}" bindtap="chooseAnswer" data-index="{{1}}">
-      完全没有
+      完全不符合
     </view>
     <view class="question {{2===currentChosen?'active':''}}" bindtap="chooseAnswer" data-index="{{2}}">
-      有时
+      有点符合
     </view>
     <view class="question {{3===currentChosen?'active':''}}" bindtap="chooseAnswer" data-index="{{3}}">
-      经常
+      基本符合
     </view>
     <view class="question {{4===currentChosen?'active':''}}" bindtap="chooseAnswer" data-index="{{4}}">
-      总是如此
+      完全符合
     </view>
   </view>
   <view class="bottom">

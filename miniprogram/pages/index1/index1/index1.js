@@ -85,6 +85,21 @@ Page({
       url: '/pages/index1/test1/testlists/pcl-5/pcl-5',
     })
   },
+  ers() {
+    wx.navigateTo({
+      url: '/pages/index1/test1/testlists/ers/ers',
+    })
+  },
+  sas() {
+    wx.navigateTo({
+      url: '/pages/index1/test1/testlists/sas/sas',
+    })
+  },
+  sds() {
+    wx.navigateTo({
+      url: '/pages/index1/test1/testlists/sds/sds',
+    })
+  },
   phq_9() {
     wx.navigateTo({
       url: '/pages/index1/test1/testlists/phq-9/phq-9',
@@ -92,7 +107,7 @@ Page({
   },
   scl_90() {
     wx.navigateTo({
-      url: '/pages/index1/test1/testlists/Scl-90/Scl-90',
+      url: '/pages/index1/test1/testlists/scl-90/scl-90',
     })
   },
   getYuyueData(e) {
