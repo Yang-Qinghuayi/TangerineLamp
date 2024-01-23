@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // 树洞位置//标记
+    // 树洞位置
     TreeholeAddress: {
       work: "/pages/index2/treeHole/1/work",
       life: "/pages/index2/treeHole/2/life",
