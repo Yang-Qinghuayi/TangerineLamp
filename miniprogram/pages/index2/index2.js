@@ -35,7 +35,7 @@ Page({
       "cloud://tangerine-cloud-9grdz5e80159e7b3.7461-tangerine-cloud-9grdz5e80159e7b3-1304921980/index2/slides/slide3.jpg",
     ],
     tempTreeholeName: null, // 临时存放树洞名称的地方
-    cur_question:"eeeeeeee",
+    cur_question:"今日问题好好好好好好好好啊好好啊好后今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好",
     cur_date: '',
     cur_year: '',
     value: [9999],

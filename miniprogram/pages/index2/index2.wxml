@@ -81,7 +81,20 @@
     </view>
 
     <view class = "reccontainer2">
-     <view class = "reccontainer3 case_info_question in_mid">{{cur_question}}
+      <view class = "reccontainer4 case_info_question in_mid">{{cur_question}}</view>
+      <view class = "reccontainer5 case_info_content in_mid">
+         <view class = "reccontainer6 in_mid"></view>
+         <view class = "reccontainer6 in_mid"></view>
+         <view class = "reccontainer6 in_mid"></view>
+         <view class = "reccontainer6 in_mid"></view>
+         <view class = "reccontainer6 in_mid"></view>
+         <view class = "reccontainer6 in_mid"></view>
+         <view class = "reccontainer6 in_mid"></view>
+         <view class = "reccontainer6 in_mid"></view>
+         <view class = "reccontainer6 in_mid"></view>
+         <view class = "reccontainer6 in_mid"></view>
+         <view class = "reccontainer6 in_mid"></view>
+         <view class = "reccontainer6 in_mid"></view>
       </view>
     </view>
   </view>
