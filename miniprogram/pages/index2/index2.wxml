@@ -82,20 +82,56 @@
 
     <view class = "reccontainer2">
       <view class = "reccontainer4 case_info_question in_mid">{{cur_question}}</view>
-      <view class = "reccontainer5 case_info_content in_mid">
-         <view class = "reccontainer6 in_mid"></view>
-         <view class = "reccontainer6 in_mid"></view>
-         <view class = "reccontainer6 in_mid"></view>
-         <view class = "reccontainer6 in_mid"></view>
-         <view class = "reccontainer6 in_mid"></view>
-         <view class = "reccontainer6 in_mid"></view>
-         <view class = "reccontainer6 in_mid"></view>
-         <view class = "reccontainer6 in_mid"></view>
-         <view class = "reccontainer6 in_mid"></view>
-         <view class = "reccontainer6 in_mid"></view>
-         <view class = "reccontainer6 in_mid"></view>
-         <view class = "reccontainer6 in_mid"></view>
-      </view>
+      <scroll-view scroll-y="true" class = "reccontainer5 case_info_content in_mid">
+         <view class = "reccontainer6">
+           <view class = "month in_mid">1月</view>
+           <view class = "answer in_mid">{{cur_question}}</view>
+         </view>
+         <view class = "reccontainer6">
+           <view class = "month in_mid">2月</view>
+           <view class = "answer in_mid">{{cur_question}}</view>
+         </view>
+         <view class = "reccontainer6">
+           <view class = "month in_mid">3月</view>
+           <view class = "answer in_mid">{{cur_question}}</view>
+         </view>
+         <view class = "reccontainer6">
+           <view class = "month in_mid">4月</view>
+           <view class = "answer in_mid">{{cur_question}}</view>
+         </view>
+         <view class = "reccontainer6">
+           <view class = "month in_mid">5月</view>
+           <view class = "answer in_mid">{{cur_question}}</view>
+         </view>
+         <view class = "reccontainer6">
+           <view class = "month in_mid">6月</view>
+           <view class = "answer in_mid">{{cur_question}}</view>
+         </view>
+         <view class = "reccontainer6">
+           <view class = "month in_mid">7月</view>
+           <view class = "answer in_mid">{{cur_question}}</view>
+         </view>
+         <view class = "reccontainer6">
+           <view class = "month in_mid">8月</view>
+           <view class = "answer in_mid">{{cur_question}}</view>
+         </view>
+         <view class = "reccontainer6">
+           <view class = "month in_mid">9月</view>
+           <view class = "answer in_mid">{{cur_question}}</view>
+         </view>
+         <view class = "reccontainer6">
+           <view class = "month in_mid">10月</view>
+           <view class = "answer in_mid">{{cur_question}}</view>
+         </view>
+         <view class = "reccontainer6">
+           <view class = "month in_mid">11月</view>
+           <view class = "answer in_mid">{{cur_question}}</view>
+         </view>
+         <view class = "reccontainer6">
+           <view class = "month in_mid">12月</view>
+           <view class = "answer in_mid">{{cur_question}}</view>
+         </view>
+      </scroll-view>
     </view>
   </view>
   <button class="circle in_mid" bindtap="gotoPersonalEditor" style="width:80rpx;height: 80rpx;padding:0;">
