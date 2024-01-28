@@ -89,6 +89,11 @@ Page({
       cur_year: this.data.years[val[0]].toString(),
     })
   },
+  goToheartRec: function(e) {
+    wx.navigateTo({
+      url: "/pages/index2/heartRec/heartRec"
+    })
+  },
 
   onLoad(){
     let date = new Date();

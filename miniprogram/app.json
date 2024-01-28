@@ -79,7 +79,8 @@
     "pages/index4/feedBackList/feedBackList",
     "pages/index4/feedBackDetail/feedBackDetail",
     "pages/index0/movie/movie",
-    "pages/index0/movie/movieDetail/movieDetail"
+    "pages/index0/movie/movieDetail/movieDetail",
+    "pages/index2/heartRec/heartRec"
   ],
   "window": {
     "backgroundTextStyle": "light",

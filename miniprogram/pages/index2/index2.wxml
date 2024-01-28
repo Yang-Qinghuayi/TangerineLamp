@@ -67,10 +67,8 @@
       </view>
     </view>
   </view>
-  <view class='.case_title_2'>
-      心灵日记
-  </view>
-  <view class = "reccontainer">
+  <view class='.case_title_2'>心灵日记</view>
+  <view class = "reccontainer" bindtap = "goToheartRec">
     <view class = "reccontainer1">
       <picker-view class="reccontainer3" value="{{value}}" bindchange="bindChange1">
         <picker-view-column>
@@ -79,7 +77,6 @@
       </picker-view>
       <view class="case_info_date in_mid">{{cur_date}}日</view>
     </view>
-
     <view class = "reccontainer2">
       <view class = "reccontainer4 case_info_question in_mid">{{cur_question}}</view>
       <scroll-view scroll-y="true" class = "reccontainer5 case_info_content in_mid">
