@@ -19,7 +19,8 @@ Page({
       emotion: "/pages/index2/treeHole/3/emotion",
       study: "/pages/index2/treeHole/4/study",
       game: "/pages/index2/treeHole/5/game",
-      exam: "/pages/index2/treeHole/6/exam"},
+      exam: "/pages/index2/treeHole/6/exam"
+    },
     // 各个子树洞的图片
     work: "/pages/index2/logo/work.svg",
     game: "/pages/index2/logo/game.svg",
@@ -49,7 +50,7 @@ Page({
     let temp = e.currentTarget.dataset.treeholename
     console.log("即将前往树洞：",temp, this.data.TreeholeAddress[temp])
     // let tempurl = this.data.TreeholeAddress + "?title=" + temp
-    let tempurl = "/pages/index2/treeHole/treeHole?title=" + temp 
+    let tempurl = "/pages/index2/treeHole/treeHole?title=" + temp
     wx.navigateTo({
       url: tempurl
     })
