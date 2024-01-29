@@ -1,0 +1,21 @@
+<!--pages/index2/heartRecDetail/heartRecDetail.wxml-->
+<view class="page">
+  <view class = "topcontainer">
+    <view class='.case_title1'>
+      取消
+    </view>
+    <view class='.case_title2'>
+      保存
+    </view>
+  </view>
+  <view class = "reccontainer1">
+    <view class = "reccontainer2">
+     <view class = "year in_mid">{{cur_year}}年</view>
+     <view class = "monthDate in_mid">{{cur_month_date}}</view>
+    </view>
+    <view class = "reccontainer3 in_mid">{{cur_question}}</view>
+  </view>
+  <view class = "reccontainer4">
+    <textarea class = "answer" value = "{{cur_answer}}" maxlength = "-1" auto-focus bindinput="bindInput" placeholder="请输入此刻所思所想..." placeholder-style="color: #ff9933; font-weight: bold; font-size: 35rpx"></textarea>
+  </view>
+</view>

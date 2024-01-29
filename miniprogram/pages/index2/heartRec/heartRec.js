@@ -31,7 +31,7 @@ Page({
   gotoHeartrecDetail: function(e) {
     let temp = e.currentTarget.dataset.month
     console.log("即将前往：",temp, this.data.heartRecAddress[temp])
-    let tempurl = "/pages/index2/heartRec/heartRec?month=" + temp
+    let tempurl = "/pages/index2/heartRecDetail/heartRecDetail?date=" + this.data.cur_year+"-"+temp+"月"+this.data.cur_date+"日";
     wx.navigateTo({
       url: tempurl
     })
@@ -41,11 +41,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let date = new Date();
-    console.log(date.getDate())
+    console.log("来了: ",options)
     this.setData({
-      cur_date : date.getDate().toString(),
-      cur_year : date.getFullYear().toString()
+      cur_date : options.date.substring(5).toString(),
+      cur_year : options.date.substring(0,4).toString()
     })
   },
 

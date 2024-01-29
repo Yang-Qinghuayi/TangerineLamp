@@ -38,7 +38,7 @@ Page({
     tempTreeholeName: null, // 临时存放树洞名称的地方
     cur_question:"今日问题好好好好好好好好啊好好啊好后今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好",
     cur_date: '',
-    cur_year: '',
+    cur_year: date.getFullYear().toString(),
     value: [9999],
     years
   },
@@ -91,6 +91,10 @@ Page({
     })
   },
   goToheartRec: function(e) {
+    let tempurl = "/pages/index2/heartRec/heartRec?date=" + this.data.cur_year+"-"+this.data.cur_date;
+    wx.navigateTo({
+      url: tempurl
+    })
     wx.navigateTo({
       url: "/pages/index2/heartRec/heartRec"
     })
