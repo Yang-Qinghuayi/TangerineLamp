@@ -33,8 +33,7 @@ Page({
     //上传图片
     this.uploadImages()
     //保存文本
-    //
-
+    //先别急...
   },
   // 更新 textarea 的值
   bindInput: function(e) {
@@ -68,17 +67,32 @@ Page({
   // 上传图片
   uploadImages: function() {
     this.data.imageList.forEach((imgPath) => {
-      wx.uploadFile({
-        url: '上传图片的服务器地址',
-        filePath: imgPath,
-        name: 'file',  // 服务器端接收文件的字段名
+      wx.compressImage({
+        src: imgPath, // 图片路径
+        quality: 75, // 压缩质量
         success(res) {
-          // 处理上传成功
-        },
-        fail(err) {
-          // 处理上传失败
+          // 读取图片文件为二进制数据
+          wx.getFileSystemManager().readFile({
+            filePath: res.tempFilePath,
+            success: buffer => {
+          // 调用云函数
+            wx.cloud.callFunction({
+              name: 'picSave', // 云函数名称
+              data: {
+               fileContent: buffer.data
+              },
+            success: res => {
+              console.log('上传成功', res.result);
+            },
+            fail: err => {
+              console.error('上传失败', err);
+            }
+          });
+         },
+            fail: console.error
+         });
         }
-      });
+      })
     });
   },
 
