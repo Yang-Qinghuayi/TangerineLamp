@@ -101,3 +101,43 @@
   font-size: 40rpx;
   font-weight: bold;
 }
+.upLoad{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+}
+.upLoadButton{
+  width: 25%;
+  height: 100%;
+  background-color: #ffffff;
+}
+.imageButton{
+  width: 70%;
+  height: 70%;
+}
+.imageList{
+  width: 75%;
+  height: 100%;
+  background-color: #ffffff;
+}
+.image-container {
+  position: relative;
+  display: inline-block;
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 10rpx;
+}
+.delete-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30rpx;
+  height: 30rpx;
+  background-color: red; /* 也可以考虑用一个删除图标 */
+  color: white;
+  text-align: center;
+  line-height: 26rpx;
+  border-radius: 50%;
+  cursor: pointer;
+}
