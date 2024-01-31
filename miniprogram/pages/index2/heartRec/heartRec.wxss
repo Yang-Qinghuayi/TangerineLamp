@@ -96,7 +96,7 @@
   font-weight: bold;
 }
 .answer{
-  width: 70%;
+  width: 45%;
   height: 100%;
   background-color:#ffffff;
   overflow-y: auto;
@@ -104,4 +104,14 @@
   font-size: 30rpx;
   box-sizing: border-box;/* 这将不会增加额外的高度 */
   padding-top: 25px;
+}
+.picture{
+  width: 25%;
+  height: 100%;
+  background-color: #ffffff;
+}
+.singlepicture{
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 10rpx;
 }

@@ -1,5 +1,6 @@
 const app = getApp()
 const db = wx.cloud.database();
+const defaultImg = "cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/heartRecPic/logo.png"
 // pages/index2/heartRecDetail/heartRecDetail.js
 Page({
 
@@ -172,7 +173,13 @@ Page({
       success: function(res) {
         console.log('成功删除记录数', res.stats.removed);
         // 将上传操作封装在 Promise 中
-      const uploadPromises = that.data.imageList.map(imgPath => {
+        if(that.data.imageList.length==0) {
+          console.log("空的")
+          that.setData({
+            imageList:[defaultImg]
+          })
+        }
+        const uploadPromises = that.data.imageList.map(imgPath => {
         return new Promise((resolve, reject) => {
         const fileName = `heartRecPic/${that.generateUUID()}.png`; // 生成文件名
         wx.cloud.uploadFile({

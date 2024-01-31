@@ -1,3 +1,7 @@
+const app = getApp()
+const db = wx.cloud.database()
+const monthList = ["1","2","3","4","5","6","7","8","9","10","11","12"]
+const defaultImg = "cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/heartRecPic/logo.png"
 // pages/index2/heartRec.js
 const date = new Date()
 Page({
@@ -23,7 +27,35 @@ Page({
     },
     cur_date: '',
     cur_year: '',
-    cur_question:"今日问题好好好好好好好好啊好好啊好后今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好"
+    cur_question:"",
+    commentList:{//每个月的评论
+      "1":"",
+      "2":"",
+      "3":"",
+      "4":"",
+      "5":"",
+      "6":"",
+      "7":"",
+      "8":"",
+      "9":"",
+      "10":"",
+      "11":"",
+      "12":""
+    },
+    imageList:{//每个月的图片
+      "1":[],
+      "2":[],
+      "3":[],
+      "4":[],
+      "5":[],
+      "6":[],
+      "7":[],
+      "8":[],
+      "9":[],
+      "10":[],
+      "11":[],
+      "12":[]
+    }
   },
   /**
    * 跳转到对应月份的心灵日记详情查看页面
@@ -46,6 +78,61 @@ Page({
       cur_date : options.date.substring(5).toString(),
       cur_year : options.date.substring(0,4).toString()
     })
+    this.getQuestion()
+  },
+   // 获取当日问题
+  getQuestion:function(){
+    const that = this
+    db.collection('index2HeartRec_question').where({
+      day: that.data.cur_date
+    }).field({
+      question: true
+    }).limit(100) // 限制返回结果数量
+    .get({
+      success: function(res){
+        console.log("问题查询成功", res)
+        that.setData({
+          cur_question: res.data[0].question
+        })
+      },
+      fail: function(err) {
+        console.log('查询失败', err);
+      }
+    });
+  },
+  // 获取评论与图片
+  getCommentPic:function(month){
+    const that = this
+    let openid = app.globalData.openid
+    db.collection('index2HeartRec_commentAndpicture').where({
+      _openid: openid,
+      year: this.data.cur_year,
+      month: month,
+      day: this.data.cur_date
+    }).field({
+      picID: true,
+      comment: true
+    }).limit(100) // 限制返回结果数量
+    .get({
+      success: function(res) {
+        console.log('查询成功', month,res.data.length);
+       // 获取评论
+       let monthKey = "commentList[" + month + "]"
+       that.setData({
+         [monthKey]: res.data[0].comment
+       })
+       // 获取图片
+       let fileIDs = res.data.map(item => item.picID); // 将 fileID 提取出来
+       console.log('fileIDs', fileIDs); // 打印包含所有 picID 的数组
+       let imageKey = "imageList[" + month + "]"
+       that.setData({
+         [imageKey]: fileIDs
+       })
+      },
+      fail: function(err) {
+        console.error('查询失败', err);
+      }
+    });
   },
 
   /**
@@ -59,7 +146,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    console.log("这里看看")
+    monthList.forEach((month)=>
+     this.getCommentPic(month)
+    );
   },
 
   /**
