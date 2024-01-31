@@ -7,11 +7,24 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showCustomToast: false,
     cur_year:'',
     cur_month_date:'',
-    cur_question:"今日问题好好好好好好好好啊好好啊好后今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好",
-    cur_answer:"别急,啊...我先来说两句,呐...先说哪两句呢?嗯...这次就先说这两句今日问题好好好好好好好好啊好好啊好后今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好后今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好后今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好后今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好后今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好后今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好后今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好后今日问题好好好好好好好好啊好好啊好今日问题好好好好好好好好啊好好啊好",
+    cur_question:"",
+    cur_answer:"",
     imageList: []  // 存储图片的临时路径
+  },
+  // 显示自定义弹窗
+  showCustomToast:function() {
+    const that = this
+    that.setData({ showCustomToast: true });
+    setTimeout(() => {
+      that.setData({ showCustomToast: false });
+      // 弹窗结束后的页面跳转
+      wx.navigateBack({
+        delta: 1 // 返回的页面数，如果 delta 大于现有页面数，则返回到首页
+      });
+    }, 2000); // 2秒后隐藏
   },
 
   /**
@@ -24,6 +37,7 @@ Page({
       cur_year : options.date.substring(0,4).toString(),
       cur_month_date: options.date.substring(5).toString()
     })
+    this.getQuestion()
     let openid = app.globalData.openid
     // 使用正则表达式匹配月份和日期
     let dateStr = this.data.cur_month_date;
@@ -34,27 +48,65 @@ Page({
       month: matches[1],
       day: matches[2]
     }).field({
-      picID: true
+      picID: true,
+      comment: true
     }).limit(100) // 限制返回结果数量
     .get({
       success: function(res) {
         console.log('查询结果', res.data);
-        // 遍历查询结果，提取 picID 并添加到 imageList 数组中
-        let tempImglist = [];
-        res.data.forEach((record) => {
-         console.log("进来：",record.picID)
-         tempImglist.push(record.picID);
-        });
-        console.log('imageList', tempImglist); // 打印包含所有 picID 的数组
+       // 获取评论
+       that.setData({
+         cur_answer: res.data[0].comment
+       }) 
+       // 获取图片
+       let fileIDs = res.data.map(item => item.picID); // 将 fileID 提取出来
+       console.log('fileIDs', fileIDs); // 打印包含所有 picID 的数组
+       // 将每个 fileID 转换为临时路径
+       let promises = fileIDs.map(fileID => {
+         return wx.cloud.downloadFile({
+          fileID: fileID
+         })
+       });
+       // 等待所有的转换完成
+       Promise.all(promises).then(results => {
+        // results 是一个包含临时文件路径的数组
+        let tempFilePaths = results.map(result => result.tempFilePath);
+        console.log(tempFilePaths); // 这里是所有图片的临时路径
         that.setData({
-          imageList: tempImglist
+          imageList: tempFilePaths
         })
+       }).catch(error => {
+        console.error("转换出错", error);
+       });
       },
       fail: function(err) {
         console.error('查询失败', err);
       }
     });
-    
+  },
+  // 获取当日问题
+  getQuestion:function(){
+    const that = this
+    // 使用正则表达式匹配月份和日期
+    let dateStr = this.data.cur_month_date;
+    let matches = dateStr.match(/(\d+)月(\d+)日/);
+    console.log("日期：",matches[2])
+    db.collection('index2HeartRec_question').where({
+      day: matches[2]
+    }).field({
+      question: true
+    }).limit(100) // 限制返回结果数量
+    .get({
+      success: function(res){
+        console.log("问题查询成功", res)
+        that.setData({
+          cur_question: res.data[0].question
+        })
+      },
+      fail: function(err) {
+        console.log('查询失败', err);
+      }
+    });
   },
   //取消编辑
   cancel:function(){
@@ -86,6 +138,7 @@ Page({
         that.setData({
           imageList: that.data.imageList.concat(tempFilePaths)
         });
+        console.log("选择图片后的路径：",that.data.imageList)
       }
     });
   },
@@ -118,60 +171,120 @@ Page({
     }).remove({
       success: function(res) {
         console.log('成功删除记录数', res.stats.removed);
-        that.data.imageList.forEach((imgPath) => {
-          const fileName = `heartRecPic/${that.generateUUID()}.png`;// 生成文件名
-          wx.cloud.uploadFile({
-            cloudPath: fileName,
-            filePath: imgPath,
-            success: res => {
-              console.log("上传成功: ",res)
+        // 将上传操作封装在 Promise 中
+      const uploadPromises = that.data.imageList.map(imgPath => {
+        return new Promise((resolve, reject) => {
+        const fileName = `heartRecPic/${that.generateUUID()}.png`; // 生成文件名
+        wx.cloud.uploadFile({
+           cloudPath: fileName,
+           filePath: imgPath,
+           success: res => {
+              console.log("上传成功: ", res);
               db.collection('index2HeartRec_commentAndpicture').add({
-                data: {
-                  year: that.data.cur_year,
-                  month: matches[1],
-                  day: matches[2],
-                  comment: that.data.cur_answer,
-                  picID: res.fileID
-                },
-                success: function(res) {
-                  console.log("数据库存入成功：",res)
-                },
-                fail: function(err) {
-                  console.log("数据库存入失败：",err)
-                },
+                  data: {
+                      year: that.data.cur_year,
+                      month: matches[1],
+                      day: matches[2],
+                      comment: that.data.cur_answer,
+                      picID: res.fileID
+                  },
+                  success: function(dbRes) {
+                      console.log("数据库存入成功：", dbRes);
+                      resolve(dbRes);
+                  },
+                  fail: function(err) {
+                      console.log("数据库存入失败：", err);
+                      reject(err);
+                  },
               });
-            },
-            fail: err => {
-              console.log("上传失败: ",err)
-            }
-          })
-          // wx.compressImage({
-          //   src: imgPath, // 图片路径
-          //   quality: 75, // 压缩质量
-          //   success(res) {
-          //     // 读取图片文件为二进制数据
-          //     wx.getFileSystemManager().readFile({
-          //       filePath: res.tempFilePath,
-          //       success: buffer => {
-          //     // 调用云函数
-          //       wx.cloud.callFunction({
-          //         name: 'picSave', // 云函数名称
-          //         data: {
-          //          fileContent: buffer.data
-          //         },
-          //       success: res => {
-          //         console.log('上传成功', res.result);
-          //       },
-          //       fail: err => {
-          //         console.error('上传失败', err);
-          //       }
-          //     });
-          //    },
-          //       fail: console.error
-          //    });
-          //   }
-          // })
+          },
+          fail: err => {
+              console.log("上传失败: ", err);
+              reject(err);
+          }
         });
+      });
+    });
+
+    Promise.all(uploadPromises).then((results) => {
+      console.log("所有图片上传和数据库操作已完成");
+      // setTimeout(() => {
+      //   // 弹窗结束后的页面跳转
+      //   wx.navigateBack({
+      //     delta: 1 // 返回的页面数，如果 delta 大于现有页面数，则返回到首页
+      //   })
+      // }, 2000); // 弹窗显示2秒后执行跳转
+      // 操作完成后显示提示框
+      // wx.showToast({
+      //     title: '保存成功',
+      //     icon: 'success',
+      //     duration: 2000 // 提示框显示时长为2000毫秒，即2秒
+      // });
+      that.showCustomToast();
+    }).catch((error) => {
+      console.error("在上传过程中发生错误：", error);
+      // 出错时显示提示框
+      wx.showToast({
+          title: '操作失败',
+          icon: 'none',
+          duration: 2000
+      });
+     });
+
+        // that.data.imageList.forEach((imgPath) => {
+        //   const fileName = `heartRecPic/${that.generateUUID()}.png`;// 生成文件名
+        //   wx.cloud.uploadFile({
+        //     cloudPath: fileName,
+        //     filePath: imgPath,
+        //     success: res => {
+        //       console.log("上传成功: ",res)
+        //       db.collection('index2HeartRec_commentAndpicture').add({
+        //         data: {
+        //           year: that.data.cur_year,
+        //           month: matches[1],
+        //           day: matches[2],
+        //           comment: that.data.cur_answer,
+        //           picID: res.fileID
+        //         },
+        //         success: function(res) {
+        //           console.log("数据库存入成功：",res)
+        //         },
+        //         fail: function(err) {
+        //           console.log("数据库存入失败：",err)
+        //         },
+        //       });
+        //     },
+        //     fail: err => {
+        //       console.log("上传失败: ",err)
+        //     }
+        //   })
+        //   // wx.compressImage({
+        //   //   src: imgPath, // 图片路径
+        //   //   quality: 75, // 压缩质量
+        //   //   success(res) {
+        //   //     // 读取图片文件为二进制数据
+        //   //     wx.getFileSystemManager().readFile({
+        //   //       filePath: res.tempFilePath,
+        //   //       success: buffer => {
+        //   //     // 调用云函数
+        //   //       wx.cloud.callFunction({
+        //   //         name: 'picSave', // 云函数名称
+        //   //         data: {
+        //   //          fileContent: buffer.data
+        //   //         },
+        //   //       success: res => {
+        //   //         console.log('上传成功', res.result);
+        //   //       },
+        //   //       fail: err => {
+        //   //         console.error('上传失败', err);
+        //   //       }
+        //   //     });
+        //   //    },
+        //   //       fail: console.error
+        //   //    });
+        //   //   }
+        //   // })
+        // });
       },
       fail: function(err) {
         console.error('删除失败', err);

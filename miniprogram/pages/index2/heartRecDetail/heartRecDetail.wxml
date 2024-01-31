@@ -32,3 +32,6 @@
     </view>
   </view>
 </view>
+<view class="custom-toast" wx:if="{{showCustomToast}}">
+  <text>操作成功</text>
+</view>

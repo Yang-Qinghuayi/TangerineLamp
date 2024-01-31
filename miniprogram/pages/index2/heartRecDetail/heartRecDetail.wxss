@@ -70,7 +70,8 @@
   box-sizing: border-box;/* 这将不会增加额外的高度 */
   padding-top: 25px;
   color: #ff9933;
-  font-size: 40rpx;
+  font-size: 45rpx;
+  font-weight: bold;
 }
 .reccontainer4{
   width: 100%;
@@ -141,3 +142,17 @@
   border-radius: 50%;
   cursor: pointer;
 }
+/* 自定义弹窗样式 */
+.custom-toast {
+  background-color: green; /* 设置为绿色背景 */
+  color: #ff9933;
+  font-size: 40rpx;
+  font-weight: bold;
+  padding: 10px;
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+}
+
