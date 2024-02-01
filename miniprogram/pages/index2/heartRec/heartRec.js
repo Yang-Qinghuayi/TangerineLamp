@@ -111,21 +111,29 @@ Page({
       day: this.data.cur_date
     }).field({
       picID: true,
-      comment: true
+      comment: true,
+      isNone: true
     }).limit(100) // 限制返回结果数量
     .get({
       success: function(res) {
         console.log('查询成功', month,res.data.length);
        // 获取评论
        let monthKey = "commentList[" + month + "]"
-       that.setData({
-         [monthKey]: res.data[0].comment
+       let imageKey = "imageList[" + month + "]"
+       if(res.data.length==0){//当未查询到数据时，显示默认评论
+        that.setData({
+        [monthKey]:"等待你来探索...",
+        [imageKey]: [defaultImg]
+        })
+       }
+       that.setData({//当未查询到数据时，这段代码不会执行
+         [monthKey]: (res.data[0].comment.length==0) ? "等待你来探索...":res.data[0].comment
        })
        // 获取图片
        let fileIDs = res.data.map(item => item.picID); // 将 fileID 提取出来
        console.log('fileIDs', fileIDs); // 打印包含所有 picID 的数组
-       let imageKey = "imageList[" + month + "]"
-       that.setData({
+      //  let imageKey = "imageList[" + month + "]"
+       that.setData({//当未查询到数据时，这段代码不会执行
          [imageKey]: fileIDs
        })
       },

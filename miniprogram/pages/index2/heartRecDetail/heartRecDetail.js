@@ -1,6 +1,8 @@
 const app = getApp()
 const db = wx.cloud.database();
 const defaultImg = "cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/heartRecPic/logo.png"
+let defaultImagePath = []
+let isNone = "0"
 // pages/index2/heartRecDetail/heartRecDetail.js
 Page({
 
@@ -32,6 +34,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    // 将默认图片的fileID转换为临时路径
+    defaultImagePath = [defaultImg]
+    let promises = defaultImagePath.map(fileID => {
+      return wx.cloud.downloadFile({
+          fileID: fileID
+      })
+    });
+    // 等待转换完成
+    Promise.all(promises).then(results => {
+    // results 是一个包含临时文件路径的数组
+      let tempFilePaths = results.map(result => result.tempFilePath);
+        console.log("转换完成：",tempFilePaths); // 这里是图片的临时路径
+        defaultImagePath = tempFilePaths
+    }).catch(error => {
+        console.error("转换出错", error);
+    });
     const that = this;
     console.log("来了: ",options)
     this.setData({
@@ -50,7 +68,8 @@ Page({
       day: matches[2]
     }).field({
       picID: true,
-      comment: true
+      comment: true,
+      isNone: true
     }).limit(100) // 限制返回结果数量
     .get({
       success: function(res) {
@@ -58,10 +77,14 @@ Page({
        // 获取评论
        that.setData({
          cur_answer: res.data[0].comment
-       }) 
-       // 获取图片
+       })
+       // 获取图片(注意去掉默认图片)
        let fileIDs = res.data.map(item => item.picID); // 将 fileID 提取出来
        console.log('fileIDs', fileIDs); // 打印包含所有 picID 的数组
+       if(res.data[0].isNone == "1"){
+         console.log("没有")
+         fileIDs = []
+       }
        // 将每个 fileID 转换为临时路径
        let promises = fileIDs.map(fileID => {
          return wx.cloud.downloadFile({
@@ -172,16 +195,18 @@ Page({
     }).remove({
       success: function(res) {
         console.log('成功删除记录数', res.stats.removed);
-        // 将上传操作封装在 Promise 中
+        // 单独处理用户不上传图片的情况
+        let tempImageList = that.data.imageList
         if(that.data.imageList.length==0) {
           console.log("空的")
-          that.setData({
-            imageList:[defaultImg]
-          })
+          tempImageList=defaultImagePath
+          isNone = "1"
         }
-        const uploadPromises = that.data.imageList.map(imgPath => {
+        // 将上传操作封装在 Promise 中
+        const uploadPromises = tempImageList.map(imgPath => {
         return new Promise((resolve, reject) => {
         const fileName = `heartRecPic/${that.generateUUID()}.png`; // 生成文件名
+        console.log("即将上传的:",imgPath)
         wx.cloud.uploadFile({
            cloudPath: fileName,
            filePath: imgPath,
@@ -193,7 +218,8 @@ Page({
                       month: matches[1],
                       day: matches[2],
                       comment: that.data.cur_answer,
-                      picID: res.fileID
+                      picID: res.fileID,
+                      isNone: isNone
                   },
                   success: function(dbRes) {
                       console.log("数据库存入成功：", dbRes);
@@ -310,7 +336,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    isNone = "0"
   },
 
   /**
