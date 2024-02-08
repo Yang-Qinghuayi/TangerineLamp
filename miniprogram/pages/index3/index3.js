@@ -155,8 +155,8 @@ Page({
     db.collection("index3_qiandao_daily")
       .where({
         _openid: app.globalData.openid,
-        month: this.data.month,
-        year: this.data.year
+        // month: this.data.month,
+        // year: this.data.year
       })
       .count()
       .then(res => {
