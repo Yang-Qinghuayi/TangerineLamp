@@ -7,19 +7,19 @@
   align-items: center;
 }
 
-.lt-arrow{
+.lt-arrow {
   flex: 0 0 auto;
   padding-left: 165rpx;
   display: flex;
   align-items: center;
 }
-.rt-arrow{
+.rt-arrow {
   flex: 0 0 auto;
   padding-right: 165rpx;
   display: flex;
   align-items: center;
 }
-.year-and-month{
+.year-and-month {
   font-family: PingFang-SC-Regular;
   font-size: 40rpx;
   text-align: center;
@@ -46,13 +46,13 @@
   padding: 0 24rpx;
 }
 
-.header>view {
+.header > view {
   display: inline-block;
   width: 14.285%;
   color: #333;
   font-size: 30rpx;
   text-align: center;
-  border-bottom: 1px solid #D0D0D0;
+  border-bottom: 1px solid #d0d0d0;
   padding: 39rpx 0;
 }
 
@@ -67,7 +67,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  border-bottom: 1px solid #22A7F6;
+  border-bottom: 1px solid #22a7f6;
 }
 
 .date-box {
@@ -75,7 +75,7 @@
   padding: 10rpx 0;
 }
 
-.date-box>view {
+.date-box > view {
   position: relative;
   display: inline-block;
   width: 14.285%;
@@ -140,7 +140,7 @@
   align-content: center;
 }
 
-.nowDayClicked .date-head{
+.nowDayClicked .date-head {
   width: 60rpx;
   border-radius: 50%;
   text-align: center;
@@ -151,7 +151,7 @@
   margin: 0 auto;
 }
 
-.notNowDayClicked .date-head{
+.notNowDayClicked .date-head {
   width: 60rpx;
   border-radius: 50%;
   text-align: center;
@@ -162,8 +162,27 @@
   margin: 0 auto;
 }
 
-.dailysentencebox{
+.dailysentencebox {
   text-align: center;
   font-family: "楷体";
   padding-top: 80rpx;
+}
+
+.content {
+  /* justify-content: center; */
+  margin: 88rpx 14rpx 0 14rpx;
+  background: #e6edfd;
+  padding: 40rpx 20rpx 30rpx 40rpx;
+  /* 字体颜色 */
+  color: #b8974a;
+  /* 字体间距 */
+  letter-spacing: 4rpx;
+  /* 行间距 */
+  line-height: 50rpx;
+  /* 字体大小 */
+  font-size: 38rpx;
+  /* font-weight: 550; */
+  /* 字体 */
+  font-family: "楷体";
+  border-radius: 18rpx;
 }
