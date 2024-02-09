@@ -1,21 +1,21 @@
 /* 最大页面的底色 */
-.page{
+.page {
   width: 100%;
   height: 100%;
   background-color: #ffffff;
 }
 /* 标题 */
-.topcontainer{
-  width:100%;
-  background-color:#ffffff;
+.topcontainer {
+  width: 100%;
+  background-color: #ffffff;
   border-radius: 2%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 7%;
+  margin: 16rpx 0 20rpx 0;
 }
 /*标题1*/
-.case_title{
+.case_title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,94 +23,115 @@
   height: 100%;
   background-color: #fff3eb;
   margin-top: 10rpx;
-  margin-bottom: 10rpx;
-  border-radius: 30rpx;
+  /* margin-bottom: 10rpx; */
+  border-radius: 16rpx;
   color: #ff9933;
   font-size: 60rpx;
   font-weight: bold;
+  padding: 10rpx;
 }
-.reccontainer{
-  width:100%;
-  height:1200rpx;
-  background-color:#fff3eb;
-  border-radius: 2%;
+.reccontainer {
+  width: 100%;
+  height: 1100rpx;
+  background-color: #fff3eb;
+  /* border-radius: 20rpx; */
   display: flex;
   flex-direction: column;
 }
-.reccontainer1{
+.reccontainer1 {
   width: 100%;
   height: 10%;
-  background-color:#ffffff;
+  background-color: #ffffff;
   display: flex;
   flex-direction: row;
 }
-.reccontainer2{
+.reccontainer2 {
   width: 70%;
   height: 100%;
-  background-color:#ffffff;
+  background-color: #ffffff;
   overflow-y: auto;
-  box-sizing: border-box;/* 这将不会增加额外的高度 */
+  box-sizing: border-box; /* 这将不会增加额外的高度 */
   padding-top: 25px;
   color: #ff9933;
   font-size: 30rpx;
 }
-.reccontainer3{
+.reccontainer3 {
   width: 100%;
   height: 90%;
-  background-color:#000000;
+  border-radius: 10rpx;
   display: flex;
   flex-direction: column;
 }
-.reccontainer4{
+.reccontainer4 {
   width: 100%;
   height: 15%;
   background-color: #ffffff;
   display: flex;
   flex-direction: row;
+  /* border-radius: 10rpx; */
 }
-.yearDay{
-  width: 30%;
+.question{
+  margin: 0rpx 14rpx 30rpx 14rpx;
+  background: #e6edfd;
+  padding: 40rpx 20rpx 30rpx 40rpx;
+  /* 字体颜色 */
+  color: #b8974a;
+  /* 字体间距 */
+  letter-spacing: 4rpx;
+  /* 行间距 */
+  line-height: 50rpx;
+  /* 字体大小 */
+  font-size: 38rpx;
+  /* font-weight: 550; */
+  /* 字体 */
+  font-family: "楷体";
+  border-radius: 18rpx;
+}
+.yearDay {
+  margin: 18rpx;
   height: 100%;
   background-color: #ffffff;
   color: #ff9933;
   font-size: 50rpx;
   font-weight: bold;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
-.in_mid{
+.in_mid {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.year{
+.year {
   width: 100%;
   height: 50%;
 }
-.month{
+.month {
   width: 30%;
   height: 100%;
-  background-color: #534265;
+  background-color: #e9dbc5;
   color: #ff9933;
   font-size: 60rpx;
   font-weight: bold;
 }
-.answer{
+.answer {
   width: 45%;
   height: 100%;
-  background-color:#ffffff;
+  background-color: #ffffff;
   overflow-y: auto;
   color: #ff9933;
   font-size: 30rpx;
-  box-sizing: border-box;/* 这将不会增加额外的高度 */
-  padding-top: 25px;
+  box-sizing: border-box; /* 这将不会增加额外的高度 */
+  /* padding-top: 25px; */
 }
-.picture{
+.picture {
   width: 25%;
   height: 100%;
   background-color: #ffffff;
 }
-.singlepicture{
+.singlepicture {
   width: 200rpx;
   height: 200rpx;
   margin-right: 10rpx;

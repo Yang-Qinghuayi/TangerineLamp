@@ -1,138 +1,102 @@
 <view class="page">
-  <!-- 顶层“树洞广场模块” -->
-  <view class="topcontainer">
+  <!-- 这里是被注释的四个区域 -->
+  <!-- <view class="topcontainer">
     <view class='.case_title'>
       心灵空间
     </view>
   </view>
-  <!-- <view class="blank"></view> -->
-  <!-- 轮播图 -->
-  <!-- <view class="swipercontainer">
-    <swiper class="slide" indicator-dots="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff"
-      autoplay="true" interval="5000" duration="1000" circular>
-      <block wx:for="{{picList}}" wx:key="index">
-        <swiper-item>
-          <image src="{{item}}" class="slide-image" mode="aspectFill" bindtap='previewImg' data-previewurl='{{picList}}'
-            data-currenturl='{{item}}' />
-        </swiper-item>
-      </block>
-    </swiper>
-  </view> -->
-  <!--主体-->
   <view class='bodycontainer'>
     <view class='imgcontainer'>
       <view class='imghalf in_mid'>
         <button class="singleimg" data-treeholename="game"  bindtap="gotoTreehole">
-          <!-- <image
-            src="{{game}}"
-            class='stdimg' mode='aspectFill' value="game"></image> -->
           <text class="case_info_top">分享区</text>
           <text class="case_info">分享小确幸</text>
         </button>
-        <!-- <button class="singleimg" data-treeholename="study" bindtap='gotoTreehole'>
-          <image
-            src="{{study}}"
-            class='stdimg' mode='aspectFill'></image>
-          <text class="case_info">学习</text>
-        </button> -->
         <button class="singleimg" data-treeholename="emotion" bindtap='gotoTreehole'>
-          <!-- <image
-            src="{{emotion}}"
-            class='stdimg' mode='aspectFill'></image> -->
           <text class="case_info_top">发泄区</text>
           <text class="case_info">情绪宣泄场</text>
         </button>
       </view>
       <view class='imghalf in_top'>
         <button class="singleimg" data-treeholename="work" bindtap='gotoTreehole'>
-          <!-- <image
-            src="{{work}}"
-            class='stdimg' mode='aspectFill'></image> -->
           <text class="case_info_top">求助区</text>
           <text class="case_info">愿得八方援</text>
         </button>
-        <!-- <button class="singleimg" data-treeholename="life" bindtap='gotoTreehole'>
-          <image
-            src="{{life}}"
-            class='stdimg' mode='aspectFill'></image>
-          <text class="case_info">生活</text>
-        </button> -->
         <button class="singleimg" data-treeholename="exam" bindtap='gotoTreehole'>
-          <!-- <image
-            src="{{exam}}"
-            class='stdimg' mode='aspectFill'></image> -->
             <text class="case_info_top">其他</text>
           <text class="case_info">心灵二三事</text>
         </button>
       </view>
     </view>
-  </view>
+  </view> -->
   <view class='.case_title_2'>心灵日记</view>
-  <view class = "reccontainer" bindtap = "goToheartRec">
-    <view class = "reccontainer1">
+  <view class="question">{{cur_question}}</view>
+  <view class="reccontainer" bindtap="goToheartRec">
+    <!-- 左边部分 -->
+    <view class="reccontainer1">
       <picker-view class="reccontainer3" value="{{value}}" bindchange="bindChange1">
-        <picker-view-column>
-         <view wx:for="{{years}}" wx:key="{{years}}" class="case_info_year in_mid">{{item}}年</view>
-       </picker-view-column>
+        <picker-view-column >
+          <view wx:for="{{years}}" wx:key="{{years}}" class="case_info_year in_mid">{{item}}年</view>
+        </picker-view-column>
       </picker-view>
       <view class="case_info_date in_mid">{{cur_date}}日</view>
     </view>
-    <view class = "reccontainer2">
-      <view class = "reccontainer4 case_info_question in_mid">{{cur_question}}</view>
-      <scroll-view scroll-y="true" class = "reccontainer5 case_info_content in_mid">
-         <view class = "reccontainer6">
-           <view class = "month in_mid">1月</view>
-           <view class = "answer in_mid">{{commentList[1]}}</view>
-         </view>
-         <view class = "reccontainer6">
-           <view class = "month in_mid">2月</view>
-           <view class = "answer in_mid">{{commentList[2]}}</view>
-         </view>
-         <view class = "reccontainer6">
-           <view class = "month in_mid">3月</view>
-           <view class = "answer in_mid">{{commentList[3]}}</view>
-         </view>
-         <view class = "reccontainer6">
-           <view class = "month in_mid">4月</view>
-           <view class = "answer in_mid">{{commentList[4]}}</view>
-         </view>
-         <view class = "reccontainer6">
-           <view class = "month in_mid">5月</view>
-           <view class = "answer in_mid">{{commentList[5]}}</view>
-         </view>
-         <view class = "reccontainer6">
-           <view class = "month in_mid">6月</view>
-           <view class = "answer in_mid">{{commentList[6]}}</view>
-         </view>
-         <view class = "reccontainer6">
-           <view class = "month in_mid">7月</view>
-           <view class = "answer in_mid">{{commentList[7]}}</view>
-         </view>
-         <view class = "reccontainer6">
-           <view class = "month in_mid">8月</view>
-           <view class = "answer in_mid">{{commentList[8]}}</view>
-         </view>
-         <view class = "reccontainer6">
-           <view class = "month in_mid">9月</view>
-           <view class = "answer in_mid">{{commentList[9]}}</view>
-         </view>
-         <view class = "reccontainer6">
-           <view class = "month in_mid">10月</view>
-           <view class = "answer in_mid">{{commentList[10]}}</view>
-         </view>
-         <view class = "reccontainer6">
-           <view class = "month in_mid">11月</view>
-           <view class = "answer in_mid">{{commentList[11]}}</view>
-         </view>
-         <view class = "reccontainer6">
-           <view class = "month in_mid">12月</view>
-           <view class = "answer in_mid">{{commentList[12]}}</view>
-         </view>
+    <!-- 右边部分 -->
+    <view class="reccontainer2">
+      <scroll-view scroll-y="true" class="reccontainer5">
+        <view class="reccontainer6">
+          <view class="month in_mid">1月</view>
+          <view class="answer in_mid">{{commentList[1]}}</view>
+        </view>
+        <view class="reccontainer6">
+          <view class="month in_mid">2月</view>
+          <view class="answer in_mid">{{commentList[2]}}</view>
+        </view>
+        <view class="reccontainer6">
+          <view class="month in_mid">3月</view>
+          <view class="answer in_mid">{{commentList[3]}}</view>
+        </view>
+        <view class="reccontainer6">
+          <view class="month in_mid">4月</view>
+          <view class="answer in_mid">{{commentList[4]}}</view>
+        </view>
+        <view class="reccontainer6">
+          <view class="month in_mid">5月</view>
+          <view class="answer in_mid">{{commentList[5]}}</view>
+        </view>
+        <view class="reccontainer6">
+          <view class="month in_mid">6月</view>
+          <view class="answer in_mid">{{commentList[6]}}</view>
+        </view>
+        <view class="reccontainer6">
+          <view class="month in_mid">7月</view>
+          <view class="answer in_mid">{{commentList[7]}}</view>
+        </view>
+        <view class="reccontainer6">
+          <view class="month in_mid">8月</view>
+          <view class="answer in_mid">{{commentList[8]}}</view>
+        </view>
+        <view class="reccontainer6">
+          <view class="month in_mid">9月</view>
+          <view class="answer in_mid">{{commentList[9]}}</view>
+        </view>
+        <view class="reccontainer6">
+          <view class="month in_mid">10月</view>
+          <view class="answer in_mid">{{commentList[10]}}</view>
+        </view>
+        <view class="reccontainer6">
+          <view class="month in_mid">11月</view>
+          <view class="answer in_mid">{{commentList[11]}}</view>
+        </view>
+        <view class="reccontainer6">
+          <view class="month in_mid">12月</view>
+          <view class="answer in_mid">{{commentList[12]}}</view>
+        </view>
       </scroll-view>
     </view>
   </view>
-  <button class="circle in_mid" bindtap="gotoPersonalEditor" style="width:80rpx;height: 80rpx;padding:0;">
+  <!-- 注释的按钮 -->
+  <!-- <button class="circle in_mid" bindtap="gotoPersonalEditor" style="width:80rpx;height: 80rpx;padding:0;">
     +
-    <!--这个“+”是圆形按钮里面的内容-->
-  </button>
+  </button> -->
 </view>
