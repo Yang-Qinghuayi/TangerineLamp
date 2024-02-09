@@ -367,8 +367,12 @@ Page({
     this.setData({
       year: year,
       month: month,
-      isToday: "" + year + month + now.getDate(),
-      // picList: picList,
+      // isToday: "" + year + month + now.getDate(),
+      isToday:
+        "" +
+        year +
+        month.toString().padStart(2, "0") +
+        now.getDate().toString().padStart(2, "0"),
     });
     this.checkIsQianDao();
     this.getOneWord();

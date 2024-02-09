@@ -32,8 +32,8 @@
   </navigator>
 </view>
 <!-- 每日一句 -->
-<view wx:if="{{isQianDao}}" class="daily-check">
-  <view class="daily-info">{{sentence}}</view>
+<view wx:if="{{isQianDao}}" >
+  <view class="daily_sentence">{{sentence}}</view>
 </view>
 <!-- 每日签到 -->
 <view wx:else bindtap="sign_in" class="daily-check">

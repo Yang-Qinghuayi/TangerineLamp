@@ -85,7 +85,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#c4b33f",
+    "navigationBarBackgroundColor": "#ff9933",
     "navigationBarTitleText": "小橘灯",
     "enablePullDownRefresh": true,
     "navigationBarTextStyle": "white"

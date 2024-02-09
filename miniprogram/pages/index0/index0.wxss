@@ -78,7 +78,7 @@ page {
   box-shadow: 0 0 1rpx #999;
 }
 
-.sign-in-word{
+.sign-in-word {
   /* 居中 */
   display: flex;
   justify-content: center;
@@ -131,6 +131,25 @@ page {
   left: -10rpx;
   margin-left: 32rpx;
   margin-top: 20rpx;
+}
+
+.daily_sentence {
+  /* justify-content: center; */
+  margin: 0rpx 14rpx 30rpx 14rpx;
+  background: #e6edfd;
+  padding: 40rpx 20rpx 30rpx 40rpx;
+  /* 字体颜色 */
+  color: #b8974a;
+  /* 字体间距 */
+  letter-spacing: 4rpx;
+  /* 行间距 */
+  line-height: 50rpx;
+  /* 字体大小 */
+  font-size: 38rpx;
+  /* font-weight: 550; */
+  /* 字体 */
+  font-family: "楷体";
+  border-radius: 18rpx;
 }
 
 /* 热门内容展示 */

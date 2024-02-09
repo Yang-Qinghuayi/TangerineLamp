@@ -134,8 +134,9 @@
 }
 
 .submit {
+  margin-top: 100rpx;
   color: white;
-  background-color: orange;
+  background-color: #c4b33f;
   font-size: 40rpx;
   align-content: center;
 }

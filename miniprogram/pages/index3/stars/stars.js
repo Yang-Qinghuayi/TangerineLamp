@@ -165,7 +165,7 @@ Page({
       .then((res) => {
         if (res.data.length == 0) {
           this.setData({
-            content: "听说你今天很忙，我来给你讲个故事吧",
+            content: "甜菜就是99%的甜菜加1%的甜菜",
             showSign: false,
           });
         } else
@@ -192,7 +192,6 @@ Page({
             });
           } else {
             this.showSentence(this.data.isToday);
-
           }
         },
       });
