@@ -32,7 +32,7 @@
   </navigator>
 </view>
 <!-- 每日一句 -->
-<view wx:if="{{isQianDao}}" >
+<view wx:if="{{isQianDao}}">
   <view class="daily_sentence">{{sentence}}</view>
 </view>
 <!-- 每日签到 -->
@@ -42,18 +42,20 @@
 </view>
 <!-- <van-button bindtap="kiss" type="primary">按钮</van-button> -->
 <!-- 最新文章 -->
-<view class="title">
-  <view class="titleTxt">最新文章</view>
-  <navigator class="more" url="/pages/index0/passage/passage">更多 ></navigator>
-</view>
-<!-- 展示内容主体 -->
-<view class="contentContainer">
-  <!-- 内容 -->
-  <navigator data-articleid="{{item0._id}}" bindlongpress="collectArticleDialog" class="contentBody" wx:for="{{passageList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
-    <!-- 这里面每一个都是文章卡片 -->
-    <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
-    <view class="contentTitle">{{item0.title}}</view>
-  </navigator>
+<view class="passage">
+  <view class="title">
+    <view class="titleTxt">最新文章</view>
+    <navigator class="more" url="/pages/index0/passage/passage">更多 ></navigator>
+  </view>
+  <!-- 展示内容主体 -->
+  <view class="contentContainer">
+    <!-- 内容 -->
+    <navigator data-articleid="{{item0._id}}" bindlongpress="collectArticleDialog" class="contentBody" wx:for="{{passageList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
+      <!-- 这里面每一个都是文章卡片 -->
+      <image class="introPic" src="{{item0.introImage}}" mode="aspectFill"></image>
+      <view class="contentTitle">{{item0.title}}</view>
+    </navigator>
+  </view>
 </view>
 <!-- 最新单曲 -->
 <view class="title">
@@ -77,7 +79,7 @@
 <!-- 展示内容主体 -->
 <view class="contentContainer">
   <!-- 内容 -->
-   <navigator url="{{'/pages/index0/movie/movieDetail/movieDetail?_id='+item0._id}}"data-movieid="{{item0._id}}" bindlongpress="collectMovieDialog" class="contentBody" wx:for="{{movieList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0">
+  <navigator url="{{'/pages/index0/movie/movieDetail/movieDetail?_id='+item0._id}}" data-movieid="{{item0._id}}" bindlongpress="collectMovieDialog" class="contentBody" wx:for="{{movieList}}" wx:key="id" wx:if="{{index0<2}}" wx:for-index="index0" wx:for-item="item0">
     <image class="introPic" src="{{item0.cover_url}}" mode="aspectFill"></image>
     <view class="contentTitle">{{item0.name}}</view>
     <view class="contentAbout">{{item0.about}}</view>

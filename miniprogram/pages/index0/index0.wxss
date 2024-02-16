@@ -133,14 +133,12 @@ page {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f7f6f6;
+  background: #efe7d8;
   padding: 25rpx 0 0;
   height: 70rpx;
-  border-radius: 25rpx;
+  border-radius: 16rpx;
   margin-top: 20rpx;
   margin: 20rpx 25rpx 0 25rpx;
-  /* 阴影,参数的含义分别为: */
-  box-shadow: 0 0 1rpx #999;
 }
 
 .title .titleTxt {
@@ -150,6 +148,7 @@ page {
   position: relative;
   margin-top: 3rpx;
   padding-left: 28rpx;
+  color: #666;
 }
 
 .title .more {
@@ -166,8 +165,8 @@ page {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-left: 22rpx;
-  margin-right: 22rpx;
+  margin-left: 42rpx;
+  margin-right: 42rpx;
 }
 
 .contentContainer .contentBody {
@@ -266,4 +265,9 @@ page {
   word-wrap: break-word;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+}
+
+.passage{
+  /* background-color: #b8974a; */
+
 }

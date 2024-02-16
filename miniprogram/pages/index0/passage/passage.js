@@ -26,6 +26,9 @@ Page({
     this.getPassageList();
     wx.hideLoading();
     this.getCount();
+    wx.setNavigationBarTitle({
+      title: "小橘灯",
+    });
   },
   onClose() {
     this.setData({ show_article: false });

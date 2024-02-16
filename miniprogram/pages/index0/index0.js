@@ -7,7 +7,7 @@ Page({
     // 签到部分
     isQianDao: false,
     content: "每日签到",
-    sentence: "甜菜就是99%的甜菜加上1%的甜菜,听我说恭喜你发财",
+    sentence: "甜菜就是99%的甜菜加上1%的甜菜",
     nowdaycolor: "",
     alreadylist: [],
     year: 0,

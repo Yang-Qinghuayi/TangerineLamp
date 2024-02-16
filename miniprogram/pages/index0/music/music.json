@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-  "van-popup": "@vant/weapp/popup/index"
-  },
-  "navigationBarTitleText":"治愈歌单"
+    "van-popup": "@vant/weapp/popup/index"
+  }
 }
