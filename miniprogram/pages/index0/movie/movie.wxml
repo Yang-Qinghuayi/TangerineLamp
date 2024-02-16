@@ -1,6 +1,6 @@
 <view class="header">
-  <view class="title">推荐电影</view>
-  <view class="des">每日电影分享，描绘心灵旅程。</view>
+  <view class="title">心灵影院</view>
+  <view class="des">In and Out. 走进影视故事，走出心灵困境</view>
   <view class="des">(长按可以收藏哦)</view>
 </view>
 <!-- 展示内容主体 -->

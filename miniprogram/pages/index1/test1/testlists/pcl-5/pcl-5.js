@@ -152,13 +152,13 @@ Page({
       final_eval_str = "恭喜，本次测评未发现PTSD症状！";
       totalColor = "green";
     }else if(totalScores < 19){
-      final_eval_str = "有极轻微PSTD症状，可自行观察一段时间，或向心理医师寻求建议。";
+      final_eval_str = "有极轻微PTSD症状，可自行观察一段时间，或向心理医师寻求建议。";
       totalColor = "blue";
     }else if(totalScores < 38){
-      final_eval_str = "有轻微PSTD症状，可自行观察一段时间，或向心理医师寻求建议。";
+      final_eval_str = "有轻微PTSD症状，可自行观察一段时间，或向心理医师寻求建议。";
       totalColor = "orange";
     }else{
-      final_eval_str = "有较严重PSTD症状，请立即向心理咨询师寻求帮助！";
+      final_eval_str = "有较严重PTSD症状，请立即向心理咨询师寻求帮助！";
       totalColor = "red";
     }
 

@@ -22,8 +22,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-left: 22rpx;
-  margin-right: 22rpx;
+  margin-left: 42rpx;
+  margin-right: 42rpx;
 }
 
 .contentContainer .contentBody {

@@ -1,6 +1,6 @@
 <view class="header">
-  <view class="title">推荐歌曲</view>
-  <view class="des">每日音乐分享，描绘心灵旅程。</view>
+  <view class="title">治愈歌单</view>
+  <view class="des">Enjoy and Cure. 如果世界太危险，还是音乐最安全</view>
   <view class="des">(长按可以收藏哦)</view>
 </view>
 <view class="contentContainer">
