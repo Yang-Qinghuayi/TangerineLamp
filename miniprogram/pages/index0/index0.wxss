@@ -22,9 +22,10 @@ page {
 }
 
 .daily {
-  height: 180rpx;
-  display: flex;
-  justify-content: center;
+  margin: 30rpx 20rpx 30rpx 20rpx;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3列 */
+  /* justify-content: center; */
   /* background: #f9f9f9; */
 }
 
@@ -33,19 +34,31 @@ page {
 
 .daily-item1 {
   display: flex;
-  justify-content: space-between; /* 这会将子元素分散对齐，一个靠左，一个靠右 */
+  justify-content: space-between;
   align-items: center;
-  width: 50%;
-  padding: 0 15rpx 0 0;
   height: 100rpx;
-  margin-top: 50rpx;
-  margin-left: 25rpx;
-  margin-right: 20rpx;
   background: #f7f6f6;
-  border-radius: 20rpx;
-  box-shadow: 0 0 1rpx #999;
+  border-radius: 16rpx;
+  margin-left: 16rpx;
+  margin-right: 16rpx;
+  /* box-shadow: 0 0 1rpx #999; */
 }
 
+/* 每日文章、治愈歌单、影院 图标设置 */
+.daily-icon-passage image {
+  width: 46rpx;
+  height:46rpx;
+  margin-top: 15rpx;
+  margin-left: 36rpx;
+  /* margin: 10rpx; */
+}
+
+.daily-info {
+  margin-right: 48rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #666666;
+}
 .dialog {
   display: flex;
   justify-content: space-between; /* 这会将子元素分散对齐，一个靠左，一个靠右 */
@@ -92,45 +105,6 @@ page {
   writing-mode: vertical-lr;
   border-radius: 50%;
   background: #c4b33f;
-}
-
-/* 每日文章、治愈歌单、心理漫画 图标设置 */
-.daily-icon-passage image {
-  width: 50rpx;
-  height: 50rpx;
-  margin-top: 27rpx;
-  margin-bottom: 20rpx;
-  margin-left: 30rpx;
-}
-
-.daily-icon-music image {
-  width: 50rpx;
-  height: 50rpx;
-  margin-top: 27rpx;
-  margin-bottom: 20rpx;
-  margin-left: 30rpx;
-}
-
-.daily-icon-comic image {
-  width: 100rpx;
-  height: 100rpx;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
-  margin-left: 25rpx;
-}
-
-.daily-info {
-  height: max-content;
-  font-size: 28rpx;
-  /* bold */
-  font-weight: 600;
-  position: relative;
-  color: #666666;
-  font-family: "微软雅黑";
-  bottom: 10rpx;
-  left: -10rpx;
-  margin-left: 32rpx;
-  margin-top: 20rpx;
 }
 
 .daily_sentence {
