@@ -1,5 +1,7 @@
-<view class="title">
-  <view class="titleTxt">推荐歌单</view>
+<view class="header">
+  <view class="title">推荐歌曲</view>
+  <view class="des">每日音乐分享，描绘心灵旅程。</view>
+  <view class="des">(长按可以收藏哦)</view>
 </view>
 <view class="contentContainer">
   <!-- 内容 -->

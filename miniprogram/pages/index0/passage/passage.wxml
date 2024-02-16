@@ -3,12 +3,12 @@
 <view class="header">
   <view class="title">每日文章</view>
   <view class="des">Peace and Love. 每日文章分享，描绘心灵旅程。</view>
+  <view class="des">(长按可以收藏哦)</view>
 </view>
 <!-- 文章列表 -->
 <scroll-view scroll-top="{{0}}" scroll-y class="passage">
   <!-- 文章导航 -->
-  <navigator data-articleid="{{item0._id}}" bindlongpress="collectArticleDialog"
-   class="passage-item" wx:for="{{passageList}}" wx:key="id" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
+  <navigator data-articleid="{{item0._id}}" bindlongpress="collectArticleDialog" class="passage-item" wx:for="{{passageList}}" wx:key="id" wx:for-index="index0" wx:for-item="item0" url="{{'/pages/index0/passage/passageContent/passageContent?_id='+item0._id}}">
     <!-- 文章信息 title/des -->
     <view class="passage-info">
       <view class="passage-title">{{item0.title}}</view>
@@ -20,7 +20,6 @@
     </view>
   </navigator>
 </scroll-view>
-
 <van-popup round position="bottom" custom-style="height: 20%" bind:close="onClose" show="{{ show_article }}">
   <view class="dialog" bindtap="collectArticle">
     <view class="daily-icon-passage">
