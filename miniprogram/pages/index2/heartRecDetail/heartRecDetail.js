@@ -179,7 +179,7 @@ Page({
     const randomSection = Math.random().toString(36).substring(2, 15); // 生成一个随机字符串
     return `${timestamp}-${randomSection}`;
   },
-  // 上传图片
+  // 上传图片及评论
   uploadImages: function() {
     const that = this
     let openid = app.globalData.openid

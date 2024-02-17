@@ -34,12 +34,17 @@
   <view class="reccontainer" bindtap="goToheartRec">
     <!-- 左边部分 -->
     <view class="reccontainer1">
-      <picker-view class="reccontainer3" value="{{value}}" bindchange="bindChange1">
-        <picker-view-column >
+      <picker-view class="reccontainer3" value="{{valueYear}}" bindchange="bindChangeYear">
+        <picker-view-column>
           <view wx:for="{{years}}" wx:key="{{years}}" class="case_info_year in_mid">{{item}}年</view>
         </picker-view-column>
       </picker-view>
-      <view class="case_info_date in_mid">{{cur_date}}日</view>
+      <picker-view class="reccontainer7" value="{{valueDate}}" bindchange="bindChangeDate">
+        <picker-view-column>
+          <view wx:for="{{dates}}" wx:key="{{dates}}" class="case_info_date in_mid">{{item}}日</view>
+        </picker-view-column>
+      </picker-view>
+      <!-- <view class="case_info_date in_mid">{{cur_date}}日</view> -->
     </view>
     <!-- 右边部分 -->
     <view class="reccontainer2">

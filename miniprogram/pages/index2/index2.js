@@ -4,8 +4,12 @@ const date = new Date()
 const db = wx.cloud.database()
 const monthList = ["1","2","3","4","5","6","7","8","9","10","11","12"]
 const years = []
+const dates = []
 for (let i = 2000; i <= date.getFullYear(); i++) {
   years.push(i)
+}
+for (let i = 1; i <= date.getDate(); i++) {
+  dates.push(i)
 }
 Page({
   
@@ -53,10 +57,11 @@ Page({
     },
     tempTreeholeName: null, // 临时存放树洞名称的地方
     cur_question:"",
-    cur_date: '',
+    cur_date: date.getDate().toString(),
     cur_year: date.getFullYear().toString(),
-    value: [9999],
-    years
+    valueYear: [9999],
+    valueDate: [9999],
+    years,dates
   },
 
   /**
@@ -100,11 +105,22 @@ Page({
     })
   },
   // 年份选择的响应事件
-  bindChange1: function(e) {
-    const val = e.detail.value
+  bindChangeYear: function(e) {
+    const val1 = e.detail.value
     this.setData({
-      cur_year: this.data.years[val[0]].toString(),
+      cur_year: this.data.years[val1[0]].toString(),
     })
+  },
+  // 日期选择的响应事件
+  bindChangeDate: function(e) {
+    const val2 = e.detail.value
+    this.setData({
+      cur_date: this.data.dates[val2[0]].toString(),
+    })
+    this.getQuestion()
+    monthList.forEach((month)=>
+     this.getCommentPic(month)
+    );
   },
   goToheartRec: function(e) {
     let tempurl = "/pages/index2/heartRec/heartRec?date=" + this.data.cur_year+"-"+this.data.cur_date;
@@ -117,11 +133,11 @@ Page({
   },
 
   onLoad(){
-    let date = new Date();
-    console.log(date.getDate())
-    this.setData({
-      cur_date : date.getDate().toString()
-    })
+    // let date = new Date();
+    // console.log(date.getDate())
+    // this.setData({
+    //   cur_date : date.getDate().toString()
+    // })
     console.log('是否登录',app.globalData.isLogin,date)
   },
 

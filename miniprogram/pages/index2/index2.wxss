@@ -71,6 +71,13 @@
   display: flex;
   flex-direction: row;
 }
+/* 这是日期picker */
+.reccontainer7 {
+  width: 100%;
+  height: 50%;
+  background-color: #ffffff;
+  font-weight: bold;
+}
 .month {
   width: 22%;
   height: 100%;
@@ -187,13 +194,18 @@
 .case_info_year {
   color: #ff9933;
   font-size: 50rpx;
-  height: 100rpx;
+  /* height: 100rpx; */
   /* padding-top: 23rpx; */
 }
-.case_info_date {
+/* .case_info_date {
   height: 50%;
   color: #ff9933;
   font-size: 70rpx;
+} */
+.case_info_date{
+  color: #ff9933;
+  font-size: 70rpx;
+  /* height: 100rpx; */
 }
 .case_info_question {
   color: #ff9933;

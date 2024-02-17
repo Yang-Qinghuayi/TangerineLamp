@@ -124,7 +124,7 @@
   color: #ff9933;
   font-size: 30rpx;
   box-sizing: border-box; /* 这将不会增加额外的高度 */
-  /* padding-top: 25px; */
+  padding-top: 35rpx;
 }
 .picture {
   width: 25%;
