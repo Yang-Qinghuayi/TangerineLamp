@@ -110,6 +110,10 @@ Page({
     this.setData({
       cur_year: this.data.years[val1[0]].toString(),
     })
+    // this.getQuestion() 由于目前每年的题目一样，所以这里在更新年份后，可以不用跟着更新问题
+    monthList.forEach((month)=>
+     this.getCommentPic(month)
+    );
   },
   // 日期选择的响应事件
   bindChangeDate: function(e) {
