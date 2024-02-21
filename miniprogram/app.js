@@ -59,6 +59,34 @@ App({
           avatar: "cloud://tangerine-cloud-9grdz5e80159e7b3.7461-tangerine-cloud-9grdz5e80159e7b3-1304921980/index2/anonymous/game_p.svg",
           index: 5,
         },
+        "share": {
+          type: '分享区',
+          color: "#C26BE7",
+          avatar: "cloud://tangerine-cloud-9grdz5e80159e7b3.7461-tangerine-cloud-9grdz5e80159e7b3-1304921980/index2/anonymous/game_p.svg",
+          index: 6,
+          motto:'分享小确幸',
+        },
+        "vent": {
+          type: '发泄区',
+          color: "#5C92F1",
+          avatar: "cloud://tangerine-cloud-9grdz5e80159e7b3.7461-tangerine-cloud-9grdz5e80159e7b3-1304921980/index2/anonymous/work_p.svg",
+          index: 7,
+          motto:'情绪宣泄场',
+        },
+        "help": {
+          type: '求助区',
+          color: "#E95BB8",
+          avatar: "cloud://tangerine-cloud-9grdz5e80159e7b3.7461-tangerine-cloud-9grdz5e80159e7b3-1304921980/index2/anonymous/exam_p.svg",
+          index: 8,
+          motto:'愿得八方援',
+        },
+        "other": {
+          type: '其他',
+          color: "#F41010",
+          avatar: "cloud://tangerine-cloud-9grdz5e80159e7b3.7461-tangerine-cloud-9grdz5e80159e7b3-1304921980/index2/anonymous/emotion_p.svg",
+          index: 9,
+          motto:'心灵二三事',
+        },
       }
     }
   }

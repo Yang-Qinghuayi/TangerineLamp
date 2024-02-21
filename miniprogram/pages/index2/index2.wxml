@@ -8,21 +8,21 @@
   <view class='bodycontainer'>
     <view class='imgcontainer'>
       <view class='imghalf in_mid'>
-        <button class="singleimg" data-treeholename="game"  bindtap="gotoTreehole">
+        <button class="singleimg" data-treeholename="share"  bindtap="gotoTreehole">
           <text class="case_info_top">分享区</text>
           <text class="case_info">分享小确幸</text>
         </button>
-        <button class="singleimg" data-treeholename="emotion" bindtap='gotoTreehole'>
+        <button class="singleimg" data-treeholename="vent" bindtap='gotoTreehole'>
           <text class="case_info_top">发泄区</text>
           <text class="case_info">情绪宣泄场</text>
         </button>
       </view>
       <view class='imghalf in_top'>
-        <button class="singleimg" data-treeholename="work" bindtap='gotoTreehole'>
+        <button class="singleimg" data-treeholename="help" bindtap='gotoTreehole'>
           <text class="case_info_top">求助区</text>
           <text class="case_info">愿得八方援</text>
         </button>
-        <button class="singleimg" data-treeholename="exam" bindtap='gotoTreehole'>
+        <button class="singleimg" data-treeholename="other" bindtap='gotoTreehole'>
             <text class="case_info_top">其他</text>
           <text class="case_info">心灵二三事</text>
         </button>

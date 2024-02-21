@@ -69,7 +69,7 @@ Page({
    */
   gotoTreehole: function(e) {
     let temp = e.currentTarget.dataset.treeholename
-    console.log("即将前往树洞：",temp, this.data.TreeholeAddress[temp])
+    // console.log("即将前往树洞：",temp, this.data.TreeholeAddress[temp])
     // let tempurl = this.data.TreeholeAddress + "?title=" + temp
     let tempurl = "/pages/index2/treeHole/treeHole?title=" + temp
     wx.navigateTo({
