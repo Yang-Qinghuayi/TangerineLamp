@@ -84,8 +84,11 @@ Page({
   gotoPersonalEditor: function () {
     // 提示如果已经登录了就可以发树洞
     if (app.globalData.isLogin) {
+      // wx.navigateTo({
+      //   url: "/pages/index2/editPage/personalEditor?index=" + this.data.treeholeJson.index
+      // })
       wx.navigateTo({
-        url: "/pages/index2/editPage/personalEditor?index=" + this.data.treeholeJson.index
+        url: "/pages/index2/Publish/Publish?Area=" + this.data.treeholeJson.type
       })
     }
     // 如果没有登录则提醒先登录

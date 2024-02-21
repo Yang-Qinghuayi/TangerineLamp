@@ -81,7 +81,8 @@
     "pages/index0/movie/movie",
     "pages/index0/movie/movieDetail/movieDetail",
     "pages/index2/heartRec/heartRec",
-    "pages/index2/heartRecDetail/heartRecDetail"
+    "pages/index2/heartRecDetail/heartRecDetail",
+    "pages/index2/Publish/Publish"
   ],
   "window": {
     "backgroundTextStyle": "light",

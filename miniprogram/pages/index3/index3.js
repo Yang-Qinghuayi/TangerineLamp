@@ -45,6 +45,8 @@ Page({
   onLoad() {
     let openid = wx.getStorageSync("openid");
     let userInfo = wx.getStorageSync("userInfo");
+    console.log("openid:",openid)
+    console.log("userinfo:",userInfo)
     // 上线之前要去掉
     // userInfo.avatarUrl = 'https://avatars.githubusercontent.com/u/87259286?v=4'
     // userInfo.nickName = '杨青花一'
