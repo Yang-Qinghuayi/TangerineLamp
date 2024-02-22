@@ -5,7 +5,7 @@
     <view class='.case_title1' bindtap="cancel">取消</view>
     <view class='.case_title2' bindtap="publish">发布</view>
   </view>
-  <view class="reccontainer4">
+  <view class="contentContainer">
     <textarea class="answer" value="{{text}}" maxlength="-1" auto-focus bindinput="bindInput" placeholder="此刻的想法..." placeholder-style="color: #666;  font-size: 50rpx"></textarea>
     <view class="upLoad">
       <view class="upLoadButton in_mid">
@@ -21,18 +21,28 @@
       </scroll-view>
     </view>
   </view>
-  <checkbox-group bindchange="checkboxChange">
-  <label class="checkbox">
-    <checkbox value="apple" checked="true"/> 苹果
-  </label>
-  <label class="checkbox">
-    <checkbox value="banana"/> 香蕉
-  </label>
-  <label class="checkbox">
-    <checkbox value="grape"/> 葡萄
-  </label>
-</checkbox-group>
+  <view class = "checkboxContainer">
+  <checkbox-group bindchange="checkboxChange1">
+    <label class="checkbox align">
+     <checkbox/><text class="style">私密</text>
+    </label>
+  </checkbox-group>
+  <checkbox-group bindchange="checkboxChange2">
+    <label class="checkbox align">
+     <checkbox checked="true"/><text class="style">允许评论</text>
+    </label>
+  </checkbox-group>
+  <checkbox-group bindchange="checkboxChange3">
+    <label class="checkbox align">
+     <checkbox checked="true"/><text class="style">投稿</text>
+    </label>
+  </checkbox-group>
+  </view>
+
 </view>
-<view class="custom-toast" wx:if="{{showCustomToast}}">
+<view class="custom-toast1" wx:if="{{showCustomToast1}}">
   <text>操作成功</text>
+</view>
+<view class="custom-toast2" wx:if="{{showCustomToast2}}">
+  <text>发布内容不能为空</text>
 </view>

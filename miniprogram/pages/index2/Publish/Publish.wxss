@@ -46,7 +46,7 @@
   margin-left: 50%;
   padding: 10rpx;
 }
-.reccontainer4 {
+.contentContainer {
   width: 100%;
   height: 900rpx;
   background-color: #000000;
@@ -110,7 +110,7 @@
   cursor: pointer;
 }
 /* 自定义弹窗样式 */
-.custom-toast {
+.custom-toast1 {
   background-color: green; /* 设置为绿色背景 */
   color: #ff9933;
   font-size: 40rpx;
@@ -121,4 +121,28 @@
   left: 50%;
   transform: translateX(-50%);
   border-radius: 5px;
+}
+.custom-toast2 {
+  background-color: red; /* 设置为绿色背景 */
+  color: #ff9933;
+  font-size: 40rpx;
+  font-weight: bold;
+  padding: 10px;
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+}
+.checkboxContainer{
+  display: flex;
+  flex-direction: row; /* 横向排列 */
+}
+.style{
+  font-size: 35rpx;
+  font-weight: bold;
+  color:#ff9933
+}
+.align{
+  margin-left: 75rpx;
 }

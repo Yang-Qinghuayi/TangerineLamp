@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showCustomToast: false,
+    showCustomToast1: false,
     cur_year:'',
     cur_month_date:'',
     cur_question:"",
