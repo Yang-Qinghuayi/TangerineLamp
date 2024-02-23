@@ -12,21 +12,30 @@ Page({
     preAvatarUrl: "",
   },
   onLoad: function (options) {
-    // this.setUser();
-    this.getUser();
+    this.setUser();
   },
 
   setUser() {
+    console.log("kiss");
     db.collection("user")
-      .add({
-        data: {
-          avatarUrl: app.globalData.userInfo.avatarUrl,
-          nickName: app.globalData.userInfo.nickName,
-        },
+      .where({
+        _openid: app.globalData.openid,
       })
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
+      .then((res) => {
+        if (!res) {
+          db.collection("user")
+            .add({
+              data: {
+                avatarUrl: app.globalData.userInfo.avatarUrl,
+                nickName: app.globalData.userInfo.nickName,
+              },
+            })
+            .then((res) => {
+              this.getUser();
+            });
+        } else {
+          this.getUser();
+        }
       });
   },
 

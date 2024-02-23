@@ -47,7 +47,6 @@ Page({
   onLoad() {
     let openid = wx.getStorageSync("openid");
     let userInfo = wx.getStorageSync("userInfo");
-
     let hasUserInfo = wx.getStorageSync("hasUserInfo");
     let isDeveloper = wx.getStorageSync("isDeveloper");
     let isDoctor = wx.getStorageSync("isDoctor");
@@ -83,9 +82,6 @@ Page({
         isCertiStudent: app.globalData.isCertiStudent,
       });
     } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      // app.globalData.isLogin = true
       app.userInfoReadyCallback = (res) => {
         this.setData({
           userInfo: res.userInfo,
@@ -93,20 +89,16 @@ Page({
         });
       };
     }
-    this.setUser();
     this.initOpenID(); //  获得openid
-    // this.getUser();
   },
   onShow() {
-    console.log("kissshow");
-    // this.getUser();
-    this.setUser();
+    console.log("kiss");
+    this.getUser();
+    this.getdailyQianDaoCount();
+    this.getcollectionCount();
+    this.data.hasUserInfo = app.globalData.hasUserInfo;
   },
-  modifyName() {
-    wx.navigateTo({
-      url: "/pages/index3/editor/update/update",
-    });
-  },
+
   getUser() {
     console.log("kissshow");
     db.collection("user")
@@ -115,30 +107,16 @@ Page({
       })
       .get()
       .then((res) => {
-        console.log(res.data);
-        this.setData({
-          avatarUrl: res.data[0].avatarUrl,
-          nickName: res.data[0].nickName,
-        });
-      });
-  },
-  setUser() {
-    db.collection("user")
-      .add({
-        data: {
-          avatarUrl: app.globalData.userInfo.avatarUrl,
-          nickName: app.globalData.userInfo.nickName,
-        },
-      })
-      .then((res) => {});
-    console.log("kiss");
-    db.collection("user")
-      .where({
-        _openid: app.globalData.openid,
-      })
-      .count()
-      .then((res) => {
-        if (res.total == 0) {
+        if (res.data.length !== 0) {
+          this.setData({
+            avatarUrl: res.data[0].avatarUrl,
+            nickName: res.data[0].nickName,
+          });
+        } else {
+          this.setData({
+            avatarUrl: app.globalData.userInfo.avatarUrl,
+            nickName: app.globalData.userInfo.nickName,
+          });
         }
       });
   },
@@ -153,11 +131,8 @@ Page({
         app.globalData.userInfo = res.userInfo;
         app.globalData.isLogin = true;
         this.getdailyQianDaoCount(); //获取签到数量
-        this.getUserTreeholeCount(); //  获取树洞数量
         this.getcollectionCount(); //获取收藏
-        this.getUserMessageCount(); // 获取消息数量
-        this.getAdviceCount(); // 获取个人用户预约
-        this.getAdviceListCount(); //获取数据库全局预约
+
         // 将全局变量中的内容获取到本页
         this.setData({
           userInfo: app.globalData.userInfo,
@@ -176,14 +151,11 @@ Page({
     });
   },
 
-  onShow() {
-    // this.getUserTreeholeCount()
-    // this.getUserMessageCount()
-    this.getdailyQianDaoCount();
-    this.getcollectionCount();
-    // this.getAdviceCount()
-    // this.getAdviceListCount()
-    this.data.hasUserInfo = app.globalData.hasUserInfo;
+  // 去到修改昵称的页面
+  modifyName() {
+    wx.navigateTo({
+      url: "/pages/index3/editor/update/update",
+    });
   },
   /**
    * 获取自己的签到天数
@@ -192,8 +164,6 @@ Page({
     db.collection("index3_qiandao_daily")
       .where({
         _openid: app.globalData.openid,
-        // month: this.data.month,
-        // year: this.data.year
       })
       .count()
       .then((res) => {
