@@ -6,6 +6,8 @@ const _ = db.command;
 
 Page({
   data: {
+    nickName: "",
+    avatarUrl: "",
     dailyQianDaoCount: 0,
     year: 0,
     month: 0,
@@ -45,11 +47,7 @@ Page({
   onLoad() {
     let openid = wx.getStorageSync("openid");
     let userInfo = wx.getStorageSync("userInfo");
-    console.log("openid:",openid)
-    console.log("userinfo:",userInfo)
-    // 上线之前要去掉
-    // userInfo.avatarUrl = 'https://avatars.githubusercontent.com/u/87259286?v=4'
-    // userInfo.nickName = '杨青花一'
+
     let hasUserInfo = wx.getStorageSync("hasUserInfo");
     let isDeveloper = wx.getStorageSync("isDeveloper");
     let isDoctor = wx.getStorageSync("isDoctor");
@@ -93,17 +91,54 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: app.globalData.isLogin,
         });
+        // 将用户信息存储到数据库中
       };
     }
 
     this.initOpenID(); //  获得openid
+    this.setUser();
+    this.getUser();
+  },
+  onShow() {
+    console.log("kissshow");
+    this.getUser();
+  },
+  getUser() {
+    console.log("kissshow");
+    db.collection("user")
+      .where({
+        _openid: app.globalData.openid,
+      })
+      .get()
+      .then((res) => {
+        console.log(res.data);
+        this.setData({
+          avatarUrl: res.data[0].avatarUrl,
+          nickName: res.data[0].nickName,
+        });
+      });
+  },
+  setUser() {
+    console.log('kiss');
+    db.collection("user")
+      .where({
+        _openid: app.globalData.openid,
+      })
+      .count()
+      .then((res) => {
+        if (res.total == 0) {
+          db.collection("user")
+            .add({
+              data: {
+                avatarUrl: userInfo.avatarUrl,
+                nickName: userInfo.nickName,
+              },
+            })
+            .then((res) => {});
+        }
+      });
   },
 
-  /**
-   * 登录按钮绑定的事件
-   * 在经过用户的允许后获得用户的个人信息
-   */
-  // 登录
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
     // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗

@@ -4,8 +4,8 @@
   </view>
   <view wx:else class="user_info_part">
     <view class="user_info">
-      <image class="user_info_pic" src="{{userInfo.avatarUrl}}"></image>
-      <view class="user_info_name">{{userInfo.nickName}}</view>
+      <image class="user_info_pic" src="{{avatarUrl}}"></image>
+      <view class="user_info_name">{{nickName}}</view>
     </view>
   </view>
 </view>

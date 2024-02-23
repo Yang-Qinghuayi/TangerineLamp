@@ -2,6 +2,5 @@
 <view class="background">
     <view class="" bindtap="cdUpdate">修改空间头像和昵称</view>
     <view bindtap="clear">清空缓存</view>
-    <!-- <view bindtap="surprise">每日一句<text class="sentence">{{rand}}</text></view> -->
     <view bindtap="version">版本号  1.0.0</view>
 </view>
