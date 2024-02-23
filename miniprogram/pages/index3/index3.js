@@ -92,7 +92,6 @@ Page({
     this.initOpenID(); //  获得openid
   },
   onShow() {
-    console.log("kiss");
     this.getUser();
     this.getdailyQianDaoCount();
     this.getcollectionCount();
@@ -108,15 +107,28 @@ Page({
       .get()
       .then((res) => {
         if (res.data.length !== 0) {
+          // 如果有数据就直接获取
           this.setData({
             avatarUrl: res.data[0].avatarUrl,
             nickName: res.data[0].nickName,
           });
         } else {
+          // 如果没有数据就添加数据
           this.setData({
             avatarUrl: app.globalData.userInfo.avatarUrl,
             nickName: app.globalData.userInfo.nickName,
           });
+          console.log("kissheere");
+          db.collection("user")
+            .add({
+              data: {
+                avatarUrl: app.globalData.userInfo.avatarUrl,
+                nickName: app.globalData.userInfo.nickName,
+              },
+            })
+            .then((res) => {
+              // this.getUser();
+            });
         }
       });
   },
