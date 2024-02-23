@@ -8,13 +8,26 @@ Page({
     nickName: "微信用户",
     avatarUrl:
       "https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132",
-    imageList: [],
-    defaultImagePath: [
-      "https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132",
-    ],
+    preNickName: "",
+    preAvatarUrl: "",
   },
   onLoad: function (options) {
+    // this.setUser();
     this.getUser();
+  },
+
+  setUser() {
+    db.collection("user")
+      .add({
+        data: {
+          avatarUrl: app.globalData.userInfo.avatarUrl,
+          nickName: app.globalData.userInfo.nickName,
+        },
+      })
+      .then((res) => {})
+      .catch((err) => {
+        console.log(err);
+      });
   },
 
   getUser() {
@@ -28,6 +41,8 @@ Page({
         this.setData({
           avatarUrl: res.data[0].avatarUrl,
           nickName: res.data[0].nickName,
+          preNickName: res.data[0].nickName,
+          preAvatarUrl: res.data[0].avatarUrl,
         });
       });
   },
@@ -44,10 +59,8 @@ Page({
       sizeType: ["original", "compressed"],
       sourceType: ["album", "camera"],
       success: function (res) {
-        const tempFilePaths = res.tempFilePaths;
         that.setData({
-          imageList: tempFilePaths,
-          avatarUrl: tempFilePaths[0],
+          avatarUrl: res.tempFilePaths[0],
         });
       },
     });
@@ -60,76 +73,87 @@ Page({
   // 上传图片
   uploadImages: function () {
     const that = this;
-    let openid = app.globalData.openid;
-
-    // 保存前先删除已有记录
-    db.collection("user")
-      .where({
-        _openid: openid,
-      })
-      .remove({
-        success: function (res) {
-          console.log("成功删除记录数", res.stats.removed);
-          let tempImageList = that.data.imageList;
-          if (that.data.imageList.length == 0) {
-            console.log("空的");
-            tempImageList = this.data.defaultImagePath;
-          }
-          const uploadPromises = tempImageList.map((imgPath) => {
-            return new Promise((resolve, reject) => {
-              const fileName = `userPic/${that.generateUUID()}.png`; // 生成文件名
-              console.log("即将上传的:", imgPath);
-              wx.cloud.uploadFile({
-                cloudPath: fileName,
-                filePath: imgPath,
-                success: (res) => {
-                  console.log("上传成功: ", res);
-                  db.collection("user").add({
-                    data: {
-                      nickName: that.data.nickName,
-                      avatarUrl: res.fileID,
-                    },
-                    success: function (dbRes) {
-                      console.log("数据库存入成功：", dbRes);
-                      resolve(dbRes);
-                    },
-                    fail: function (err) {
-                      console.log("数据库存入失败：", err);
-                      reject(err);
-                    },
-                  });
+    const uploadPromise = new Promise((resolve, reject) => {
+      const fileName = `userPic/${that.generateUUID()}.png`; // 生成文件名
+      let imgPath = that.data.avatarUrl;
+      if (imgPath === that.data.preAvatarUrl) {
+        // 说明用户没有修改头像
+        db.collection("user")
+          .where({
+            _openid: app.globalData.openid,
+          })
+          .update({
+            data: {
+              nickName: that.data.nickName,
+              avatarUrl: that.data.avatarUrl,
+            },
+            success: function (dbRes) {
+              console.log("数据库存入成功：", dbRes);
+              resolve(dbRes);
+            },
+            fail: function (err) {
+              console.log("数据库存入失败：", err);
+              reject(err);
+            },
+          });
+      } else {
+        wx.cloud.uploadFile({
+          cloudPath: fileName,
+          filePath: imgPath,
+          success: (res) => {
+            console.log("上传成功: ", res);
+            that.setData({
+              avatarUrl: res.fileID,
+            });
+            db.collection("user")
+              .where({
+                _openid: app.globalData.openid,
+              })
+              .update({
+                data: {
+                  nickName: that.data.nickName,
+                  avatarUrl: that.data.avatarUrl,
                 },
-                fail: (err) => {
-                  console.log("上传失败: ", err);
+                success: function (dbRes) {
+                  console.log("数据库存入成功：", dbRes);
+                  resolve(dbRes);
+                },
+                fail: function (err) {
+                  console.log("数据库存入失败：", err);
                   reject(err);
                 },
               });
-            });
-          });
+          },
+          fail: (err) => {
+            console.log("上传失败: ", err);
+            reject(err);
+          },
+        });
+      }
+    });
 
-          Promise.all(uploadPromises)
-            .then((results) => {
-              console.log("所有图片上传和数据库操作已完成");
-              wx.showToast({
-                title: "提交成功",
-                duration: 1500,
-                mask: true,
-              });
-            })
-            .catch((error) => {
-              console.error("在上传过程中发生错误：", error);
+    uploadPromise
+      .then((results) => {
+        console.log("所有图片上传和数据库操作已完成");
+        wx.showToast({
+          title: "提交成功",
+          duration: 1500,
+          mask: true,
+        });
+      })
+      .catch((error) => {
+        console.error("在上传过程中发生错误：", error);
 
-              wx.showToast({
-                title: "操作失败",
-                icon: "none",
-                duration: 2000,
-              });
-            });
-        },
-        fail: function (err) {
-          console.error("删除失败", err);
-        },
+        wx.showToast({
+          title: "操作失败",
+          icon: "none",
+          duration: 2000,
+        });
       });
+  },
+
+  updateUser() {
+    console.log("zhengzai 更新用户信息");
   },
 
   // 展示提交窗口

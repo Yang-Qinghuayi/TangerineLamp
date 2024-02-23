@@ -91,17 +91,21 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: app.globalData.isLogin,
         });
-        // 将用户信息存储到数据库中
       };
     }
-
-    this.initOpenID(); //  获得openid
     this.setUser();
-    this.getUser();
+    this.initOpenID(); //  获得openid
+    // this.getUser();
   },
   onShow() {
     console.log("kissshow");
-    this.getUser();
+    // this.getUser();
+    this.setUser();
+  },
+  modifyName() {
+    wx.navigateTo({
+      url: "/pages/index3/editor/update/update",
+    });
   },
   getUser() {
     console.log("kissshow");
@@ -119,7 +123,15 @@ Page({
       });
   },
   setUser() {
-    console.log('kiss');
+    db.collection("user")
+      .add({
+        data: {
+          avatarUrl: app.globalData.userInfo.avatarUrl,
+          nickName: app.globalData.userInfo.nickName,
+        },
+      })
+      .then((res) => {});
+    console.log("kiss");
     db.collection("user")
       .where({
         _openid: app.globalData.openid,
@@ -127,14 +139,6 @@ Page({
       .count()
       .then((res) => {
         if (res.total == 0) {
-          db.collection("user")
-            .add({
-              data: {
-                avatarUrl: userInfo.avatarUrl,
-                nickName: userInfo.nickName,
-              },
-            })
-            .then((res) => {});
         }
       });
   },
@@ -245,84 +249,6 @@ Page({
             this.data.colledtedArticleCount +
             this.data.collectedMovieCount +
             this.data.collectedMusicCount,
-        });
-      });
-  },
-
-  /**
-   * 获取自己的树洞数量
-   */
-  getUserTreeholeCount() {
-    db.collection("index2_treeholes")
-      .where({
-        _openid: app.globalData.openid,
-      })
-      .count()
-      .then((res) => {
-        this.setData({
-          treeholesCount: res.total,
-        });
-      });
-  },
-
-  /**
-   * 获得所有给自己的评论
-   */
-  getUserMessageCount() {
-    db.collection("index2_comments")
-      .where(
-        _.and([
-          {
-            _openid: _.not(_.eq(app.globalData.openid)),
-          },
-          {
-            toID: app.globalData.openid,
-          },
-          {
-            isRead: false,
-          },
-        ])
-      )
-      .count()
-      .then((res) => {
-        this.setData({
-          messageCount: res.total,
-        });
-      });
-  },
-
-  /**
-   * 获得心理咨询预约记录
-   */
-  getAdviceCount() {
-    let nowDate = this.getNowDate();
-    db.collection("chatroom_group")
-      .where({
-        members: _.all([app.globalData.openid]),
-        timeCount: _.gt(nowDate),
-      })
-      .count()
-      .then((res) => {
-        this.setData({
-          isBooked: res.total > 0 && app.globalData.isLogin,
-        });
-      });
-  },
-
-  /**
-   * 获得已预约咨询时间记录数
-   */
-  getAdviceListCount() {
-    let nowDate = this.getNowDate();
-    db.collection("doctor_freeTime")
-      .where({
-        isBooked: true,
-        timeCount: _.gt(nowDate),
-      })
-      .count()
-      .then((res) => {
-        this.setData({
-          hasAdvice: res.total > 0 && app.globalData.isLogin,
         });
       });
   },

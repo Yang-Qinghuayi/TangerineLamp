@@ -2,7 +2,7 @@
   <view wx:if="{{!hasUserInfo}}" class="user_login">
     <button bindtap="getUserProfile" class="user_login_btn">登录</button>
   </view>
-  <view wx:else class="user_info_part">
+  <view bindtap="modifyName" wx:else class="user_info_part">
     <view class="user_info">
       <image class="user_info_pic" src="{{avatarUrl}}"></image>
       <view class="user_info_name">{{nickName}}</view>
