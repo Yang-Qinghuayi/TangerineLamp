@@ -4,15 +4,6 @@ const db = wx.cloud.database();
 const defaultImg = "cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/heartRecPic/logo.png"
 let defaultImagePath = []
 let isNone = "0"
-// 获取当前时间
-const now = new Date();
-// 格式化时间
-const year = now.getFullYear(); // 年份
-const month = now.getMonth() + 1; // 月份，getMonth() 返回的月份是从0开始的，所以需要加1
-const date = now.getDate(); // 日期
-const hours = now.getHours(); // 小时
-const minutes = now.getMinutes(); // 分钟
-const seconds = now.getSeconds(); // 秒钟
 // 补零函数
 function padZero(num) {
   return num < 10 ? '0' + num : num;
@@ -56,6 +47,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    isNone = '0'
     // 将默认图片的fileID转换为临时路径
     defaultImagePath = [defaultImg]
     let promises = defaultImagePath.map(fileID => {
@@ -156,6 +148,15 @@ Page({
   uploadImages: function() {
     const that = this
     // 获取当前设备时间并组合成 yyyy-MM-dd HH:mm:ss 格式
+    // 获取当前时间
+    let now = new Date();
+    // 格式化时间
+    let year = now.getFullYear(); // 年份
+    let month = now.getMonth() + 1; // 月份，getMonth() 返回的月份是从0开始的，所以需要加1
+    let date = now.getDate(); // 日期
+    let hours = now.getHours(); // 小时
+    let minutes = now.getMinutes(); // 分钟
+    let seconds = now.getSeconds(); // 秒钟
     let formattedTime = `${year}-${padZero(month)}-${padZero(date)} ${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
     console.log(formattedTime.toString()); // 打印当前的格式化时间
     let openid = wx.getStorageSync("openid");

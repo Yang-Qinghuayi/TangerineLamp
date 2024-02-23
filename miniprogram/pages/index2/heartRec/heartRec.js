@@ -142,6 +142,13 @@ Page({
       }
     });
   },
+  // 点击查看图片
+  viewImage: function(e) {
+    const src = e.currentTarget.dataset.src; // 假设你已经将图片的 URL 作为 data-src 设置到了 image 标签中
+    wx.previewImage({
+      urls: [src], // 需要预览的图片 HTTP 链接列表
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

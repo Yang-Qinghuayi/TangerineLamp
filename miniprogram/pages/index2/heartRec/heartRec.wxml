@@ -9,111 +9,111 @@
   <view class="question">{{cur_question}}</view>
   <view class="reccontainer">
     <scroll-view scroll-y="true" class="reccontainer3 im_mid">
-      <view class="reccontainer4" data-month="1" bindtap="gotoHeartrecDetail">
-        <view class="month in_mid">1月</view>
-        <view class="answer in_mid">{{commentList[1]}}</view>
+      <view class="reccontainer4">
+        <view class="month in_mid" data-month="1" bindtap="gotoHeartrecDetail">1月</view>
+        <view class="answer in_mid" data-month="1" bindtap="gotoHeartrecDetail">{{commentList[1]}}</view>
         <scroll-view class="picture" scroll-x="true" style="white-space: nowrap;">
           <block wx:for="{{imageList[1]}}" wx:key="*this">
-            <image class="singlepicture" src="{{item}}" style="width: 100%; height: 100%; "></image>
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
           </block>
         </scroll-view>
       </view>
-      <view class="reccontainer4" data-month="2" bindtap="gotoHeartrecDetail">
-        <view class="month in_mid">2月</view>
-        <view class="answer in_mid">{{commentList[2]}}</view>
+      <view class="reccontainer4">
+        <view class="month in_mid" data-month="2" bindtap="gotoHeartrecDetail">2月</view>
+        <view class="answer in_mid" data-month="2" bindtap="gotoHeartrecDetail">{{commentList[2]}}</view>
         <scroll-view class="picture" scroll-x="true" style="white-space: nowrap;">
           <block wx:for="{{imageList[2]}}" wx:key="*this">
-            <image class="singlepicture" src="{{item}}" style="width: 100%; height: 100%; "></image>
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
           </block>
         </scroll-view>
       </view>
-      <view class="reccontainer4" data-month="3" bindtap="gotoHeartrecDetail">
-        <view class="month in_mid">3月</view>
-        <view class="answer in_mid">{{commentList[3]}}</view>
+      <view class="reccontainer4">
+        <view class="month in_mid" data-month="3" bindtap="gotoHeartrecDetail">3月</view>
+        <view class="answer in_mid" data-month="3" bindtap="gotoHeartrecDetail">{{commentList[3]}}</view>
         <scroll-view class="picture" scroll-x="true" style="white-space: nowrap;">
           <block wx:for="{{imageList[3]}}" wx:key="*this">
-            <image class="singlepicture" src="{{item}}" style="width: 100%; height: 100%; "></image>
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
           </block>
         </scroll-view>
       </view>
-      <view class="reccontainer4" data-month="4" bindtap="gotoHeartrecDetail">
-        <view class="month in_mid">4月</view>
-        <view class="answer in_mid">{{commentList[4]}}</view>
+      <view class="reccontainer4">
+        <view class="month in_mid" data-month="4" bindtap="gotoHeartrecDetail">4月</view>
+        <view class="answer in_mid" data-month="4" bindtap="gotoHeartrecDetail">{{commentList[4]}}</view>
         <scroll-view class="picture" scroll-x="true" style="white-space: nowrap;">
           <block wx:for="{{imageList[4]}}" wx:key="*this">
-            <image class="singlepicture" src="{{item}}" style="width: 100%; height: 100%; "></image>
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
           </block>
         </scroll-view>
       </view>
-      <view class="reccontainer4" data-month="5" bindtap="gotoHeartrecDetail">
-        <view class="month in_mid">5月</view>
-        <view class="answer in_mid">{{commentList[5]}}</view>
+      <view class="reccontainer4">
+        <view class="month in_mid" data-month="5" bindtap="gotoHeartrecDetail">5月</view>
+        <view class="answer in_mid" data-month="5" bindtap="gotoHeartrecDetail">{{commentList[5]}}</view>
         <scroll-view class="picture" scroll-x="true" style="white-space: nowrap;">
           <block wx:for="{{imageList[5]}}" wx:key="*this">
-            <image class="singlepicture" src="{{item}}" style="width: 100%; height: 100%; "></image>
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
           </block>
         </scroll-view>
       </view>
-      <view class="reccontainer4" data-month="6" bindtap="gotoHeartrecDetail">
-        <view class="month in_mid">6月</view>
-        <view class="answer in_mid">{{commentList[6]}}</view>
+      <view class="reccontainer4">
+        <view class="month in_mid" data-month="6" bindtap="gotoHeartrecDetail">6月</view>
+        <view class="answer in_mid" data-month="6" bindtap="gotoHeartrecDetail">{{commentList[6]}}</view>
         <scroll-view class="picture" scroll-x="true" style="white-space: nowrap;">
           <block wx:for="{{imageList[6]}}" wx:key="*this">
-            <image class="singlepicture" src="{{item}}" style="width: 100%; height: 100%; "></image>
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
           </block>
         </scroll-view>
       </view>
-      <view class="reccontainer4" data-month="7" bindtap="gotoHeartrecDetail">
-        <view class="month in_mid">7月</view>
-        <view class="answer in_mid">{{commentList[7]}}</view>
+      <view class="reccontainer4">
+        <view class="month in_mid" data-month="7" bindtap="gotoHeartrecDetail">7月</view>
+        <view class="answer in_mid" data-month="7" bindtap="gotoHeartrecDetail">{{commentList[7]}}</view>
         <scroll-view class="picture" scroll-x="true" style="white-space: nowrap;">
           <block wx:for="{{imageList[7]}}" wx:key="*this">
-            <image class="singlepicture" src="{{item}}" style="width: 100%; height: 100%; "></image>
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
           </block>
         </scroll-view>
       </view>
-      <view class="reccontainer4" data-month="8" bindtap="gotoHeartrecDetail">
-        <view class="month in_mid">8月</view>
-        <view class="answer in_mid">{{commentList[8]}}</view>
+      <view class="reccontainer4">
+        <view class="month in_mid" data-month="8" bindtap="gotoHeartrecDetail">8月</view>
+        <view class="answer in_mid" data-month="8" bindtap="gotoHeartrecDetail">{{commentList[8]}}</view>
         <scroll-view class="picture" scroll-x="true" style="white-space: nowrap;">
           <block wx:for="{{imageList[8]}}" wx:key="*this">
-            <image class="singlepicture" src="{{item}}" style="width: 100%; height: 100%; "></image>
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
           </block>
         </scroll-view>
       </view>
-      <view class="reccontainer4" data-month="9" bindtap="gotoHeartrecDetail">
-        <view class="month in_mid">9月</view>
-        <view class="answer in_mid">{{commentList[9]}}</view>
+      <view class="reccontainer4">
+        <view class="month in_mid" data-month="9" bindtap="gotoHeartrecDetail">9月</view>
+        <view class="answer in_mid" data-month="9" bindtap="gotoHeartrecDetail">{{commentList[9]}}</view>
         <scroll-view class="picture" scroll-x="true" style="white-space: nowrap;">
           <block wx:for="{{imageList[9]}}" wx:key="*this">
-            <image class="singlepicture" src="{{item}}" style="width: 100%; height: 100%; "></image>
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
           </block>
         </scroll-view>
       </view>
-      <view class="reccontainer4" data-month="10" bindtap="gotoHeartrecDetail">
-        <view class="month in_mid">10月</view>
-        <view class="answer in_mid">{{commentList[10]}}</view>
+      <view class="reccontainer4">
+        <view class="month in_mid" data-month="10" bindtap="gotoHeartrecDetail">10月</view>
+        <view class="answer in_mid" data-month="10" bindtap="gotoHeartrecDetail">{{commentList[10]}}</view>
         <scroll-view class="picture" scroll-x="true" style="white-space: nowrap;">
           <block wx:for="{{imageList[10]}}" wx:key="*this">
-            <image class="singlepicture" src="{{item}}" style="width: 100%; height: 100%; "></image>
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
           </block>
         </scroll-view>
       </view>
-      <view class="reccontainer4" data-month="11" bindtap="gotoHeartrecDetail">
-        <view class="month in_mid">11月</view>
-        <view class="answer in_mid">{{commentList[11]}}</view>
+      <view class="reccontainer4">
+        <view class="month in_mid" data-month="11" bindtap="gotoHeartrecDetail">11月</view>
+        <view class="answer in_mid" data-month="11" bindtap="gotoHeartrecDetail">{{commentList[11]}}</view>
         <scroll-view class="picture" scroll-x="true" style="white-space: nowrap;">
           <block wx:for="{{imageList[11]}}" wx:key="*this">
-            <image class="singlepicture" src="{{item}}" style="width: 100%; height: 100%; "></image>
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
           </block>
         </scroll-view>
       </view>
-      <view class="reccontainer4" data-month="12" bindtap="gotoHeartrecDetail">
-        <view class="month in_mid">12月</view>
-        <view class="answer in_mid">{{commentList[12]}}</view>
+      <view class="reccontainer4">
+        <view class="month in_mid" data-month="12" bindtap="gotoHeartrecDetail">12月</view>
+        <view class="answer in_mid" data-month="12" bindtap="gotoHeartrecDetail">{{commentList[12]}}</view>
         <scroll-view class="picture" scroll-x="true" style="white-space: nowrap;">
           <block wx:for="{{imageList[12]}}" wx:key="*this">
-            <image class="singlepicture" src="{{item}}" style="width: 100%; height: 100%; "></image>
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
           </block>
         </scroll-view>
       </view>

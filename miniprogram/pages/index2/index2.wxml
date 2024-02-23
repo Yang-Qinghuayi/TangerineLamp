@@ -1,6 +1,6 @@
 <view class="page">
   <!-- 这里是被注释的四个区域 -->
-  <!-- <view class="topcontainer">
+  <view class="topcontainer">
     <view class='.case_title'>
       心灵空间
     </view>
@@ -28,7 +28,7 @@
         </button>
       </view>
     </view>
-  </view> -->
+  </view>
   <view class='.case_title_2'>心灵日记</view>
   <view class="question">{{cur_question}}</view>
   <view class="reccontainer" bindtap="goToheartRec">

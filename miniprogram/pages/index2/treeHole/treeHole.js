@@ -10,8 +10,112 @@ Page({
     treeholeJson: "",
     treeHoleData: "",
     isDeveloper: false,
+    dataList: [],
+    openid:"",
+    isRefreshing: false,
+    isSelf: false
   },
-
+  // 获取数据
+  getData: function() {
+    let that = this;
+    return new Promise((resolve, reject) => {
+      db.collection('index2HeartRoom_textAndpicture')
+        .where({
+          area: that.data.treeholeJson.type
+        })
+        .orderBy('time', 'desc')
+        .limit(20) // 限制返回结果数量
+        .get({
+          success: function(res) {
+            console.log("查询成功", res);
+            that.setData({
+              dataList: res.data
+            });
+            resolve(res.data); // 解析 Promise
+          },
+          fail: function(err) {
+            console.log('查询失败', err);
+            reject(err); // 拒绝 Promise
+          }
+        });
+    });
+  },
+  // 删除数据
+  delete:function(e){
+    let that = this
+    let temp = e.currentTarget.dataset.id
+    console.log("删除",temp)
+    db.collection('index2HeartRoom_textAndpicture').where({
+      _id:temp
+    }).remove({
+      success: function(res){
+        console.log('删除成功', res)
+        that.getData()
+      },
+      fail: function(err) {
+        console.error('删除失败', err);
+      }
+    })
+  },
+  // 点击查看图片
+  viewImage: function(e) {
+    const src = e.currentTarget.dataset.src; // 假设你已经将图片的 URL 作为 data-src 设置到了 image 标签中
+    wx.previewImage({
+      urls: [src], // 需要预览的图片 HTTP 链接列表
+    });
+  },
+  // 下拉刷新数据
+  onRefresh: function() {
+    // 用户触发了下拉刷新操作
+    console.log('开始刷新数据');
+    this.setData({
+      isRefreshing:true,
+      isSelf: false
+    })
+    this.getData().then(() => {
+      // 数据获取完成后
+      this.setData({
+        isRefreshing: false // 停止刷新状态
+      });
+    console.log('结束刷新数据');
+    }).catch((err) => {
+      // 处理错误情况
+      console.error(err);
+    });    
+  },
+  // 仅查看自己发布的记录
+  checkboxChange: function() {
+    if(this.data.isSelf){
+      this.setData({
+        isSelf: false
+      })
+      this.getData();
+    }
+    else{
+    this.setData({
+      isSelf: true
+    })
+    let that =this;
+    db.collection('index2HeartRoom_textAndpicture')
+    .where({
+      area: that.data.treeholeJson.type,
+      _openid: that.data.openid
+    })
+    .orderBy('time','desc')
+    .limit(20) // 限制返回结果数量
+    .get({
+      success: function(res){
+        console.log("查询成功", res)
+        that.setData({
+          dataList:res.data
+        })
+      },
+      fail: function(err) {
+        console.log('查询失败', err);
+      }
+    });
+  }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -29,13 +133,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getTreeHoleData()
-    console.log(this.data.treeholeJson.color)
+    this.setData({
+      openid:wx.getStorageSync("openid")
+    })
+    this.getData()
+    // this.getTreeHoleData()
+    // console.log(this.data.treeholeJson.color)
     wx.setNavigationBarColor({
       frontColor: "#ffffff",
       backgroundColor: this.data.treeholeJson.color,
     })
-    this.getMaxCount()
+    // this.getMaxCount()
   },
 
   /**
