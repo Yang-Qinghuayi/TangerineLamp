@@ -21,6 +21,7 @@ Page({
       .where({
         _openid: app.globalData.openid,
       })
+      .get()
       .then((res) => {
         if (!res) {
           db.collection("user")
