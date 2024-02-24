@@ -116,6 +116,15 @@ Page({
     });
   }
   },
+  // 跳转到某条动态的点赞与评论页面
+  gotoLikeAndComment: function(e){
+    let temp = e.currentTarget.dataset.id
+    console.log("马上：",temp)
+    let tempurl = "/pages/index2/heartRoomLikeComment/heartRoomLikeAndComment?id=" + temp
+    wx.navigateTo({
+      url: tempurl
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

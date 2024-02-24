@@ -1,0 +1,30 @@
+<!--pages/index2/heartRoomLikeComment/heartRommLikeAndComment.wxml-->
+<!-- <text>pages/index2/heartRoomLikeComment/heartRoomLikeAndComment.wxml</text> -->
+<view class="content">
+  <view class="user_info in_mid">
+    <image class="user_info_pic in_mid" src="{{mybasicdata.avatar}}"></image>
+    <text class="user_info_nickname in_mid">{{mybasicdata.nickname}}</text>
+  </view>
+  <view class="textAndpic">
+    <view wx:if="{{mybasicdata.text.length!=0}}" class="text">{{mybasicdata.text}}</view>
+    <scroll-view wx:if="{{mybasicdata.text.length!=0&&mybasicdata.isNone=='0'}}" class="content_imageList" scroll-x="true" style="white-space: nowrap;">
+        <block wx:for="{{mybasicdata.picID}}" wx:key="*this">
+          <view class="image-container">
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
+          </view>
+        </block>
+    </scroll-view>
+    <scroll-view wx:if="{{mybasicdata.text.length==0&&mybasicdata.isNone=='0'}}" class="content_imageList" scroll-x="true" style="white-space: nowrap;">
+        <block wx:for="{{mybasicdata.picID}}" wx:key="*this">
+          <view class="image-container">
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
+          </view>
+        </block>
+    </scroll-view>
+  </view>
+  <view class="rest">
+    <!-- <text class="areaAndtime in_mid"># {{mybasicdata.area}} # {{mybasicdata.time}}</text> -->
+    <text class="area in_mid"># {{mybasicdata.area}} #</text>
+    <text class="time in_mid">{{mybasicdata.time}}</text>
+  </view>
+</view>

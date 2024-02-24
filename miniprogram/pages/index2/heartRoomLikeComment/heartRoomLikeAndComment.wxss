@@ -1,0 +1,75 @@
+/* pages/index2/heartRoomLikeComment/heartRoomLikeAndComment.wxss */
+/* 子元素居中通用样式设置 */
+.in_mid{
+  display: flex;
+  align-items: center;
+}
+.content{
+  height: auto;
+  width: 100%;
+  /* background-color:aqua; */
+}
+.user_info{
+  height: 140rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  /* background-color: bisque; */
+}
+.user_info_pic {
+  height: 70%;
+  width: 14%;
+  border-radius: 50%;
+  /* background-color: blue; */
+  margin-right: 10rpx;
+}
+.user_info_nickname{
+  height: 70%;
+  width: 70%;
+  overflow-x: auto;
+  font-weight: bold;
+  font-size: 40rpx;
+  white-space: nowrap;
+  /* background-color: brown; */
+}
+.textAndpic{
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.text{
+  height: auto;
+  width: 100%;
+}
+.content_imageList{
+  height: 160rpx;
+  width: 100%;
+  /* background-color: cornsilk; */
+}
+.image-container {
+  position: relative;
+  display: inline-block;
+  width: 23%;
+  height: 100%;
+  margin-right: 10rpx;
+  overflow: hidden; /* 隐藏超出容器的部分 */
+}
+.rest{
+  height: 50rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  /* background-color: chartreuse; */
+}
+.area{
+  height: 100%;
+  width: 40%;
+  justify-content: center;
+}
+.time{
+  height: 100%;
+  width: 60%;
+  justify-content: center;
+  text-align: right;
+}

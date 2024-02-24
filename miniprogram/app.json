@@ -82,7 +82,8 @@
     "pages/index0/movie/movieDetail/movieDetail",
     "pages/index2/heartRec/heartRec",
     "pages/index2/heartRecDetail/heartRecDetail",
-    "pages/index2/Publish/Publish"
+    "pages/index2/Publish/Publish",
+    "pages/index2/heartRoomLikeComment/heartRoomLikeAndComment"
   ],
   "window": {
     "backgroundTextStyle": "light",

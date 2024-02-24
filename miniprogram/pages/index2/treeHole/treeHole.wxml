@@ -16,13 +16,13 @@
 </view>
 <scroll-view scroll-y="true" style="height: 1210rpx;" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{isRefreshing}}" >
   <view class="list-item" wx:for="{{dataList}}" wx:key="unique" wx:for-item="item" wx:for-index="index">
-  <view class = 'user_info'>
+  <view class = 'user_info' bindtap="gotoLikeAndComment" data-id="{{item._id}}">
     <text class="user_info_nickname">{{item.nickname}}</text>
     <image class="user_info_pic in_mid" style="background-color: {{treeholeJson.color}};" src="{{item.avatar}}"></image>
   </view>
   <view class='content'>
-    <text wx:if="{{item.isNone=='1'}}" class='content_text' style="height: 85%;">{{item.text}}</text>
-    <text wx:if="{{item.text.length!=0&&item.isNone=='0'}}" class='content_text'>{{item.text}}</text>
+    <text wx:if="{{item.isNone=='1'}}" class='content_text' style="height: 85%;" bindtap="gotoLikeAndComment" data-id="{{item._id}}">{{item.text}}</text>
+    <text wx:if="{{item.text.length!=0&&item.isNone=='0'}}" class='content_text' bindtap="gotoLikeAndComment" data-id="{{item._id}}">{{item.text}}</text>
     <scroll-view wx:if="{{item.text.length!=0&&item.isNone=='0'}}" class="content_imageList" scroll-x="true" style="white-space: nowrap;">
         <block wx:for="{{item.picID}}" wx:key="*this">
           <view class="image-container">
@@ -37,7 +37,7 @@
           </view>
         </block>
     </scroll-view>
-    <text class='time'>{{item.time}}</text>
+    <text class='time' bindtap="gotoLikeAndComment" data-id="{{item._id}}">{{item.time}}</text>
   </view>
   <view wx:if="{{item._openid==openid}}" class='delete'>
     <image data-id="{{item._id}}" src= "cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/heartRoomPic/delete.png" style="width: 100%; height: 20%;" bindtap="delete"></image>
