@@ -73,3 +73,144 @@
   justify-content: center;
   text-align: right;
 }
+.LikeAndComment{
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.count{
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  /* background-color: aqua; */
+}
+.like{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 50%;
+}
+.comment{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 50%;
+}
+.number{
+  font-weight: bold;
+  font-size: 30rpx;
+}
+.img {
+  height: 70%;
+  width: 20%;
+  /* background-color: blue; */
+}
+.commentInput{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0; /* 定位到底部 */
+  height: 70px; /* 或根据需要设置高度 */
+  background-color: burlywood;
+  display: flex;
+  flex-direction: row;
+}
+.mycomment{
+  height: 47%;
+  width: 75%;
+  margin: 3%;
+  background-color: #1f7847;
+  color:coral;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.send{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 47%;
+  background-color: #ff9933;
+  margin: 3%;
+  color: #ffffff;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.custom-toast {
+  background-color: red; /* 设置为绿色背景 */
+  color: #ff9933;
+  font-size: 40rpx;
+  font-weight: bold;
+  padding: 10px;
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+}
+.default{
+  font-weight: bold;
+  font-size: 40rpx;
+  color:#ff9933;
+  justify-content: center;
+}
+.list-item {
+  /* 定义列表项的样式 */
+  height: auto;
+  width: 100%;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.comment_user_info{
+  height: 75rpx;
+  width: 100%;
+  /* background-color: cyan; */
+  display: flex;
+  flex-direction: row;
+}
+.comment_user_info_pic{
+  height: 70%;
+  width: 7%;
+  border-radius: 50%;
+  margin-right: 5rpx;
+  margin-left: 10rpx;
+  margin-top: 5rpx;
+}
+.comment_user_info_nickname{
+  height: 70%;
+  width: 70%;
+  overflow-x: auto;
+  font-weight: bold;
+  font-size: 25rpx;
+  white-space: nowrap;
+  /* background-color: darkblue; */
+}
+.comment_content{
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.comment_content_text{
+  height: auto;
+  width: 90%;
+  /* background-color: darkgoldenrod; */
+  margin-left: 65rpx;
+}
+.comment_time{
+  height: auto;
+  width: auto;
+  margin-left: 430rpx;
+}
+.bottom_text{
+  height: 40rpx;
+  width: 100%;
+  font-size: 40rpx;
+  font-weight: bold;
+  justify-content: center;
+}
