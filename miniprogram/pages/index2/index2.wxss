@@ -27,7 +27,7 @@
 .topcontainer {
   width: 100%;
   background-color: #ffffff;
-  border-radius: 2%;
+  border-radius: 1px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,8 +106,9 @@
   background-color: #fff3eb;
   margin-top: 10rpx;
   margin-bottom: 10rpx;
-  border-radius: 30rpx;
+  border-radius: 16rpx;
   color: #ff9933;
+  padding: 6px;
   font-size: 60rpx;
   font-weight: bold;
 }

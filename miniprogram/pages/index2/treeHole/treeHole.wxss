@@ -1,118 +1,133 @@
-page{
-  background: #efefef;
+.timeDelete {
+  display: flex;
 }
-/* 子元素居中通用样式设置 */
-.in_mid{
+.publish {
+  margin-right: 30rpx;
+  height: 46rpx;
+  width: 46rpx;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+  /* background-color: #f2f2f6; */
+  font-size: 30rpx;
+  font-weight: bold;
+  margin: 10rpx;
+}
+.header :nth-child(1) {
+  margin: 10rpx;
+  font-size: 40rpx;
+}
+.upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80rpx;
+  margin: auto;
+  color: #efefef;
+  /* margin-bottom: 10rpx; */
+  width: 80rpx;
+  height: 80rpx;
+  padding-right: 3rpx;
+  padding-bottom: 4rpx;
+  border-radius: 50%;
+}
+
+.in_mid {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .list-item {
-  /* 定义列表项的样式 */
-  height: 250rpx;
-  width: 100%;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  margin: 16rpx 10rpx;
   display: flex;
   flex-direction: row;
 }
-.user_info{
+.user_info {
   height: 100%;
-  width: 24%;
-  display: flex;
-  flex-direction: column;
-  /* background-color: brown; */
 }
-.user_info_nickname{
-  height: 17%;
-  width: 100%;
+.user_info_nickname {
+  color: #4c6c7e;
+  margin-top: 20rpx;
   overflow-x: auto;
-  font-weight: bold;
-  font-size: 30rpx;
+  font-weight: 560;
+  font-size: 34rpx;
   white-space: nowrap;
 }
 .user_info_pic {
-  height: 73%;
-  width: 100%;
-  border-radius: 50%;
+  margin: 15rpx 16rpx 0 20rpx;
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 18rpx;
 }
-.content{
-  height: 100%;
-  width: 70%;
-  /* background-color: burlywood; */
+.content {
+  width: 76%;
   display: flex;
   flex-direction: column;
 }
-.content_text{
-  height: 35%;
-  width: 100%;
-  /* background-color: chartreuse; */
-  overflow-y: auto;
+.content_text {
+  font-size: 36rpx;
+  margin: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.content_imageList{
-  height: 50%;
-  width: 100%;
-  /* background-color: cornsilk; */
+.content_imageList {
+  margin: 10rpx;
 }
 .image-container {
   position: relative;
   display: inline-block;
-  width: 23%;
-  height: 100%;
+  width: 180rpx;
+  height: 180rpx;
   margin-right: 10rpx;
-  overflow: hidden; /* 隐藏超出容器的部分 */
+  overflow: hidden;
 }
-.delete{
-  height: 100%;
-  width: 6%;
-  /* background-color: crimson; */
+.delete {
+  height: 26rpx;
+  width: 26rpx;
 }
-.time{
-  height: 10%;
-  width: 100%;
-  text-align: right;
+.time {
+  /* height: 10%; */
+  color: #666666;
+  font-size: 24rpx;
+  text-align: left;
+  margin-right: 20rpx;
+  margin-bottom: 30rpx;
 }
-.bottom_text{
+.bottom_text {
   height: 40rpx;
   width: 100%;
-  font-size: 40rpx;
-  font-weight: bold;
+  font-size: 30rpx;
+  color: #666;
+
 }
-.style{
+.style {
   font-size: 35rpx;
   font-weight: bold;
 }
 
-/*************************************标题部分*************************************/
-/* 顶部装载标题的空白容器 */
-.topcontainer{
+.mottocontainer {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   height: 100rpx;
-  background-color: #fff;
-  border-radius: 2%;
+  align-items: center;
 }
-/*标题*/
-.case_title{
-  font-size: 50rpx;
-  font-weight: bold;
-  height: 100%;
+.checkbox {
+  height: 100rpx;
+  margin-left: 20rpx;
 }
-.mottocontainer{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 50rpx;
+.checkbox text {
+  margin-top: 5rpx;
 }
-.little_case_title{
-  font-size: 40rpx;
-  font-weight: bold;
-  height: 100%;
-}
+
 /***********************************编辑入口***********************************/
-@import "/pages/index2/addButton/addButton";
+
 /***********************************正文部分***********************************/
 /* 单个树洞的容器 */
 .singleBlock {
@@ -155,8 +170,8 @@ page{
   margin-left: 10rpx;
 }
 /* 树洞主人的昵称 */
-.nick_name{
-  font-family: '微软雅黑';
+.nick_name {
+  font-family: "微软雅黑";
   font-weight: bold;
   display: flex;
   font-size: 28rpx;
@@ -169,14 +184,16 @@ page{
   font-size: 25rpx;
 }
 /* 删除按钮、私聊按钮容器的样式 */
- .deleteImg_container, .chatIcon_container{
+.deleteImg_container,
+.chatIcon_container {
   width: 8%;
   height: 100%;
   justify-content: center;
   align-items: center;
 }
 /* 删除按钮、私聊按钮的标准样式 */
-.deleteImg, .chatIcon{
+.deleteImg,
+.chatIcon {
   width: 40rpx;
   height: 40rpx;
   margin-right: 10rpx;
@@ -188,7 +205,7 @@ page{
   font-size: 100%;
   position: relative;
   color: black;
-  font-family: '微软雅黑';
+  font-family: "微软雅黑";
   font-weight: bold;
 }
 /* 单个树洞的预览内容容器 */
@@ -203,7 +220,7 @@ page{
 .single_body {
   color: rgb(32, 27, 27);
   font-size: 26rpx;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   display: -webkit-box;
   word-break: break-all;
   -webkit-box-orient: vertical;

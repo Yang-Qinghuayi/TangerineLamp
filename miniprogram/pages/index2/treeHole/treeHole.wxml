@@ -1,51 +1,57 @@
 <!-- 日期转字符串的wxs函数 -->
 <wxs module="filter" src="/utils/dateToStr_treehole.wxs" />
-
 <!-- 标题部分 -->
-<view class='topcontainer in_mid'>
-  <text class='case_title in_mid' style="color:{{treeholeJson.color}}">心灵空间 | {{treeholeJson.type}}</text>
+<view class='header'>
+  <text style="color:{{treeholeJson.color}}">{{treeholeJson.type}}</text>
+  <text style="color:{{treeholeJson.color}}">{{treeholeJson.motto}}</text>
 </view>
 <!-- 小字说明部分 -->
-<view class = 'mottocontainer'>
+<view class='mottocontainer'>
   <checkbox-group bindchange="checkboxChange">
-    <label class="checkbox" style="margin-right: 55rpx;">
-     <checkbox checked="{{isSelf}}"/><text class="style" style="color: {{treeholeJson.color}};">仅查看自己</text>
+    <label class="checkbox">
+      <checkbox checked="{{isSelf}}" />
+      <text style="color: {{treeholeJson.color}};">仅查看自己</text>
     </label>
   </checkbox-group>
-  <text class='little_case_title in_mid' style="color:{{treeholeJson.color}}">{{treeholeJson.motto}}</text>
+  <image style="color: {{treeholeJson.color}};" bindtap="gotoPersonalEditor" class='publish' data-id="{{item._id}}" src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM4NTgyMjMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1ub3RlYm9vay1wZW4iPjxwYXRoIGQ9Ik0xMy40IDJINmEyIDIgMCAwIDAtMiAydjE2YTIgMiAwIDAgMCAyIDJoMTJhMiAyIDAgMCAwIDItMnYtNy40Ii8+PHBhdGggZD0iTTIgNmg0Ii8+PHBhdGggZD0iTTIgMTBoNCIvPjxwYXRoIGQ9Ik0yIDE0aDQiLz48cGF0aCBkPSJNMiAxOGg0Ii8+PHBhdGggZD0iTTE4LjQgMi42YTIuMTcgMi4xNyAwIDAgMSAzIDNMMTYgMTFsLTQgMSAxLTRaIi8+PC9zdmc+'></image>
 </view>
-<scroll-view scroll-y="true" style="height: 1210rpx;" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{isRefreshing}}" >
+<!-- 树洞内容部分 -->
+<scroll-view scroll-y="true" style="height: 86vh; background-color: #fff" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{isRefreshing}}">
   <view class="list-item" wx:for="{{dataList}}" wx:key="unique" wx:for-item="item" wx:for-index="index">
-  <view class = 'user_info' bindtap="gotoLikeAndComment" data-id="{{item._id}}">
-    <text class="user_info_nickname">{{item.nickname}}</text>
-    <image class="user_info_pic in_mid" style="background-color: {{treeholeJson.color}};" src="{{item.avatar}}"></image>
-  </view>
-  <view class='content'>
-    <text wx:if="{{item.isNone=='1'}}" class='content_text' style="height: 85%;" bindtap="gotoLikeAndComment" data-id="{{item._id}}">{{item.text}}</text>
-    <text wx:if="{{item.text.length!=0&&item.isNone=='0'}}" class='content_text' bindtap="gotoLikeAndComment" data-id="{{item._id}}">{{item.text}}</text>
-    <scroll-view wx:if="{{item.text.length!=0&&item.isNone=='0'}}" class="content_imageList" scroll-x="true" style="white-space: nowrap;">
+    <!-- 头像 -->
+    <view class='user_info' bindtap="gotoLikeAndComment" data-id="{{item._id}}">
+      <image class="user_info_pic" style="background-color: {{treeholeJson.color}};" src="{{item.avatar}}"></image>
+    </view>
+    <!-- 内容 -->
+    <view class='content'>
+      <text class="user_info_nickname">{{item.nickname}}</text>
+      <view wx:if="{{item.isNone=='1'}}" class='content_text' bindtap="gotoLikeAndComment" data-id="{{item._id}}">
+        {{item.text}}
+      </view>
+      <!-- 和图片一起出现 -->
+      <view wx:if="{{item.text.length!=0&&item.isNone=='0'}}" class='content_text' bindtap="gotoLikeAndComment" data-id="{{item._id}}">
+        {{item.text}}
+      </view>
+      <scroll-view wx:if="{{item.text.length!=0&&item.isNone=='0'}}" class="content_imageList" scroll-x="true" style="white-space: nowrap;">
         <block wx:for="{{item.picID}}" wx:key="*this">
           <view class="image-container">
-            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
+            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; "></image>
           </view>
         </block>
-    </scroll-view>
-    <scroll-view wx:if="{{item.text.length==0&&item.isNone=='0'}}" class="content_imageList" scroll-x="true" style="white-space: nowrap;height: 85%;">
+      </scroll-view>
+      <!-- 只有图片的情况 -->
+      <scroll-view wx:if="{{item.text.length==0&&item.isNone=='0'}}" class="content_imageList" scroll-x="true" style="white-space: nowrap;height: 85%;">
         <block wx:for="{{item.picID}}" wx:key="*this">
           <view class="image-container" style="width: 40%;">
             <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
           </view>
         </block>
-    </scroll-view>
-    <text class='time' bindtap="gotoLikeAndComment" data-id="{{item._id}}">{{item.time}}</text>
+      </scroll-view>
+      <view>
+        <text class='time' bindtap="gotoLikeAndComment" data-id="{{item._id}}">{{item.time}}</text>
+        <image wx:if="{{item._openid==openid}}" class='delete' data-id="{{item._id}}" src="cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/heartRoomPic/trash.png" bindtap="delete"></image>
+      </view>
+    </view>
   </view>
-  <view wx:if="{{item._openid==openid}}" class='delete'>
-    <image data-id="{{item._id}}" src= "cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/heartRoomPic/delete.png" style="width: 100%; height: 20%;" bindtap="delete"></image>
-  </view>
-  </view>
-  <text class="bottom_text in_mid" style="color: {{treeholeJson.color}};">到底啦~</text>
+  <text class="bottom_text in_mid" >到底啦~</text>
 </scroll-view>
-
-<!-- 写树洞的按钮 -->
-<button class="circle in_mid" bindtap="gotoPersonalEditor" style="width:80rpx;height: 80rpx;padding-top: 6rpx;background-color:{{treeholeJson.color}}">+</button>
-<!--这个“+”是圆形按钮里面的内容-->
