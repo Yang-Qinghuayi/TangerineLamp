@@ -1,5 +1,3 @@
-<!--pages/index2/heartRoomLikeComment/heartRommLikeAndComment.wxml-->
-<!-- <text>pages/index2/heartRoomLikeComment/heartRoomLikeAndComment.wxml</text> -->
 <view class="content">
   <view class="user_info in_mid">
     <image class="user_info_pic in_mid" src="{{mybasicdata.avatar}}"></image>
@@ -8,24 +6,23 @@
   <view class="textAndpic">
     <view wx:if="{{mybasicdata.text.length!=0}}" class="text">{{mybasicdata.text}}</view>
     <scroll-view wx:if="{{mybasicdata.text.length!=0&&mybasicdata.isNone=='0'}}" class="content_imageList" scroll-x="true" style="white-space: nowrap;">
-        <block wx:for="{{mybasicdata.picID}}" wx:key="*this">
-          <view class="image-container">
-            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
-          </view>
-        </block>
+      <block wx:for="{{mybasicdata.picID}}" wx:key="*this">
+        <view class="image-container">
+          <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; "></image>
+        </view>
+      </block>
     </scroll-view>
     <scroll-view wx:if="{{mybasicdata.text.length==0&&mybasicdata.isNone=='0'}}" class="content_imageList" scroll-x="true" style="white-space: nowrap;">
-        <block wx:for="{{mybasicdata.picID}}" wx:key="*this">
-          <view class="image-container">
-            <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></image>
-          </view>
-        </block>
+      <block wx:for="{{mybasicdata.picID}}" wx:key="*this">
+        <view class="image-container">
+          <image data-src="{{item}}" src="{{item}}" mode="aspectFill" bindtap="viewImage" style="width: 100%; height: 100%; "></image>
+        </view>
+      </block>
     </scroll-view>
   </view>
   <view class="rest">
-    <!-- <text class="areaAndtime in_mid"># {{mybasicdata.area}} # {{mybasicdata.time}}</text> -->
-    <text class="area in_mid"># {{mybasicdata.area}} #</text>
-    <text class="time in_mid">{{mybasicdata.time}}</text>
+    <!-- <text class="area in_mid"># {{mybasicdata.area}} #</text> -->
+    <text class="time">{{mybasicdata.time}}</text>
   </view>
 </view>
 <view wx:if="{{!mybasicdata.isPrivate}}" class="LikeAndComment">
@@ -40,24 +37,26 @@
       <text class="number">{{commentnum}}</text>
     </view>
   </view>
-  <text style="font-weight: bold; font-size: 45rpx;margin-left: 30rpx;">|评论留言</text>
+  <!-- 评论部分 -->
+  <text style="font-weight: bold;color:#666; font-size: 45rpx;margin-left: 30rpx;">评论留言</text>
   <text wx:if="{{!mybasicdata.isComment}}" class="default in_mid">此条树洞不能被评论喔~</text>
-<scroll-view wx:if="{{mybasicdata.isComment}}" scroll-y="true" style="height: auto; margin-top: 10rpx" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{isRefreshing}}" >
-  <view class="list-item" wx:for="{{commentList}}" wx:key="unique" wx:for-item="item" wx:for-index="index">
-  <view class = 'comment_user_info'>
-    <image class="comment_user_info_pic in_mid" src="{{item.avatar}}"></image>
-    <text class="comment_user_info_nickname in_mid">{{item.nickname}}</text>
-    <image wx:if="{{item._openid==mybasicdata._openid}}" data-id="{{item._id}}" src= "cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/heartRoomPic/delete.png" style="width: 6%; height: 70%;margin-left: 115rpx;" bindtap="delete"></image>
-  </view>
-  <view class='comment_content'>
-    <text class='comment_content_text'>{{item.comment}}</text>
-    <text class='comment_time'>{{item.time}}</text>
-  </view>
-  </view>
-  <text class="bottom_text in_mid" style="color: #ff9933;">到底啦~</text>
-</scroll-view>
+  <scroll-view wx:if="{{mybasicdata.isComment}}" scroll-y="true" style="height: auto; margin-top: 10rpx" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{isRefreshing}}">
+    <view class="list-item" wx:for="{{commentList}}" wx:key="unique" wx:for-item="item" wx:for-index="index">
+      <image class="comment_user_info_pic" src="{{item.avatar}}"></image>
+      <view class='comment_content'>
+        <text class="comment_user_info_nickname ">{{item.nickname}}</text>
+        <text class='comment_content_text'>{{item.comment}}</text>
+        <view>
+          <text class='comment_time'>{{item.time}}</text>
+          <image bindtap="delete" class="delete" wx:if="{{item._openid==mybasicdata._openid}}" data-id="{{item._id}}" src="cloud://kiss-2g4jze0q248cf98b.6b69-kiss-2g4jze0q248cf98b-1304921980/heartRoomPic/trash.png"></image>
+        </view>
+      </view>
+    </view>
+    <!-- <text class="bottom_text in_mid" style="color: #ff9933;">到底啦~</text> -->
+  </scroll-view>
+  <!-- 评论部分 -->
   <view wx:if="{{mybasicdata.isComment}}" class="commentInput">
-    <textarea class="mycomment" value="{{comment}}" maxlength="-1" auto-focus bindinput="bindInput" placeholder="此刻的想法..." placeholder-style="color: #ffffff;  font-size: 40rpx font-weight:bold;"></textarea>
+    <textarea class="mycomment" value="{{comment}}" maxlength="-1" auto-focus bindinput="bindInput" placeholder="此刻的想法..." ></textarea>
     <view class='send' bindtap="sendComment">发 送</view>
   </view>
 </view>

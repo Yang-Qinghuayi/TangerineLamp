@@ -1,15 +1,15 @@
 /* pages/index2/heartRoomLikeComment/heartRoomLikeAndComment.wxss */
 /* 子元素居中通用样式设置 */
-.in_mid{
+.in_mid {
   display: flex;
   align-items: center;
 }
-.content{
+.content {
   height: auto;
   width: 100%;
   /* background-color:aqua; */
 }
-.user_info{
+.user_info {
   height: 140rpx;
   width: 100%;
   display: flex;
@@ -17,13 +17,12 @@
   /* background-color: bisque; */
 }
 .user_info_pic {
-  height: 70%;
-  width: 14%;
-  border-radius: 50%;
-  /* background-color: blue; */
-  margin-right: 10rpx;
+  margin: 15rpx 16rpx 0 20rpx;
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 18rpx;
 }
-.user_info_nickname{
+.user_info_nickname {
   height: 70%;
   width: 70%;
   overflow-x: auto;
@@ -32,82 +31,82 @@
   white-space: nowrap;
   /* background-color: brown; */
 }
-.textAndpic{
-  height: auto;
+.textAndpic {
+  height: 30vh;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
-.text{
-  height: auto;
+.text {
+  margin: 10rpx;
+  font-size: 40rpx;
+  height: 120rpx;
+  font-weight: bold;
   width: 100%;
 }
-.content_imageList{
-  height: 160rpx;
-  width: 100%;
-  /* background-color: cornsilk; */
-}
+
 .image-container {
   position: relative;
   display: inline-block;
-  width: 23%;
-  height: 100%;
+  width: 280rpx;
+  height: 280rpx;
   margin-right: 10rpx;
-  overflow: hidden; /* 隐藏超出容器的部分 */
+  overflow: hidden;
 }
-.rest{
+.rest {
   height: 50rpx;
   width: 100%;
   display: flex;
   flex-direction: row;
   /* background-color: chartreuse; */
 }
-.area{
+.area {
   height: 100%;
   width: 40%;
   justify-content: center;
 }
-.time{
-  height: 100%;
-  width: 60%;
-  justify-content: center;
-  text-align: right;
+.time {
+  color: #666666;
+  font-size: 24rpx;
+  text-align: left;
+  margin-right: 20rpx;
+  margin-bottom: 30rpx;
 }
-.LikeAndComment{
+.LikeAndComment {
   height: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
-.count{
+.count {
   height: 100rpx;
   width: 100%;
   display: flex;
   flex-direction: row;
   /* background-color: aqua; */
 }
-.like{
+.like {
   display: flex;
   flex-direction: column;
   height: auto;
   width: 50%;
 }
-.comment{
+.comment {
   display: flex;
   flex-direction: column;
   height: auto;
   width: 50%;
 }
-.number{
+.number {
   font-weight: bold;
-  font-size: 30rpx;
+  font-size: 20rpx;
 }
 .img {
-  height: 70%;
-  width: 20%;
+  height: 36rpx;
+  width: 36rpx;
   /* background-color: blue; */
 }
-.commentInput{
+.commentInput {
   position: fixed;
   left: 0;
   right: 0;
@@ -117,29 +116,32 @@
   display: flex;
   flex-direction: row;
 }
-.mycomment{
+.mycomment {
   height: 47%;
   width: 75%;
   margin: 3%;
-  background-color: #1f7847;
-  color:coral;
+  background-color: #e8e3e3;
+  border-radius: 10rpx;
+  color: coral;
   font-size: 40rpx;
-  font-weight: bold;
+  padding: 5rpx ;
+  padding-top: 16rpx;
 }
-.send{
+.send {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20%;
-  height: 47%;
+  width: 150rpx;
+  height: 80rpx;
   background-color: #ff9933;
   margin: 3%;
   color: #ffffff;
+  border-radius: 14rpx;
   font-size: 40rpx;
   font-weight: bold;
 }
 .custom-toast {
-  background-color: red; /* 设置为绿色背景 */
+  /* background-color: red; 设置为绿色背景 */
   color: #ff9933;
   font-size: 40rpx;
   font-weight: bold;
@@ -150,64 +152,53 @@
   transform: translateX(-50%);
   border-radius: 5px;
 }
-.default{
+.default {
   font-weight: bold;
   font-size: 40rpx;
-  color:#ff9933;
+  color: #ff9933;
   justify-content: center;
 }
 .list-item {
-  /* 定义列表项的样式 */
-  height: auto;
-  width: 100%;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-}
-.comment_user_info{
-  height: 75rpx;
-  width: 100%;
-  /* background-color: cyan; */
+  /* margin: 16rpx 10rpx; */
   display: flex;
   flex-direction: row;
 }
-.comment_user_info_pic{
-  height: 70%;
-  width: 7%;
-  border-radius: 50%;
-  margin-right: 5rpx;
-  margin-left: 10rpx;
-  margin-top: 5rpx;
+
+.comment_user_info_pic {
+  height: 100rpx;
+  width: 120rpx;
+  border-radius: 18rpx;
+  margin: auto 20rpx;
 }
-.comment_user_info_nickname{
-  height: 70%;
-  width: 70%;
+.comment_user_info_nickname {
+  margin: 20rpx 0;
+  color: #478991;
   overflow-x: auto;
   font-weight: bold;
   font-size: 25rpx;
   white-space: nowrap;
-  /* background-color: darkblue; */
 }
-.comment_content{
-  height: auto;
+.comment_content {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
-.comment_content_text{
-  height: auto;
-  width: 90%;
-  /* background-color: darkgoldenrod; */
-  margin-left: 65rpx;
+.comment_content_text {
+  height: 50rpx;
 }
-.comment_time{
-  height: auto;
-  width: auto;
-  margin-left: 430rpx;
+.delete {
+  height: 26rpx;
+  width: 26rpx;
 }
-.bottom_text{
+.comment_time {
+  /* height: 10%; */
+  color: #666666;
+  font-size: 24rpx;
+  text-align: left;
+  margin-right: 20rpx;
+  margin-bottom: 30rpx;
+}
+.bottom_text {
   height: 40rpx;
   width: 100%;
   font-size: 40rpx;
