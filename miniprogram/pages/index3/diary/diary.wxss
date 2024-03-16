@@ -2,6 +2,24 @@
 page {
   background: white;
 }
+
+.header {
+  padding: 41rpx;
+  position: relative;
+}
+
+.title {
+  font-size: 46rpx;
+  font-weight: bold;
+  color: #ff9933;
+}
+
+.des {
+  font-size: 32rpx;
+  color: #aaa;
+  line-height: 67rpx;
+}
+
 .topmenu {
   padding: 41rpx;
   position: relative;
@@ -49,15 +67,15 @@ page {
   text-overflow: ellipsis;
   margin-top: 30rpx;
   margin-left: 5rpx;
-  font-family: '微软雅黑';
+  font-family: "微软雅黑";
   font-size: 40rpx;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
 }
 .passage-des {
   color: #797676;
-  font-size: 25rpx;
-  margin-top: 15rpx;
+  font-size: 30rpx;
+  margin-top: 20rpx;
   margin-left: 5rpx;
   overflow: hidden;
   text-overflow: ellipsis;

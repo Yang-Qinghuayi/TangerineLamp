@@ -20,73 +20,79 @@
     </button>
   </view>
   <view class='case_title'>心灵日记</view>
-  <view class="question">{{cur_question}}</view>
-  <view class="reccontainer" bindtap="goToheartRec">
-    <!-- 左边部分 -->
-    <view class="reccontainer1">
-      <picker-view class="reccontainer3" value="{{valueYear}}" bindchange="bindChangeYear">
-        <picker-view-column>
-          <view wx:for="{{years}}" wx:key="{{years}}" class="case_info_year in_mid">{{item}}年</view>
-        </picker-view-column>
-      </picker-view>
-      <picker-view class="reccontainer7" value="{{valueDate}}" bindchange="bindChangeDate">
-        <picker-view-column>
-          <view wx:for="{{dates}}" wx:key="{{dates}}" class="case_info_date in_mid">{{item}}日</view>
-        </picker-view-column>
-      </picker-view>
-    </view>
-    <!-- 右边部分 -->
-    <view class="reccontainer2">
-      <scroll-view scroll-y="true" class="reccontainer5">
-        <view class="reccontainer6">
-          <view class="month in_mid">1月</view>
-          <view class="answer in_mid">{{commentList[1]}}</view>
-        </view>
-        <view class="reccontainer6">
-          <view class="month in_mid">2月</view>
-          <view class="answer in_mid">{{commentList[2]}}</view>
-        </view>
-        <view class="reccontainer6">
-          <view class="month in_mid">3月</view>
-          <view class="answer in_mid">{{commentList[3]}}</view>
-        </view>
-        <view class="reccontainer6">
-          <view class="month in_mid">4月</view>
-          <view class="answer in_mid">{{commentList[4]}}</view>
-        </view>
-        <view class="reccontainer6">
-          <view class="month in_mid">5月</view>
-          <view class="answer in_mid">{{commentList[5]}}</view>
-        </view>
-        <view class="reccontainer6">
-          <view class="month in_mid">6月</view>
-          <view class="answer in_mid">{{commentList[6]}}</view>
-        </view>
-        <view class="reccontainer6">
-          <view class="month in_mid">7月</view>
-          <view class="answer in_mid">{{commentList[7]}}</view>
-        </view>
-        <view class="reccontainer6">
-          <view class="month in_mid">8月</view>
-          <view class="answer in_mid">{{commentList[8]}}</view>
-        </view>
-        <view class="reccontainer6">
-          <view class="month in_mid">9月</view>
-          <view class="answer in_mid">{{commentList[9]}}</view>
-        </view>
-        <view class="reccontainer6">
-          <view class="month in_mid">10月</view>
-          <view class="answer in_mid">{{commentList[10]}}</view>
-        </view>
-        <view class="reccontainer6">
-          <view class="month in_mid">11月</view>
-          <view class="answer in_mid">{{commentList[11]}}</view>
-        </view>
-        <view class="reccontainer6">
-          <view class="month in_mid">12月</view>
-          <view class="answer in_mid">{{commentList[12]}}</view>
-        </view>
-      </scroll-view>
+  <view class='diary'>
+    <view class="question">{{cur_question}}</view>
+    <view class="reccontainer" bindtap="goToheartRec">
+      <!-- 左边部分 -->
+      <view class="reccontainer1">
+        <picker-view mask-class="maskClass" class="reccontainer3" value="{{valueYear}}" bindchange="bindChangeYear">
+          <picker-view-column>
+            <view wx:for="{{years}}" wx:key="{{years}}" class="case_info_year in_mid">
+              {{item}}年
+            </view>
+          </picker-view-column>
+        </picker-view>
+        <picker-view mask-class="maskClass" class="reccontainer7" value="{{valueDate}}" bindchange="bindChangeDate">
+          <picker-view-column>
+            <view wx:for="{{dates}}" wx:key="{{dates}}" class="case_info_date in_mid">
+              {{item}}日
+            </view>
+          </picker-view-column>
+        </picker-view>
+      </view>
+      <!-- 右边部分 -->
+      <view class="reccontainer2">
+        <scroll-view scroll-y="true" class="reccontainer5">
+          <view class="reccontainer6">
+            <view class="month in_mid">1月</view>
+            <view class="answer in_mid">{{commentList[1]}}</view>
+          </view>
+          <view class="reccontainer6">
+            <view class="month in_mid">2月</view>
+            <view class="answer in_mid">{{commentList[2]}}</view>
+          </view>
+          <view class="reccontainer6">
+            <view class="month in_mid">3月</view>
+            <view class="answer in_mid">{{commentList[3]}}</view>
+          </view>
+          <view class="reccontainer6">
+            <view class="month in_mid">4月</view>
+            <view class="answer in_mid">{{commentList[4]}}</view>
+          </view>
+          <view class="reccontainer6">
+            <view class="month in_mid">5月</view>
+            <view class="answer in_mid">{{commentList[5]}}</view>
+          </view>
+          <view class="reccontainer6">
+            <view class="month in_mid">6月</view>
+            <view class="answer in_mid">{{commentList[6]}}</view>
+          </view>
+          <view class="reccontainer6">
+            <view class="month in_mid">7月</view>
+            <view class="answer in_mid">{{commentList[7]}}</view>
+          </view>
+          <view class="reccontainer6">
+            <view class="month in_mid">8月</view>
+            <view class="answer in_mid">{{commentList[8]}}</view>
+          </view>
+          <view class="reccontainer6">
+            <view class="month in_mid">9月</view>
+            <view class="answer in_mid">{{commentList[9]}}</view>
+          </view>
+          <view class="reccontainer6">
+            <view class="month in_mid">10月</view>
+            <view class="answer in_mid">{{commentList[10]}}</view>
+          </view>
+          <view class="reccontainer6">
+            <view class="month in_mid">11月</view>
+            <view class="answer in_mid">{{commentList[11]}}</view>
+          </view>
+          <view class="reccontainer6">
+            <view class="month in_mid">12月</view>
+            <view class="answer in_mid">{{commentList[12]}}</view>
+          </view>
+        </scroll-view>
+      </view>
     </view>
   </view>
 </view>

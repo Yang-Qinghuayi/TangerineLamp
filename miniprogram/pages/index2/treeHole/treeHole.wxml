@@ -53,5 +53,5 @@
       </view>
     </view>
   </view>
-  <text class="bottom_text in_mid" >到底啦~</text>
+  <text class="bottom_text in_mid">到底啦~</text>
 </scroll-view>
