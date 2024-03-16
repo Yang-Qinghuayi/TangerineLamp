@@ -1,35 +1,25 @@
 <view class="page">
   <!-- 这里是被注释的四个区域 -->
-  <view class="topcontainer">
-    <view class='.case_title'>
-      心灵空间
-    </view>
-  </view>
+  <view class='case_title'>心灵社区</view>
   <view class='bodycontainer'>
-    <view class='imgcontainer'>
-      <view class='imghalf in_mid'>
-        <button class="singleimg" data-treeholename="share"  bindtap="gotoTreehole">
-          <text class="case_info_top">分享区</text>
-          <text class="case_info">分享小确幸</text>
-        </button>
-        <button class="singleimg" data-treeholename="vent" bindtap='gotoTreehole'>
-          <text class="case_info_top">发泄区</text>
-          <text class="case_info">情绪宣泄场</text>
-        </button>
-      </view>
-      <view class='imghalf in_top'>
-        <button class="singleimg" data-treeholename="help" bindtap='gotoTreehole'>
-          <text class="case_info_top">求助区</text>
-          <text class="case_info">愿得八方援</text>
-        </button>
-        <button class="singleimg" data-treeholename="other" bindtap='gotoTreehole'>
-            <text class="case_info_top">其他</text>
-          <text class="case_info">心灵二三事</text>
-        </button>
-      </view>
-    </view>
+    <button class="singleimg" data-treeholename="share" bindtap="gotoTreehole">
+      <text class="case_info_top">分享区</text>
+      <text class="case_info">分享小确幸</text>
+    </button>
+    <button class="singleimg" data-treeholename="vent" bindtap='gotoTreehole'>
+      <text class="case_info_top">发泄区</text>
+      <text class="case_info">情绪宣泄场</text>
+    </button>
+    <button class="singleimg" data-treeholename="help" bindtap='gotoTreehole'>
+      <text class="case_info_top">求助区</text>
+      <text class="case_info">愿得八方援</text>
+    </button>
+    <button class="singleimg" data-treeholename="other" bindtap='gotoTreehole'>
+      <text class="case_info_top">杂记</text>
+      <text class="case_info">心灵二三事</text>
+    </button>
   </view>
-  <view class='.case_title_2'>心灵日记</view>
+  <view class='case_title'>心灵日记</view>
   <view class="question">{{cur_question}}</view>
   <view class="reccontainer" bindtap="goToheartRec">
     <!-- 左边部分 -->
@@ -44,7 +34,6 @@
           <view wx:for="{{dates}}" wx:key="{{dates}}" class="case_info_date in_mid">{{item}}日</view>
         </picker-view-column>
       </picker-view>
-      <!-- <view class="case_info_date in_mid">{{cur_date}}日</view> -->
     </view>
     <!-- 右边部分 -->
     <view class="reccontainer2">
@@ -100,8 +89,4 @@
       </scroll-view>
     </view>
   </view>
-  <!-- 注释的按钮 -->
-  <!-- <button class="circle in_mid" bindtap="gotoPersonalEditor" style="width:80rpx;height: 80rpx;padding:0;">
-    +
-  </button> -->
 </view>

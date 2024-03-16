@@ -2,7 +2,7 @@
 <!-- 标题 -->
 <view class="header">
   <view class="title">心理文章</view>
-  <view class="des">Peace and Love. 心理文章分享，描绘心灵旅程。</view>
+  <view class="des">Peace and Love. 心理文章分享，描绘心灵旅程</view>
   <view class="des">(长按可以收藏哦)</view>
 </view>
 <!-- 文章列表 -->

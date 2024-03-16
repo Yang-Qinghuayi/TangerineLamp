@@ -21,9 +21,12 @@ const dates = [];
 for (let i = 2000; i <= date.getFullYear(); i++) {
   years.push(i);
 }
+
+// 初始化的时候，如果是今年的话，只显示到今天的日期
 for (let i = 1; i <= date.getDate(); i++) {
   dates.push(i);
 }
+
 Page({
   /**
    * 页面的初始数据
@@ -123,6 +126,23 @@ Page({
     this.setData({
       cur_year: this.data.years[val1[0]].toString(),
     });
+    let dataTemp = [];
+    if (date.getFullYear().toString() === this.data.cur_year) {
+      for (let i = 1; i <= date.getDate(); i++) {
+        dataTemp.push(i);
+      }
+      this.setData({
+        dates: dataTemp,
+      });
+    } else {
+      for (let i = 1; i <= 31; i++) {
+        dataTemp.push(i);
+      }
+      this.setData({
+        dates: dataTemp,
+      });
+    }
+
     // this.getQuestion() 由于目前每年的题目一样，所以这里在更新年份后，可以不用跟着更新问题
     monthList.forEach((month) => this.getCommentPic(month));
   },
