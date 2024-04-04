@@ -1,8 +1,7 @@
-const app = getApp()
-const db = wx.cloud.database()
-var maxCount = 0
+const app = getApp();
+const db = wx.cloud.database();
+var maxCount = 0;
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -11,131 +10,135 @@ Page({
     treeHoleData: "",
     isDeveloper: false,
     dataList: [],
-    openid:"",
+    openid: "",
     isRefreshing: false,
-    isSelf: false
+    isSelf: false,
   },
   // 获取数据
-  getData: function() {
+  getData: function () {
     let that = this;
     return new Promise((resolve, reject) => {
-      db.collection('index2HeartRoom_textAndpicture')
+      db.collection("index2HeartRoom_textAndpicture")
         .where({
-          area: that.data.treeholeJson.type
+          area: that.data.treeholeJson.type,
         })
-        .orderBy('time', 'desc')
+        .orderBy("time", "desc")
         .limit(20) // 限制返回结果数量
         .get({
-          success: function(res) {
+          success: function (res) {
             console.log("查询成功", res);
             that.setData({
-              dataList: res.data
+              dataList: res.data,
             });
             resolve(res.data); // 解析 Promise
           },
-          fail: function(err) {
-            console.log('查询失败', err);
+          fail: function (err) {
+            console.log("查询失败", err);
             reject(err); // 拒绝 Promise
-          }
+          },
         });
     });
   },
   // 删除数据
-  delete:function(e){
-    let that = this
-    let temp = e.currentTarget.dataset.id
-    console.log("删除",temp)
-    db.collection('index2HeartRoom_textAndpicture').where({
-      _id:temp
-    }).remove({
-      success: function(res){
-        console.log('删除成功', res)
-        that.getData()
-      },
-      fail: function(err) {
-        console.error('删除失败', err);
-      }
-    })
+  delete: function (e) {
+    let that = this;
+    let temp = e.currentTarget.dataset.id;
+    console.log("删除", temp);
+    db.collection("index2HeartRoom_textAndpicture")
+      .where({
+        _id: temp,
+      })
+      .remove({
+        success: function (res) {
+          console.log("删除成功", res);
+          that.getData();
+        },
+        fail: function (err) {
+          console.error("删除失败", err);
+        },
+      });
   },
   // 点击查看图片
-  viewImage: function(e) {
+  viewImage: function (e) {
     const src = e.currentTarget.dataset.src; // 假设你已经将图片的 URL 作为 data-src 设置到了 image 标签中
     wx.previewImage({
       urls: [src], // 需要预览的图片 HTTP 链接列表
     });
   },
   // 下拉刷新数据
-  onRefresh: function() {
+  onRefresh: function () {
     // 用户触发了下拉刷新操作
-    console.log('开始刷新数据');
+    console.log("开始刷新数据");
     this.setData({
-      isRefreshing:true,
-      isSelf: false
-    })
-    this.getData().then(() => {
-      // 数据获取完成后
-      this.setData({
-        isRefreshing: false // 停止刷新状态
+      isRefreshing: true,
+      isSelf: false,
+    });
+    this.getData()
+      .then(() => {
+        // 数据获取完成后
+        this.setData({
+          isRefreshing: false, // 停止刷新状态
+        });
+        console.log("结束刷新数据");
+      })
+      .catch((err) => {
+        // 处理错误情况
+        console.error(err);
       });
-    console.log('结束刷新数据');
-    }).catch((err) => {
-      // 处理错误情况
-      console.error(err);
-    });    
   },
   // 仅查看自己发布的记录
-  checkboxChange: function() {
-    if(this.data.isSelf){
+  checkboxChange: function () {
+    if (this.data.isSelf) {
       this.setData({
-        isSelf: false
-      })
+        isSelf: false,
+      });
       this.getData();
-    }
-    else{
-    this.setData({
-      isSelf: true
-    })
-    let that =this;
-    db.collection('index2HeartRoom_textAndpicture')
-    .where({
-      area: that.data.treeholeJson.type,
-      _openid: that.data.openid
-    })
-    .orderBy('time','desc')
-    .limit(20) // 限制返回结果数量
-    .get({
-      success: function(res){
-        console.log("查询成功", res)
-        that.setData({
-          dataList:res.data
+    } else {
+      this.setData({
+        isSelf: true,
+      });
+      let that = this;
+      db.collection("index2HeartRoom_textAndpicture")
+        .where({
+          area: that.data.treeholeJson.type,
+          _openid: that.data.openid,
         })
-      },
-      fail: function(err) {
-        console.log('查询失败', err);
-      }
-    });
-  }
+        .orderBy("time", "desc")
+        .limit(20) // 限制返回结果数量
+        .get({
+          success: function (res) {
+            console.log("查询成功", res);
+            that.setData({
+              dataList: res.data,
+            });
+          },
+          fail: function (err) {
+            console.log("查询失败", err);
+          },
+        });
+    }
   },
   // 跳转到某条动态的点赞与评论页面
-  gotoLikeAndComment: function(e){
-    let temp = e.currentTarget.dataset.id
-    console.log("马上：",temp)
-    let tempurl = "/pages/index2/heartRoomLikeComment/heartRoomLikeAndComment?id=" + temp
+  gotoLikeAndComment: function (e) {
+    let temp = e.currentTarget.dataset.id;
+    console.log("马上：", temp);
+    let tempurl =
+      "/pages/index2/heartRoomLikeComment/heartRoomLikeAndComment?id=" + temp;
     wx.navigateTo({
-      url: tempurl
-    })
+      url: tempurl,
+    });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    let josnTemp = options.title + ""
-    console.log(app.globalData.treehole[josnTemp])
+    console.log(options);
+    let josnTemp = options.title + "";
+    console.log(app.globalData.treehole[josnTemp]);
     this.setData({
       treeholeJson: app.globalData.treehole[josnTemp],
-      isDeveloper: app.globalData.isDeveloper
-    })
+      isDeveloper: app.globalData.isDeveloper,
+    });
   },
 
   /**
@@ -143,15 +146,15 @@ Page({
    */
   onShow: function () {
     this.setData({
-      openid:wx.getStorageSync("openid")
-    })
-    this.getData()
+      openid: wx.getStorageSync("openid"),
+    });
+    this.getData();
     // this.getTreeHoleData()
     // console.log(this.data.treeholeJson.color)
     wx.setNavigationBarColor({
       frontColor: "#ffffff",
       backgroundColor: this.data.treeholeJson.color,
-    })
+    });
     // this.getMaxCount()
   },
 
@@ -165,33 +168,39 @@ Page({
     if (oldData.length < maxCount) {
       // 显示加载条
       wx.showToast({
-        icon: 'loading',
-        duration: 500
-      })
+        icon: "loading",
+        duration: 500,
+      });
       // 开始更新下拉的数据
-      db.collection("index2_treeholes").where({
-        tag: this.data.treeholeJson.type
-      }).orderBy('time', 'desc').skip(oldData.length).limit(10).get().then(res => {
-        // 将新问题进行缝合
-        let newList = res.data
-        let newData = oldData.concat(newList)
-        console.log("拼接后的数据", newData)
-        // 缝合好的新老数据传给data中问题列表
-        this.setData({
-          treeHoleData: newData
-        }).catch(err => {
-          console.log('获得树洞数据失败 ', err)
-          this.showError('网络连接失败')
+      db.collection("index2_treeholes")
+        .where({
+          tag: this.data.treeholeJson.type,
         })
-      })
+        .orderBy("time", "desc")
+        .skip(oldData.length)
+        .limit(10)
+        .get()
+        .then((res) => {
+          // 将新问题进行缝合
+          let newList = res.data;
+          let newData = oldData.concat(newList);
+          console.log("拼接后的数据", newData);
+          // 缝合好的新老数据传给data中问题列表
+          this.setData({
+            treeHoleData: newData,
+          }).catch((err) => {
+            console.log("获得树洞数据失败 ", err);
+            this.showError("网络连接失败");
+          });
+        });
     }
     // 如果现在问题的数量等于问题总数量就显示‘加载完毕’
     else {
       wx.showToast({
-        title: '到底了哦',
-        icon: 'success',
-        duration: 500
-      })
+        title: "到底了哦",
+        icon: "success",
+        duration: 500,
+      });
     }
   },
 
@@ -205,19 +214,20 @@ Page({
       //   url: "/pages/index2/editPage/personalEditor?index=" + this.data.treeholeJson.index
       // })
       wx.navigateTo({
-        url: "/pages/index2/Publish/Publish?Area=" + this.data.treeholeJson.type
-      })
+        url:
+          "/pages/index2/Publish/Publish?Area=" + this.data.treeholeJson.type,
+      });
     }
     // 如果没有登录则提醒先登录
     else {
       wx.switchTab({
-        url: '/pages/index3/index3',
-      })
+        url: "/pages/index3/index3",
+      });
       wx.showToast({
-        title: '请先登录',
-        icon: 'none',
-        duration: 1500
-      })
+        title: "请先登录",
+        icon: "none",
+        duration: 1500,
+      });
     }
   },
 
@@ -225,7 +235,7 @@ Page({
    * 获得数据库里面的树洞数据
    */
   getTreeHoleData: function () {
-    let that = this
+    let that = this;
     // await wx.cloud.callFunction({
     //   name: "index2_getTreeholeList",
     //   data: {
@@ -246,169 +256,160 @@ Page({
     //     that.showError('网络连接失败')
     //   }
     // })
-    db.collection("index2_treeholes").where({
-      tag: this.data.treeholeJson.type
-    }).limit(10).orderBy('time', 'desc').get().then(res => {
-      console.log("树洞的数据", res),
-        this.setData({
-          treeHoleData: res.data
-        })
-      // this.data.treeHoleData["isCerti"] = this.getIsTrue(this.data.treeHoleData._openid)
-    }).catch(err => {
-      console.log('获得树洞数据失败 ', err)
-      this.showError('网络连接失败')
-    })
+    db.collection("index2_treeholes")
+      .where({
+        tag: this.data.treeholeJson.type,
+      })
+      .limit(10)
+      .orderBy("time", "desc")
+      .get()
+      .then((res) => {
+        console.log("树洞的数据", res),
+          this.setData({
+            treeHoleData: res.data,
+          });
+        // this.data.treeHoleData["isCerti"] = this.getIsTrue(this.data.treeHoleData._openid)
+      })
+      .catch((err) => {
+        console.log("获得树洞数据失败 ", err);
+        this.showError("网络连接失败");
+      });
   },
 
   /**
    * 获得这一类型树洞的数目
    */
   getMaxCount() {
-    db.collection('index2_treeholes')
+    db.collection("index2_treeholes")
       .where({
-        tag: this.data.treeholeJson.type
+        tag: this.data.treeholeJson.type,
       })
       .count()
-      .then(res => {
-        maxCount = res.total
-      })
+      .then((res) => {
+        maxCount = res.total;
+      });
   },
 
   /**
    * 携带树洞信息id跳转到详细数据界面里面
    */
   toDetailPage(res) {
-    let tempid = res.currentTarget.dataset.treeholeid
-    let tempurl = "/pages/index2/detailPage/detailPage?title=" + tempid
+    let tempid = res.currentTarget.dataset.treeholeid;
+    let tempurl = "/pages/index2/detailPage/detailPage?title=" + tempid;
     wx.navigateTo({
       url: tempurl,
-    })
+    });
   },
 
   showError(detail) {
     wx.showToast({
       title: detail,
-      icon: 'error',
-      duration: 2000
-    })
+      icon: "error",
+      duration: 2000,
+    });
   },
-
-  // getIsTrue(openid){
-  //   let tempIsCertification = false
-  //   db.collection('doctors')
-  //   .where({
-  //     _openid: openid
-  //   })
-  //   .get()
-  //   .then(res => {
-  //     tempIsCertification = res.data.isCertification
-  //     console.log(tempIsCertification)
-  //     return tempIsCertification
-  //   })
-  // },
 
   /**
    * 处理删除树洞事件
    */
   deleteMe(res) {
-    console.log("用户选中树洞的id: ", res.currentTarget.dataset.thistreeholeid)
-    let tempid = res.currentTarget.dataset.thistreeholeid
-    const that = this
+    console.log("用户选中树洞的id: ", res.currentTarget.dataset.thistreeholeid);
+    let tempid = res.currentTarget.dataset.thistreeholeid;
+    const that = this;
     // 提醒用户是否要删除树洞
     wx.showModal({
-      title: '',
-      content: '确定要删除吗？',
+      title: "",
+      content: "确定要删除吗？",
       success: function (e) {
         // 点击了确定以后会删除树洞和评论
         if (e.confirm) {
           //  删除树洞
-          console.log('用户点击确定')
-          console.log('开始删除树洞信息')
-          db.collection('index2_treeholes')
-            .doc(tempid)
-            .remove()
+          console.log("用户点击确定");
+          console.log("开始删除树洞信息");
+          db.collection("index2_treeholes").doc(tempid).remove();
           //  删除评论
-          console.log('成功删除树洞: ', tempid)
-          console.log('开始删除树洞中的评论')
-          db.collection('index2_comments')
+          console.log("成功删除树洞: ", tempid);
+          console.log("开始删除树洞中的评论");
+          db.collection("index2_comments")
             .where({
-              treeholeid: tempid
+              treeholeid: tempid,
             })
-            .remove()
+            .remove();
           // 删除点赞
-          console.log('开始删除树洞的点赞')
-          db.collection('index2_likeTag')
+          console.log("开始删除树洞的点赞");
+          db.collection("index2_likeTag")
             .where({
-              treeholeid: tempid
+              treeholeid: tempid,
             })
-            .remove()
+            .remove();
           // 显示删除的提示界面
-          that.getTreeHoleData()
+          that.getTreeHoleData();
           wx.showToast({
-            title: '删除成功',
-          })
+            title: "删除成功",
+          });
         }
-      }
-    })
+      },
+    });
   },
   // 发起私聊会话
   gotoChat(res) {
     // console.log(res);
-    console.log("用户选中树洞的id: ", res.currentTarget.dataset.thistreeholeid)
+    console.log("用户选中树洞的id: ", res.currentTarget.dataset.thistreeholeid);
     let tempid = res.currentTarget.dataset.thistreeholeid;
     // 从数据库获取对应此树洞信息
-    db.collection('index2_treeholes')
+    db.collection("index2_treeholes")
       .doc(tempid)
       .get({
         success: function (res) {
           // res.data 包含该记录的数据
-          console.log("该树洞数据：",res.data)
+          console.log("该树洞数据：", res.data);
           let treehold_data = res.data;
 
           // 对方信息
           let hisUserInfo = {
-            avatarUrl:treehold_data.avatar, // 头像
-            nickName:treehold_data.nickName // 昵称
-          }
+            avatarUrl: treehold_data.avatar, // 头像
+            nickName: treehold_data.nickName, // 昵称
+          };
 
           // 会话ID，由双方openid拼接(字典序小的 + _ +  字典序大的)
           let my_openid = app.globalData.openid;
           let his_openid = treehold_data._openid;
           var session_id;
-          if(my_openid<his_openid){
-            session_id = my_openid + '_' + his_openid;
-          }else{
-            session_id = his_openid + '_' + my_openid;
+          if (my_openid < his_openid) {
+            session_id = my_openid + "_" + his_openid;
+          } else {
+            session_id = his_openid + "_" + my_openid;
           }
 
           // 云函数调用，查看此会话是否存在，不存在则会新建
-          wx.cloud.callFunction({
-            name: "chat",
-            data: {
-              type: 'newSession',
-              sid: session_id,
-              my_openid: my_openid,
-              his_openid: his_openid,
-              myUserInfo: app.globalData.userInfo,
-              hisUserInfo: hisUserInfo,
-            }
-          })
-          .then((res) => {
-            console.log('调用newSession云函数成功')
-            if(res.isSid==false){
-              console.log('会话新建失败!!!')
-            }
-          }) 
+          wx.cloud
+            .callFunction({
+              name: "chat",
+              data: {
+                type: "newSession",
+                sid: session_id,
+                my_openid: my_openid,
+                his_openid: his_openid,
+                myUserInfo: app.globalData.userInfo,
+                hisUserInfo: hisUserInfo,
+              },
+            })
+            .then((res) => {
+              console.log("调用newSession云函数成功");
+              if (res.isSid == false) {
+                console.log("会话新建失败!!!");
+              }
+            });
 
           wx.navigateTo({
             url: "../chatPage/chatPage?" + "session_id=" + session_id,
             success: function (res) {
               // 通过eventChannel向被打开页面传送数据（即对方的个人信息）
-              res.eventChannel.emit('sendhisUserInfo', hisUserInfo)
-              console.log("跳转私聊界面成功！")
-            }
-          })
-        }
-      })
-  }
-})
+              res.eventChannel.emit("sendhisUserInfo", hisUserInfo);
+              console.log("跳转私聊界面成功！");
+            },
+          });
+        },
+      });
+  },
+});

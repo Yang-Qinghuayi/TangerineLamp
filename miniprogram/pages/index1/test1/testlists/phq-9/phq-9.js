@@ -132,19 +132,19 @@ Page({
       }
       totalScores += this.data.chosenAnswers[i];
       if(totalScores<=4){
-        final_eval_str = "无症状或症状极轻微，该分数表明您可能不需要接受抑郁症治疗。";
+        final_eval_str = "哈喽，你最近的状态很不错，可能不需要接受抑郁症的治疗哟~愿你保持快乐，开心生活！";
         totalColor = "green";
       }else if(totalScores <= 9){
-        final_eval_str = "轻度抑郁，可向心理医师寻求帮助，根据您抑郁症状的持续时间和造成的功能障碍，对治疗进行临床判断。";
+        final_eval_str = "哈喽，好像你最近有些许不开心呢，有轻度抑郁症状。如果可以的话，记得向心理咨询师寻求一些帮助哦~愿你充满活力，快乐生活！";
         totalColor = "blue";
       }else if(totalScores <= 14){
-        final_eval_str = "中度抑郁，可向心理医师寻求帮助，根据您抑郁症状的持续时间和造成的功能障碍，对治疗进行临床判断。";
+        final_eval_str = "哈喽，好像你最近的状态没有那么好呢，有中度抑郁症状。如果可以的话，记得向心理咨询师寻求一些帮助哦~愿你充满活力，快乐生活！";
         totalColor = "orange";
       }else if(totalScores <= 19){
-        final_eval_str = "较重度抑郁，请立即向心理医师寻求帮助，并根据医嘱使用抗抑郁剂、心理疗法或综合治疗！";
+        final_eval_str = "哈喽，好像你最近的状态很不好啊，有较严重的抑郁症状，是遇到什么难事了吗？如果可以的话，记得立即向心理咨询师寻求一些帮助哦~";
         totalColor = "red";
       }else{
-        final_eval_str = "重度抑郁，请立即向心理医师寻求帮助，并根据医嘱使用抗抑郁剂、心理疗法或综合治疗！";
+        final_eval_str = "哈喽，好像你最近的状态很不好啊，有重度的抑郁症状，是遇到什么难事了吗？如果可以的话，记得立即向心理咨询师寻求一些帮助哦~";
         totalColor = "red";
       }
     }

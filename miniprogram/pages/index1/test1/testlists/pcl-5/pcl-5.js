@@ -167,18 +167,18 @@ Page({
       totalScores += this.data.chosenAnswers[i];
     }
     if (totalScores == 0) {
-      final_eval_str = "恭喜，本次测评未发现PTSD症状！";
+      final_eval_str = "哈喽，你没有PTSD的症状哟！愿你天天开心，快乐生活！";
       totalColor = "green";
     } else if (totalScores < 19) {
       final_eval_str =
-        "有极轻微PTSD症状，可自行观察一段时间，或向心理医师寻求建议。";
+        "哈喽，好像你最近有极轻微的PTSD症状呢。你可以自己调节观察一段时间哦，或者也可以向心理咨询师寻求一些建议~愿你天天开心，快乐生活！";
       totalColor = "blue";
     } else if (totalScores < 38) {
       final_eval_str =
-        "有轻微PTSD症状，可自行观察一段时间，或向心理医师寻求建议。";
+        "哈喽，好像你最近有轻微的PTSD症状呢。你可以自己调节观察一段时间哦，或者也可以向心理咨询师寻求一些建议~愿你天天开心，快乐生活！";
       totalColor = "orange";
     } else {
-      final_eval_str = "有较严重PTSD症状，请立即向心理咨询师寻求帮助！";
+      final_eval_str = "哈喽，好像你最近的状态很不好啊，有较严重的PTSD症状，是遇到什么难事了吗？可以找心理咨询师聊一聊，寻求他人的帮助哦！";
       totalColor = "red";
     }
 

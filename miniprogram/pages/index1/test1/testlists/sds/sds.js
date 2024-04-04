@@ -141,16 +141,16 @@ Page({
     }
     let totalIndex = totalScores / 80;
     if (totalIndex < 0.5) {
-      final_eval_str = "恭喜，本次测评未发现抑郁症状！";
+      final_eval_str = "哈喽，你最近的状态很不错，没有抑郁的症状哟~愿你保持快乐，开心生活！";
       totalColor = "green";
     } else if (totalIndex >= 0.5 && totalIndex <= 0.59) {
-      final_eval_str = "有极轻微抑郁症状，可自行观察一段时间，或向心理医师寻求建议。";
+      final_eval_str = "哈喽，好像你最近有些许不开心呢，有极轻微抑郁症状。你可以用自己喜欢的方式开心一下，自己调节观察一段时间哦，或者也可以向心理咨询师寻求一些建议~愿你充满活力，快乐生活！";
       totalColor = "blue";
     } else if (totalIndex >= 0.6 && totalIndex <= 0.69) {
-      final_eval_str = "有中度抑郁症状，可自行观察一段时间，或向心理医师寻求建议。";
+      final_eval_str = "哈喽，好像你最近的状态没有那么好呢，有中度抑郁症状。你可以听听歌、跑跑步，用自己喜欢的方式开心放松一下，自己调节观察一段时间哦，或者也可以向心理咨询师寻求一些建议~愿你充满活力，快乐生活！";
       totalColor = "orange";
     } else {
-      final_eval_str = "有较严重抑郁症状，请想办法向心理咨询师寻求帮助！";
+      final_eval_str = "哈喽，好像你最近的状态很不好啊，有较严重的抑郁症状，是遇到什么难事了吗？可以找心理咨询师聊一聊，寻求他人的帮助哦！";
       totalColor = "red";
     }
 

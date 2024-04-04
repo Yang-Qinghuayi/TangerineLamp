@@ -143,16 +143,16 @@ Page({
     // 取整数
     totalScores = Math.round(totalScores);
     if (totalScores < 50) {
-      final_eval_str = "恭喜，本次测评未发现焦虑症状！";
+      final_eval_str = "哈喽，最近似乎没有让你感到焦虑的事情~愿你保持淡定和从容哟！";
       totalColor = "green";
     } else if (totalScores >= 50 && totalScores <= 59) {
-      final_eval_str = "有极轻微焦虑症状，可自行观察一段时间，或向心理医师寻求建议。";
+      final_eval_str = "哈喽，好像你最近有些许焦虑呢，有极轻微的焦虑症状。你可以用自己喜欢的方式放松一下，自己调节观察一段时间哦，或者也可以向心理咨询师寻求一些建议~愿你开心快乐，淡定从容！";
       totalColor = "blue";
     } else if (totalScores >= 60 && totalScores <= 69) {
-      final_eval_str = "有中度焦虑症状，可自行观察一段时间，或向心理医师寻求建议。";
+      final_eval_str = "哈喽，好像你最近有些许焦虑呢，有极轻微的焦虑症状。你可以用自己喜欢的方式放松一下，自己调节观察一段时间哦，或者也可以向心理咨询师寻求一些建议~愿你开心快乐，淡定从容！";
       totalColor = "orange";
     } else {
-      final_eval_str = "有较严重焦虑症状，请想办法向心理咨询师寻求帮助！";
+      final_eval_str = "哈喽，好像你最近的焦虑症状有点严重呢，是遇到了什么难事吗？可以找心理咨询师聊一聊，寻求他人的帮助哦！";
       totalColor = "red";
     }
 

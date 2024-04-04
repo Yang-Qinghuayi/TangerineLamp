@@ -129,19 +129,19 @@ Page({
       totalScores += this.data.chosenAnswers[i];
     }
     if (totalScores <= 10) {
-      final_eval_str = "在本次测评中，您的自我韧性水平非常低，建议您多参加一些锻炼，增强自己的自信心。";
+      final_eval_str = "哈喽，好像你很难从逆境或顺境中恢复常态，你可以从制定和完成小目标开始，慢慢建立自己的自信哦~愿你自信从容，充满力量！";
       totalColor = "orange";
     } else if (totalScores >= 11 && totalScores <= 22) {
-      final_eval_str = "在本次测评中，您表现为低心理弹性特质";
+      final_eval_str = "哈喽，好像你经常难以从逆境或顺境中恢复常态，是低心理弹性特质哦。你可以通过制定和完成小目标来增强自己的自信哟~愿你自信从容，充满力量！";
       totalColor = "orange";
     } else if (totalScores >= 23 && totalScores <= 34) {
-      final_eval_str = "在本次测评中，您表现为一般心理弹性特质";
+      final_eval_str = "哈喽，好像你有时难以从逆境或顺境中恢复常态，是一般心理弹性特质哦。你可以多多锻炼自我的调控能力，让自己变得更自信哟！愿你自信从容，充满力量！";
       totalColor = "orange";
     } else if (totalScores >= 35 && totalScores <= 46) {
-      final_eval_str = "在本次测评中，您表现为高心理弹性特质";
+      final_eval_str = "哈喽，你有很棒的能力从逆境或顺境中恢复常态，是高心理弹性特质继续保持哟！";
       totalColor = "green";
     } else {
-      final_eval_str = "在本次测评中，您表现为非常高心理弹性特质";
+      final_eval_str = "哈喽，你的自我韧性水平超级棒，是非常高心理弹性特质，继续保持哟！";
       totalColor = "green";
     }
 
